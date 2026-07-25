@@ -130,11 +130,11 @@ function Sidebar({
 
         <div className="mt-3 rounded-xl bg-slate-100 p-3">
           <p className="text-sm font-semibold text-slate-800">
-            けんし
+            TsukiYowano
           </p>
 
           <p className="mt-0.5 text-xs text-slate-500">
-            ローカル開発中
+            開発中
           </p>
         </div>
       </div>
