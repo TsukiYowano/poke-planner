@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "adaptability",
+    "jpName": "てきおうりょく",
+    "enName": "adaptability"
+  },
+  {
+    "id": "aerilate",
+    "jpName": "スカイスキン",
+    "enName": "aerilate"
+  },
+  {
+    "id": "aftermath",
+    "jpName": "ゆうばく",
+    "enName": "aftermath"
+  },
+  {
+    "id": "analytic",
+    "jpName": "アナライズ",
+    "enName": "analytic"
+  },
+  {
+    "id": "anger-point",
+    "jpName": "いかりのつぼ",
+    "enName": "anger-point"
+  },
+  {
+    "id": "anticipation",
+    "jpName": "きけんよち",
+    "enName": "anticipation"
+  },
+  {
+    "id": "armor-tail",
+    "jpName": "テイルアーマー",
+    "enName": "armor-tail"
+  },
+  {
+    "id": "aroma-veil",
+    "jpName": "アロマベール",
+    "enName": "aroma-veil"
+  },
+  {
+    "id": "battle-armor",
+    "jpName": "カブトアーマー",
+    "enName": "battle-armor"
+  },
+  {
+    "id": "berserk",
+    "jpName": "ぎゃくじょう",
+    "enName": "berserk"
+  },
+  {
+    "id": "big-pecks",
+    "jpName": "はとむね",
+    "enName": "big-pecks"
+  },
+  {
+    "id": "blaze",
+    "jpName": "もうか",
+    "enName": "blaze"
+  },
+  {
+    "id": "bulletproof",
+    "jpName": "ぼうだん",
+    "enName": "bulletproof"
+  },
+  {
+    "id": "cheek-pouch",
+    "jpName": "ほおぶくろ",
+    "enName": "cheek-pouch"
+  },
+  {
+    "id": "chlorophyll",
+    "jpName": "ようりょくそ",
+    "enName": "chlorophyll"
+  },
+  {
+    "id": "clear-body",
+    "jpName": "クリアボディ",
+    "enName": "clear-body"
+  },
+  {
+    "id": "cloud-nine",
+    "jpName": "ノーてんき",
+    "enName": "cloud-nine"
+  },
+  {
+    "id": "competitive",
+    "jpName": "かちき",
+    "enName": "competitive"
+  },
+  {
+    "id": "compound-eyes",
+    "jpName": "ふくがん",
+    "enName": "compound-eyes"
+  },
+  {
+    "id": "contrary",
+    "jpName": "あまのじゃく",
+    "enName": "contrary"
+  },
+  {
+    "id": "corrosion",
+    "jpName": "ふしょく",
+    "enName": "corrosion"
+  },
+  {
+    "id": "cud-chew",
+    "jpName": "はんすう",
+    "enName": "cud-chew"
+  },
+  {
+    "id": "curious-medicine",
+    "jpName": "きみょうなくすり",
+    "enName": "curious-medicine"
+  },
+  {
+    "id": "cursed-body",
+    "jpName": "のろわれボディ",
+    "enName": "cursed-body"
+  },
+  {
+    "id": "cute-charm",
+    "jpName": "メロメロボディ",
+    "enName": "cute-charm"
+  },
+  {
+    "id": "damp",
+    "jpName": "しめりけ",
+    "enName": "damp"
+  },
+  {
+    "id": "defiant",
+    "jpName": "まけんき",
+    "enName": "defiant"
+  },
+  {
+    "id": "disguise",
+    "jpName": "ばけのかわ",
+    "enName": "disguise"
+  },
+  {
+    "id": "dragonize",
+    "jpName": "ドラゴンスキン",
+    "enName": "dragonize"
+  },
+  {
+    "id": "drizzle",
+    "jpName": "あめふらし",
+    "enName": "drizzle"
+  },
+  {
+    "id": "drought",
+    "jpName": "ひでり",
+    "enName": "drought"
+  },
+  {
+    "id": "dry-skin",
+    "jpName": "かんそうはだ",
+    "enName": "dry-skin"
+  },
+  {
+    "id": "early-bird",
+    "jpName": "はやおき",
+    "enName": "early-bird"
+  },
+  {
+    "id": "earth-eater",
+    "jpName": "どしょく",
+    "enName": "earth-eater"
+  },
+  {
+    "id": "eelevate",
+    "jpName": "eelevate",
+    "enName": "eelevate"
+  },
+  {
+    "id": "effect-spore",
+    "jpName": "ほうし",
+    "enName": "effect-spore"
+  },
+  {
+    "id": "electric-surge",
+    "jpName": "エレキメイカー",
+    "enName": "electric-surge"
+  },
+  {
+    "id": "electromorphosis",
+    "jpName": "でんきにかえる",
+    "enName": "electromorphosis"
+  },
+  {
+    "id": "fairy-aura",
+    "jpName": "フェアリーオーラ",
+    "enName": "fairy-aura"
+  },
+  {
+    "id": "filter",
+    "jpName": "フィルター",
+    "enName": "filter"
+  },
+  {
+    "id": "fire-mane",
+    "jpName": "fire-mane",
+    "enName": "fire-mane"
+  },
+  {
+    "id": "flame-body",
+    "jpName": "ほのおのからだ",
+    "enName": "flame-body"
+  },
+  {
+    "id": "flash-fire",
+    "jpName": "もらいび",
+    "enName": "flash-fire"
+  },
+  {
+    "id": "flower-veil",
+    "jpName": "フラワーベール",
+    "enName": "flower-veil"
+  },
+  {
+    "id": "fluffy",
+    "jpName": "もふもふ",
+    "enName": "fluffy"
+  },
+  {
+    "id": "forecast",
+    "jpName": "てんきや",
+    "enName": "forecast"
+  },
+  {
+    "id": "forewarn",
+    "jpName": "よちむ",
+    "enName": "forewarn"
+  },
+  {
+    "id": "friend-guard",
+    "jpName": "フレンドガード",
+    "enName": "friend-guard"
+  },
+  {
+    "id": "frisk",
+    "jpName": "おみとおし",
+    "enName": "frisk"
+  },
+  {
+    "id": "fur-coat",
+    "jpName": "ファーコート",
+    "enName": "fur-coat"
+  },
+  {
+    "id": "gale-wings",
+    "jpName": "はやてのつばさ",
+    "enName": "gale-wings"
+  },
+  {
+    "id": "gluttony",
+    "jpName": "くいしんぼう",
+    "enName": "gluttony"
+  },
+  {
+    "id": "good-as-gold",
+    "jpName": "おうごんのからだ",
+    "enName": "good-as-gold"
+  },
+  {
+    "id": "gooey",
+    "jpName": "ぬめぬめ",
+    "enName": "gooey"
+  },
+  {
+    "id": "guts",
+    "jpName": "こんじょう",
+    "enName": "guts"
+  },
+  {
+    "id": "harvest",
+    "jpName": "しゅうかく",
+    "enName": "harvest"
+  },
+  {
+    "id": "healer",
+    "jpName": "いやしのこころ",
+    "enName": "healer"
+  },
+  {
+    "id": "heatproof",
+    "jpName": "たいねつ",
+    "enName": "heatproof"
+  },
+  {
+    "id": "heavy-metal",
+    "jpName": "ヘヴィメタル",
+    "enName": "heavy-metal"
+  },
+  {
+    "id": "hospitality",
+    "jpName": "おもてなし",
+    "enName": "hospitality"
+  },
+  {
+    "id": "huge-power",
+    "jpName": "ちからもち",
+    "enName": "huge-power"
+  },
+  {
+    "id": "hunger-switch",
+    "jpName": "はらぺこスイッチ",
+    "enName": "hunger-switch"
+  },
+  {
+    "id": "hustle",
+    "jpName": "はりきり",
+    "enName": "hustle"
+  },
+  {
+    "id": "hydration",
+    "jpName": "うるおいボディ",
+    "enName": "hydration"
+  },
+  {
+    "id": "hyper-cutter",
+    "jpName": "かいりきバサミ",
+    "enName": "hyper-cutter"
+  },
+  {
+    "id": "ice-body",
+    "jpName": "アイスボディ",
+    "enName": "ice-body"
+  },
+  {
+    "id": "illuminate",
+    "jpName": "はっこう",
+    "enName": "illuminate"
+  },
+  {
+    "id": "illusion",
+    "jpName": "イリュージョン",
+    "enName": "illusion"
+  },
+  {
+    "id": "immunity",
+    "jpName": "めんえき",
+    "enName": "immunity"
+  },
+  {
+    "id": "imposter",
+    "jpName": "かわりもの",
+    "enName": "imposter"
+  },
+  {
+    "id": "infiltrator",
+    "jpName": "すりぬけ",
+    "enName": "infiltrator"
+  },
+  {
+    "id": "innards-out",
+    "jpName": "とびだすなかみ",
+    "enName": "innards-out"
+  },
+  {
+    "id": "inner-focus",
+    "jpName": "せいしんりょく",
+    "enName": "inner-focus"
+  },
+  {
+    "id": "insomnia",
+    "jpName": "ふみん",
+    "enName": "insomnia"
+  },
+  {
+    "id": "intimidate",
+    "jpName": "いかく",
+    "enName": "intimidate"
+  },
+  {
+    "id": "iron-fist",
+    "jpName": "てつのこぶし",
+    "enName": "iron-fist"
+  },
+  {
+    "id": "justified",
+    "jpName": "せいぎのこころ",
+    "enName": "justified"
+  },
+  {
+    "id": "keen-eye",
+    "jpName": "するどいめ",
+    "enName": "keen-eye"
+  },
+  {
+    "id": "klutz",
+    "jpName": "ぶきよう",
+    "enName": "klutz"
+  },
+  {
+    "id": "leaf-guard",
+    "jpName": "リーフガード",
+    "enName": "leaf-guard"
+  },
+  {
+    "id": "levitate",
+    "jpName": "ふゆう",
+    "enName": "levitate"
+  },
+  {
+    "id": "light-metal",
+    "jpName": "ライトメタル",
+    "enName": "light-metal"
+  },
+  {
+    "id": "lightning-rod",
+    "jpName": "ひらいしん",
+    "enName": "lightning-rod"
+  },
+  {
+    "id": "limber",
+    "jpName": "じゅうなん",
+    "enName": "limber"
+  },
+  {
+    "id": "liquid-voice",
+    "jpName": "うるおいボイス",
+    "enName": "liquid-voice"
+  },
+  {
+    "id": "long-reach",
+    "jpName": "えんかく",
+    "enName": "long-reach"
+  },
+  {
+    "id": "magic-bounce",
+    "jpName": "マジックミラー",
+    "enName": "magic-bounce"
+  },
+  {
+    "id": "magic-guard",
+    "jpName": "マジックガード",
+    "enName": "magic-guard"
+  },
+  {
+    "id": "magician",
+    "jpName": "マジシャン",
+    "enName": "magician"
+  },
+  {
+    "id": "magma-armor",
+    "jpName": "マグマのよろい",
+    "enName": "magma-armor"
+  },
+  {
+    "id": "marvel-scale",
+    "jpName": "ふしぎなうろこ",
+    "enName": "marvel-scale"
+  },
+  {
+    "id": "mega-launcher",
+    "jpName": "メガランチャー",
+    "enName": "mega-launcher"
+  },
+  {
+    "id": "mega-sol",
+    "jpName": "メガソーラー",
+    "enName": "mega-sol"
+  },
+  {
+    "id": "merciless",
+    "jpName": "ひとでなし",
+    "enName": "merciless"
+  },
+  {
+    "id": "mimicry",
+    "jpName": "ぎたい",
+    "enName": "mimicry"
+  },
+  {
+    "id": "minus",
+    "jpName": "マイナス",
+    "enName": "minus"
+  },
+  {
+    "id": "mirror-armor",
+    "jpName": "ミラーアーマー",
+    "enName": "mirror-armor"
+  },
+  {
+    "id": "mold-breaker",
+    "jpName": "かたやぶり",
+    "enName": "mold-breaker"
+  },
+  {
+    "id": "moody",
+    "jpName": "ムラっけ",
+    "enName": "moody"
+  },
+  {
+    "id": "motor-drive",
+    "jpName": "でんきエンジン",
+    "enName": "motor-drive"
+  },
+  {
+    "id": "moxie",
+    "jpName": "じしんかじょう",
+    "enName": "moxie"
+  },
+  {
+    "id": "multiscale",
+    "jpName": "マルチスケイル",
+    "enName": "multiscale"
+  },
+  {
+    "id": "mummy",
+    "jpName": "ミイラ",
+    "enName": "mummy"
+  },
+  {
+    "id": "natural-cure",
+    "jpName": "しぜんかいふく",
+    "enName": "natural-cure"
+  },
+  {
+    "id": "no-guard",
+    "jpName": "ノーガード",
+    "enName": "no-guard"
+  },
+  {
+    "id": "oblivious",
+    "jpName": "どんかん",
+    "enName": "oblivious"
+  },
+  {
+    "id": "opportunist",
+    "jpName": "びんじょう",
+    "enName": "opportunist"
+  },
+  {
+    "id": "overcoat",
+    "jpName": "ぼうじん",
+    "enName": "overcoat"
+  },
+  {
+    "id": "overgrow",
+    "jpName": "しんりょく",
+    "enName": "overgrow"
+  },
+  {
+    "id": "own-tempo",
+    "jpName": "マイペース",
+    "enName": "own-tempo"
+  },
+  {
+    "id": "parental-bond",
+    "jpName": "おやこあい",
+    "enName": "parental-bond"
+  },
+  {
+    "id": "pickpocket",
+    "jpName": "わるいてぐせ",
+    "enName": "pickpocket"
+  },
+  {
+    "id": "pickup",
+    "jpName": "ものひろい",
+    "enName": "pickup"
+  },
+  {
+    "id": "piercing-drill",
+    "jpName": "かんつうドリル",
+    "enName": "piercing-drill"
+  },
+  {
+    "id": "pixilate",
+    "jpName": "フェアリースキン",
+    "enName": "pixilate"
+  },
+  {
+    "id": "plus",
+    "jpName": "プラス",
+    "enName": "plus"
+  },
+  {
+    "id": "poison-heal",
+    "jpName": "ポイズンヒール",
+    "enName": "poison-heal"
+  },
+  {
+    "id": "poison-point",
+    "jpName": "どくのトゲ",
+    "enName": "poison-point"
+  },
+  {
+    "id": "poison-touch",
+    "jpName": "どくしゅ",
+    "enName": "poison-touch"
+  },
+  {
+    "id": "prankster",
+    "jpName": "いたずらごころ",
+    "enName": "prankster"
+  },
+  {
+    "id": "pressure",
+    "jpName": "プレッシャー",
+    "enName": "pressure"
+  },
+  {
+    "id": "protean",
+    "jpName": "へんげんじざい",
+    "enName": "protean"
+  },
+  {
+    "id": "pure-power",
+    "jpName": "ヨガパワー",
+    "enName": "pure-power"
+  },
+  {
+    "id": "purifying-salt",
+    "jpName": "きよめのしお",
+    "enName": "purifying-salt"
+  },
+  {
+    "id": "queenly-majesty",
+    "jpName": "じょおうのいげん",
+    "enName": "queenly-majesty"
+  },
+  {
+    "id": "quick-draw",
+    "jpName": "クイックドロウ",
+    "enName": "quick-draw"
+  },
+  {
+    "id": "quick-feet",
+    "jpName": "はやあし",
+    "enName": "quick-feet"
+  },
+  {
+    "id": "rain-dish",
+    "jpName": "あめうけざら",
+    "enName": "rain-dish"
+  },
+  {
+    "id": "receiver",
+    "jpName": "レシーバー",
+    "enName": "receiver"
+  },
+  {
+    "id": "reckless",
+    "jpName": "すてみ",
+    "enName": "reckless"
+  },
+  {
+    "id": "refrigerate",
+    "jpName": "フリーズスキン",
+    "enName": "refrigerate"
+  },
+  {
+    "id": "regenerator",
+    "jpName": "さいせいりょく",
+    "enName": "regenerator"
+  },
+  {
+    "id": "ripen",
+    "jpName": "じゅくせい",
+    "enName": "ripen"
+  },
+  {
+    "id": "rivalry",
+    "jpName": "とうそうしん",
+    "enName": "rivalry"
+  },
+  {
+    "id": "rock-head",
+    "jpName": "いしあたま",
+    "enName": "rock-head"
+  },
+  {
+    "id": "rough-skin",
+    "jpName": "さめはだ",
+    "enName": "rough-skin"
+  },
+  {
+    "id": "sand-force",
+    "jpName": "すなのちから",
+    "enName": "sand-force"
+  },
+  {
+    "id": "sand-rush",
+    "jpName": "すなかき",
+    "enName": "sand-rush"
+  },
+  {
+    "id": "sand-spit",
+    "jpName": "すなはき",
+    "enName": "sand-spit"
+  },
+  {
+    "id": "sand-stream",
+    "jpName": "すなおこし",
+    "enName": "sand-stream"
+  },
+  {
+    "id": "sand-veil",
+    "jpName": "すながくれ",
+    "enName": "sand-veil"
+  },
+  {
+    "id": "sap-sipper",
+    "jpName": "そうしょく",
+    "enName": "sap-sipper"
+  },
+  {
+    "id": "scrappy",
+    "jpName": "きもったま",
+    "enName": "scrappy"
+  },
+  {
+    "id": "screen-cleaner",
+    "jpName": "バリアフリー",
+    "enName": "screen-cleaner"
+  },
+  {
+    "id": "shadow-tag",
+    "jpName": "かげふみ",
+    "enName": "shadow-tag"
+  },
+  {
+    "id": "sharpness",
+    "jpName": "きれあじ",
+    "enName": "sharpness"
+  },
+  {
+    "id": "shed-skin",
+    "jpName": "だっぴ",
+    "enName": "shed-skin"
+  },
+  {
+    "id": "sheer-force",
+    "jpName": "ちからずく",
+    "enName": "sheer-force"
+  },
+  {
+    "id": "shell-armor",
+    "jpName": "シェルアーマー",
+    "enName": "shell-armor"
+  },
+  {
+    "id": "shield-dust",
+    "jpName": "りんぷん",
+    "enName": "shield-dust"
+  },
+  {
+    "id": "skill-link",
+    "jpName": "スキルリンク",
+    "enName": "skill-link"
+  },
+  {
+    "id": "slush-rush",
+    "jpName": "ゆきかき",
+    "enName": "slush-rush"
+  },
+  {
+    "id": "sniper",
+    "jpName": "スナイパー",
+    "enName": "sniper"
+  },
+  {
+    "id": "snow-cloak",
+    "jpName": "ゆきがくれ",
+    "enName": "snow-cloak"
+  },
+  {
+    "id": "snow-warning",
+    "jpName": "ゆきふらし",
+    "enName": "snow-warning"
+  },
+  {
+    "id": "solar-power",
+    "jpName": "サンパワー",
+    "enName": "solar-power"
+  },
+  {
+    "id": "solid-rock",
+    "jpName": "ハードロック",
+    "enName": "solid-rock"
+  },
+  {
+    "id": "soundproof",
+    "jpName": "ぼうおん",
+    "enName": "soundproof"
+  },
+  {
+    "id": "speed-boost",
+    "jpName": "かそく",
+    "enName": "speed-boost"
+  },
+  {
+    "id": "spicy-spray",
+    "jpName": "とびだすハバネロ",
+    "enName": "spicy-spray"
+  },
+  {
+    "id": "stall",
+    "jpName": "あとだし",
+    "enName": "stall"
+  },
+  {
+    "id": "stalwart",
+    "jpName": "すじがねいり",
+    "enName": "stalwart"
+  },
+  {
+    "id": "stamina",
+    "jpName": "じきゅうりょく",
+    "enName": "stamina"
+  },
+  {
+    "id": "stance-change",
+    "jpName": "バトルスイッチ",
+    "enName": "stance-change"
+  },
+  {
+    "id": "static",
+    "jpName": "せいでんき",
+    "enName": "static"
+  },
+  {
+    "id": "steadfast",
+    "jpName": "ふくつのこころ",
+    "enName": "steadfast"
+  },
+  {
+    "id": "stench",
+    "jpName": "あくしゅう",
+    "enName": "stench"
+  },
+  {
+    "id": "sticky-hold",
+    "jpName": "ねんちゃく",
+    "enName": "sticky-hold"
+  },
+  {
+    "id": "strong-jaw",
+    "jpName": "がんじょうあご",
+    "enName": "strong-jaw"
+  },
+  {
+    "id": "sturdy",
+    "jpName": "がんじょう",
+    "enName": "sturdy"
+  },
+  {
+    "id": "suction-cups",
+    "jpName": "きゅうばん",
+    "enName": "suction-cups"
+  },
+  {
+    "id": "super-luck",
+    "jpName": "きょううん",
+    "enName": "super-luck"
+  },
+  {
+    "id": "supersweet-syrup",
+    "jpName": "かんろなミツ",
+    "enName": "supersweet-syrup"
+  },
+  {
+    "id": "supreme-overlord",
+    "jpName": "そうだいしょう",
+    "enName": "supreme-overlord"
+  },
+  {
+    "id": "surge-surfer",
+    "jpName": "サーフテール",
+    "enName": "surge-surfer"
+  },
+  {
+    "id": "swarm",
+    "jpName": "むしのしらせ",
+    "enName": "swarm"
+  },
+  {
+    "id": "sweet-veil",
+    "jpName": "スイートベール",
+    "enName": "sweet-veil"
+  },
+  {
+    "id": "swift-swim",
+    "jpName": "すいすい",
+    "enName": "swift-swim"
+  },
+  {
+    "id": "symbiosis",
+    "jpName": "きょうせい",
+    "enName": "symbiosis"
+  },
+  {
+    "id": "synchronize",
+    "jpName": "シンクロ",
+    "enName": "synchronize"
+  },
+  {
+    "id": "tangled-feet",
+    "jpName": "ちどりあし",
+    "enName": "tangled-feet"
+  },
+  {
+    "id": "technician",
+    "jpName": "テクニシャン",
+    "enName": "technician"
+  },
+  {
+    "id": "telepathy",
+    "jpName": "テレパシー",
+    "enName": "telepathy"
+  },
+  {
+    "id": "thick-fat",
+    "jpName": "あついしぼう",
+    "enName": "thick-fat"
+  },
+  {
+    "id": "torrent",
+    "jpName": "げきりゅう",
+    "enName": "torrent"
+  },
+  {
+    "id": "tough-claws",
+    "jpName": "かたいツメ",
+    "enName": "tough-claws"
+  },
+  {
+    "id": "toxic-debris",
+    "jpName": "どくげしょう",
+    "enName": "toxic-debris"
+  },
+  {
+    "id": "trace",
+    "jpName": "トレース",
+    "enName": "trace"
+  },
+  {
+    "id": "unaware",
+    "jpName": "てんねん",
+    "enName": "unaware"
+  },
+  {
+    "id": "unburden",
+    "jpName": "かるわざ",
+    "enName": "unburden"
+  },
+  {
+    "id": "unnerve",
+    "jpName": "きんちょうかん",
+    "enName": "unnerve"
+  },
+  {
+    "id": "unseen-fist",
+    "jpName": "ふかしのこぶし",
+    "enName": "unseen-fist"
+  },
+  {
+    "id": "vital-spirit",
+    "jpName": "やるき",
+    "enName": "vital-spirit"
+  },
+  {
+    "id": "volt-absorb",
+    "jpName": "ちくでん",
+    "enName": "volt-absorb"
+  },
+  {
+    "id": "wandering-spirit",
+    "jpName": "さまようたましい",
+    "enName": "wandering-spirit"
+  },
+  {
+    "id": "water-absorb",
+    "jpName": "ちょすい",
+    "enName": "water-absorb"
+  },
+  {
+    "id": "water-bubble",
+    "jpName": "すいほう",
+    "enName": "water-bubble"
+  },
+  {
+    "id": "weak-armor",
+    "jpName": "くだけるよろい",
+    "enName": "weak-armor"
+  },
+  {
+    "id": "white-smoke",
+    "jpName": "しろいけむり",
+    "enName": "white-smoke"
+  },
+  {
+    "id": "zero-to-hero",
+    "jpName": "マイティチェンジ",
+    "enName": "zero-to-hero"
+  }
+]

@@ -1,0 +1,7434 @@
+[
+  {
+    "id": "venusaur",
+    "jpName": "フシギバナ",
+    "enName": "Venusaur",
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "abilities": [
+      "overgrow",
+      "chlorophyll"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 82,
+      "defense": 83,
+      "spAttack": 100,
+      "spDefense": 100,
+      "speed": 80
+    },
+    "height": 20,
+    "weight": 1000,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png"
+  },
+  {
+    "id": "venusaur-mega",
+    "jpName": "メガフシギバナ",
+    "enName": "venusaur-mega",
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "abilities": [
+      "thick-fat"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 100,
+      "defense": 123,
+      "spAttack": 122,
+      "spDefense": 120,
+      "speed": 80
+    },
+    "height": 24,
+    "weight": 1555,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10033.png"
+  },
+  {
+    "id": "charizard",
+    "jpName": "リザードン",
+    "enName": "Charizard",
+    "types": [
+      "fire",
+      "flying"
+    ],
+    "abilities": [
+      "blaze",
+      "solar-power"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 84,
+      "defense": 78,
+      "spAttack": 109,
+      "spDefense": 85,
+      "speed": 100
+    },
+    "height": 17,
+    "weight": 905,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png"
+  },
+  {
+    "id": "charizard-mega-x",
+    "jpName": "メガリザードンx",
+    "enName": "charizard-mega-x",
+    "types": [
+      "fire",
+      "dragon"
+    ],
+    "abilities": [
+      "tough-claws"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 130,
+      "defense": 111,
+      "spAttack": 130,
+      "spDefense": 85,
+      "speed": 100
+    },
+    "height": 17,
+    "weight": 1105,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10034.png"
+  },
+  {
+    "id": "charizard-mega-y",
+    "jpName": "メガリザードンy",
+    "enName": "charizard-mega-y",
+    "types": [
+      "fire",
+      "flying"
+    ],
+    "abilities": [
+      "drought"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 104,
+      "defense": 78,
+      "spAttack": 159,
+      "spDefense": 115,
+      "speed": 100
+    },
+    "height": 17,
+    "weight": 1005,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10035.png"
+  },
+  {
+    "id": "blastoise",
+    "jpName": "カメックス",
+    "enName": "Blastoise",
+    "types": [
+      "water"
+    ],
+    "abilities": [
+      "torrent",
+      "rain-dish"
+    ],
+    "stats": {
+      "hp": 79,
+      "attack": 83,
+      "defense": 100,
+      "spAttack": 85,
+      "spDefense": 105,
+      "speed": 78
+    },
+    "height": 16,
+    "weight": 855,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/9.png"
+  },
+  {
+    "id": "blastoise-mega",
+    "jpName": "メガカメックス",
+    "enName": "blastoise-mega",
+    "types": [
+      "water"
+    ],
+    "abilities": [
+      "mega-launcher"
+    ],
+    "stats": {
+      "hp": 79,
+      "attack": 103,
+      "defense": 120,
+      "spAttack": 135,
+      "spDefense": 115,
+      "speed": 78
+    },
+    "height": 16,
+    "weight": 1011,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10036.png"
+  },
+  {
+    "id": "beedrill",
+    "jpName": "スピアー",
+    "enName": "Beedrill",
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "abilities": [
+      "swarm",
+      "sniper"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 90,
+      "defense": 40,
+      "spAttack": 45,
+      "spDefense": 80,
+      "speed": 75
+    },
+    "height": 10,
+    "weight": 295,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/15.png"
+  },
+  {
+    "id": "beedrill-mega",
+    "jpName": "メガスピアー",
+    "enName": "beedrill-mega",
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "abilities": [
+      "adaptability"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 150,
+      "defense": 40,
+      "spAttack": 15,
+      "spDefense": 80,
+      "speed": 145
+    },
+    "height": 14,
+    "weight": 405,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10090.png"
+  },
+  {
+    "id": "pidgeot",
+    "jpName": "ピジョット",
+    "enName": "Pidgeot",
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "abilities": [
+      "keen-eye",
+      "tangled-feet",
+      "big-pecks"
+    ],
+    "stats": {
+      "hp": 83,
+      "attack": 80,
+      "defense": 75,
+      "spAttack": 70,
+      "spDefense": 70,
+      "speed": 101
+    },
+    "height": 15,
+    "weight": 395,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/18.png"
+  },
+  {
+    "id": "pidgeot-mega",
+    "jpName": "メガピジョット",
+    "enName": "pidgeot-mega",
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "abilities": [
+      "no-guard"
+    ],
+    "stats": {
+      "hp": 83,
+      "attack": 80,
+      "defense": 80,
+      "spAttack": 135,
+      "spDefense": 80,
+      "speed": 121
+    },
+    "height": 22,
+    "weight": 505,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10073.png"
+  },
+  {
+    "id": "arbok",
+    "jpName": "アーボック",
+    "enName": "Arbok",
+    "types": [
+      "poison"
+    ],
+    "abilities": [
+      "intimidate",
+      "shed-skin",
+      "unnerve"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 95,
+      "defense": 69,
+      "spAttack": 65,
+      "spDefense": 79,
+      "speed": 80
+    },
+    "height": 35,
+    "weight": 650,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/24.png"
+  },
+  {
+    "id": "pikachu",
+    "jpName": "ピカチュウ",
+    "enName": "Pikachu",
+    "types": [
+      "electric"
+    ],
+    "abilities": [
+      "static",
+      "lightning-rod"
+    ],
+    "stats": {
+      "hp": 35,
+      "attack": 55,
+      "defense": 40,
+      "spAttack": 50,
+      "spDefense": 50,
+      "speed": 90
+    },
+    "height": 4,
+    "weight": 60,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
+  },
+  {
+    "id": "raichu",
+    "jpName": "ライチュウ",
+    "enName": "Raichu",
+    "types": [
+      "electric"
+    ],
+    "abilities": [
+      "static",
+      "lightning-rod"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 90,
+      "defense": 55,
+      "spAttack": 90,
+      "spDefense": 80,
+      "speed": 110
+    },
+    "height": 8,
+    "weight": 300,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/26.png"
+  },
+  {
+    "id": "raichu-alola",
+    "jpName": "ライチュウ(アローラ)",
+    "enName": "raichu-alola",
+    "types": [
+      "electric",
+      "psychic"
+    ],
+    "abilities": [
+      "surge-surfer"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 85,
+      "defense": 50,
+      "spAttack": 95,
+      "spDefense": 85,
+      "speed": 110
+    },
+    "height": 7,
+    "weight": 210,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10100.png"
+  },
+  {
+    "id": "raichu-mega-x",
+    "jpName": "メガライチュウx",
+    "enName": "raichu-mega-x",
+    "types": [
+      "electric"
+    ],
+    "abilities": [
+      "electric-surge"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 135,
+      "defense": 95,
+      "spAttack": 90,
+      "spDefense": 95,
+      "speed": 110
+    },
+    "height": 12,
+    "weight": 380,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10304.png"
+  },
+  {
+    "id": "raichu-mega-y",
+    "jpName": "メガライチュウy",
+    "enName": "raichu-mega-y",
+    "types": [
+      "electric"
+    ],
+    "abilities": [
+      "no-guard"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 100,
+      "defense": 55,
+      "spAttack": 160,
+      "spDefense": 80,
+      "speed": 130
+    },
+    "height": 10,
+    "weight": 260,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10305.png"
+  },
+  {
+    "id": "clefable",
+    "jpName": "ピクシー",
+    "enName": "Clefable",
+    "types": [
+      "fairy"
+    ],
+    "abilities": [
+      "cute-charm",
+      "magic-guard",
+      "unaware"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 70,
+      "defense": 73,
+      "spAttack": 95,
+      "spDefense": 90,
+      "speed": 60
+    },
+    "height": 13,
+    "weight": 400,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/36.png"
+  },
+  {
+    "id": "clefable-mega",
+    "jpName": "メガピクシー",
+    "enName": "clefable-mega",
+    "types": [
+      "fairy",
+      "flying"
+    ],
+    "abilities": [
+      "magic-bounce"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 80,
+      "defense": 93,
+      "spAttack": 135,
+      "spDefense": 110,
+      "speed": 70
+    },
+    "height": 17,
+    "weight": 423,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10278.png"
+  },
+  {
+    "id": "ninetales",
+    "jpName": "キュウコン",
+    "enName": "Ninetales",
+    "types": [
+      "fire"
+    ],
+    "abilities": [
+      "flash-fire",
+      "drought"
+    ],
+    "stats": {
+      "hp": 73,
+      "attack": 76,
+      "defense": 75,
+      "spAttack": 81,
+      "spDefense": 100,
+      "speed": 100
+    },
+    "height": 11,
+    "weight": 199,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/38.png"
+  },
+  {
+    "id": "ninetales-alola",
+    "jpName": "キュウコン(アローラ)",
+    "enName": "ninetales-alola",
+    "types": [
+      "ice",
+      "fairy"
+    ],
+    "abilities": [
+      "snow-cloak",
+      "snow-warning"
+    ],
+    "stats": {
+      "hp": 73,
+      "attack": 67,
+      "defense": 75,
+      "spAttack": 81,
+      "spDefense": 100,
+      "speed": 109
+    },
+    "height": 11,
+    "weight": 199,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10104.png"
+  },
+  {
+    "id": "vileplume",
+    "jpName": "ラフレシア",
+    "enName": "Vileplume",
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "abilities": [
+      "chlorophyll",
+      "effect-spore"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 80,
+      "defense": 85,
+      "spAttack": 110,
+      "spDefense": 90,
+      "speed": 50
+    },
+    "height": 12,
+    "weight": 186,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/45.png"
+  },
+  {
+    "id": "arcanine",
+    "jpName": "ウインディ",
+    "enName": "Arcanine",
+    "types": [
+      "fire"
+    ],
+    "abilities": [
+      "intimidate",
+      "flash-fire",
+      "justified"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 110,
+      "defense": 80,
+      "spAttack": 100,
+      "spDefense": 80,
+      "speed": 95
+    },
+    "height": 19,
+    "weight": 1550,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/59.png"
+  },
+  {
+    "id": "arcanine-hisui",
+    "jpName": "ウインディ(ヒスイ)",
+    "enName": "arcanine-hisui",
+    "types": [
+      "fire",
+      "rock"
+    ],
+    "abilities": [
+      "intimidate",
+      "flash-fire",
+      "rock-head"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 115,
+      "defense": 80,
+      "spAttack": 95,
+      "spDefense": 80,
+      "speed": 90
+    },
+    "height": 20,
+    "weight": 1680,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10230.png"
+  },
+  {
+    "id": "alakazam",
+    "jpName": "フーディン",
+    "enName": "Alakazam",
+    "types": [
+      "psychic"
+    ],
+    "abilities": [
+      "synchronize",
+      "inner-focus",
+      "magic-guard"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 50,
+      "defense": 45,
+      "spAttack": 135,
+      "spDefense": 95,
+      "speed": 120
+    },
+    "height": 15,
+    "weight": 480,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/65.png"
+  },
+  {
+    "id": "alakazam-mega",
+    "jpName": "メガフーディン",
+    "enName": "alakazam-mega",
+    "types": [
+      "psychic"
+    ],
+    "abilities": [
+      "trace"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 50,
+      "defense": 65,
+      "spAttack": 175,
+      "spDefense": 105,
+      "speed": 150
+    },
+    "height": 12,
+    "weight": 480,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10037.png"
+  },
+  {
+    "id": "machamp",
+    "jpName": "カイリキー",
+    "enName": "Machamp",
+    "types": [
+      "fighting"
+    ],
+    "abilities": [
+      "guts",
+      "no-guard",
+      "steadfast"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 130,
+      "defense": 80,
+      "spAttack": 65,
+      "spDefense": 85,
+      "speed": 55
+    },
+    "height": 16,
+    "weight": 1300,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/68.png"
+  },
+  {
+    "id": "victreebel",
+    "jpName": "ウツボット",
+    "enName": "Victreebel",
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "abilities": [
+      "chlorophyll",
+      "gluttony"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 105,
+      "defense": 65,
+      "spAttack": 100,
+      "spDefense": 70,
+      "speed": 70
+    },
+    "height": 17,
+    "weight": 155,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/71.png"
+  },
+  {
+    "id": "victreebel-mega",
+    "jpName": "メガウツボット",
+    "enName": "victreebel-mega",
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "abilities": [
+      "innards-out"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 125,
+      "defense": 85,
+      "spAttack": 135,
+      "spDefense": 95,
+      "speed": 70
+    },
+    "height": 45,
+    "weight": 1255,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10279.png"
+  },
+  {
+    "id": "slowbro",
+    "jpName": "ヤドラン",
+    "enName": "Slowbro",
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "abilities": [
+      "oblivious",
+      "own-tempo",
+      "regenerator"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 75,
+      "defense": 110,
+      "spAttack": 100,
+      "spDefense": 80,
+      "speed": 30
+    },
+    "height": 16,
+    "weight": 785,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/80.png"
+  },
+  {
+    "id": "slowbro-mega",
+    "jpName": "メガヤドラン",
+    "enName": "slowbro-mega",
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "abilities": [
+      "shell-armor"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 75,
+      "defense": 180,
+      "spAttack": 130,
+      "spDefense": 80,
+      "speed": 30
+    },
+    "height": 20,
+    "weight": 1200,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10071.png"
+  },
+  {
+    "id": "slowbro-galar",
+    "jpName": "ヤドラン(ガラル)",
+    "enName": "slowbro-galar",
+    "types": [
+      "poison",
+      "psychic"
+    ],
+    "abilities": [
+      "quick-draw",
+      "own-tempo",
+      "regenerator"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 100,
+      "defense": 95,
+      "spAttack": 100,
+      "spDefense": 70,
+      "speed": 30
+    },
+    "height": 16,
+    "weight": 705,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10165.png"
+  },
+  {
+    "id": "gengar",
+    "jpName": "ゲンガー",
+    "enName": "Gengar",
+    "types": [
+      "ghost",
+      "poison"
+    ],
+    "abilities": [
+      "cursed-body"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 65,
+      "defense": 60,
+      "spAttack": 130,
+      "spDefense": 75,
+      "speed": 110
+    },
+    "height": 15,
+    "weight": 405,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/94.png"
+  },
+  {
+    "id": "gengar-mega",
+    "jpName": "メガゲンガー",
+    "enName": "gengar-mega",
+    "types": [
+      "ghost",
+      "poison"
+    ],
+    "abilities": [
+      "shadow-tag"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 65,
+      "defense": 80,
+      "spAttack": 170,
+      "spDefense": 95,
+      "speed": 130
+    },
+    "height": 14,
+    "weight": 405,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10038.png"
+  },
+  {
+    "id": "kangaskhan",
+    "jpName": "ガルーラ",
+    "enName": "Kangaskhan",
+    "types": [
+      "normal"
+    ],
+    "abilities": [
+      "early-bird",
+      "scrappy",
+      "inner-focus"
+    ],
+    "stats": {
+      "hp": 105,
+      "attack": 95,
+      "defense": 80,
+      "spAttack": 40,
+      "spDefense": 80,
+      "speed": 90
+    },
+    "height": 22,
+    "weight": 800,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/115.png"
+  },
+  {
+    "id": "kangaskhan-mega",
+    "jpName": "メガガルーラ",
+    "enName": "kangaskhan-mega",
+    "types": [
+      "normal"
+    ],
+    "abilities": [
+      "parental-bond"
+    ],
+    "stats": {
+      "hp": 105,
+      "attack": 125,
+      "defense": 100,
+      "spAttack": 60,
+      "spDefense": 100,
+      "speed": 100
+    },
+    "height": 22,
+    "weight": 1000,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10039.png"
+  },
+  {
+    "id": "starmie",
+    "jpName": "スターミー",
+    "enName": "Starmie",
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "abilities": [
+      "illuminate",
+      "natural-cure",
+      "analytic"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 75,
+      "defense": 85,
+      "spAttack": 100,
+      "spDefense": 85,
+      "speed": 115
+    },
+    "height": 11,
+    "weight": 800,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/121.png"
+  },
+  {
+    "id": "starmie-mega",
+    "jpName": "メガスターミー",
+    "enName": "starmie-mega",
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "abilities": [
+      "huge-power"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 100,
+      "defense": 105,
+      "spAttack": 130,
+      "spDefense": 105,
+      "speed": 120
+    },
+    "height": 23,
+    "weight": 800,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10280.png"
+  },
+  {
+    "id": "pinsir",
+    "jpName": "カイロス",
+    "enName": "Pinsir",
+    "types": [
+      "bug"
+    ],
+    "abilities": [
+      "hyper-cutter",
+      "mold-breaker",
+      "moxie"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 125,
+      "defense": 100,
+      "spAttack": 55,
+      "spDefense": 70,
+      "speed": 85
+    },
+    "height": 15,
+    "weight": 550,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/127.png"
+  },
+  {
+    "id": "pinsir-mega",
+    "jpName": "メガカイロス",
+    "enName": "pinsir-mega",
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "abilities": [
+      "aerilate"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 155,
+      "defense": 120,
+      "spAttack": 65,
+      "spDefense": 90,
+      "speed": 105
+    },
+    "height": 17,
+    "weight": 590,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10040.png"
+  },
+  {
+    "id": "tauros",
+    "jpName": "ケンタロス",
+    "enName": "Tauros",
+    "types": [
+      "normal"
+    ],
+    "abilities": [
+      "intimidate",
+      "anger-point",
+      "sheer-force"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 100,
+      "defense": 95,
+      "spAttack": 40,
+      "spDefense": 70,
+      "speed": 110
+    },
+    "height": 14,
+    "weight": 884,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/128.png"
+  },
+  {
+    "id": "tauros-paldea-combat-breed",
+    "jpName": "ケンタロス(パルデア単)",
+    "enName": "tauros-paldea-combat-breed",
+    "types": [
+      "fighting"
+    ],
+    "abilities": [
+      "intimidate",
+      "anger-point",
+      "cud-chew"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 110,
+      "defense": 105,
+      "spAttack": 30,
+      "spDefense": 70,
+      "speed": 100
+    },
+    "height": 14,
+    "weight": 1150,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10250.png"
+  },
+  {
+    "id": "tauros-paldea-blaze-breed",
+    "jpName": "ケンタロス(パルデア炎)",
+    "enName": "tauros-paldea-blaze-breed",
+    "types": [
+      "fighting",
+      "fire"
+    ],
+    "abilities": [
+      "intimidate",
+      "anger-point",
+      "cud-chew"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 110,
+      "defense": 105,
+      "spAttack": 30,
+      "spDefense": 70,
+      "speed": 100
+    },
+    "height": 14,
+    "weight": 850,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10251.png"
+  },
+  {
+    "id": "tauros-paldea-aqua-breed",
+    "jpName": "ケンタロス(パルデア水)",
+    "enName": "tauros-paldea-aqua-breed",
+    "types": [
+      "fighting",
+      "water"
+    ],
+    "abilities": [
+      "intimidate",
+      "anger-point",
+      "cud-chew"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 110,
+      "defense": 105,
+      "spAttack": 30,
+      "spDefense": 70,
+      "speed": 100
+    },
+    "height": 14,
+    "weight": 1100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10252.png"
+  },
+  {
+    "id": "gyarados",
+    "jpName": "ギャラドス",
+    "enName": "Gyarados",
+    "types": [
+      "water",
+      "flying"
+    ],
+    "abilities": [
+      "intimidate",
+      "moxie"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 125,
+      "defense": 79,
+      "spAttack": 60,
+      "spDefense": 100,
+      "speed": 81
+    },
+    "height": 65,
+    "weight": 2350,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/130.png"
+  },
+  {
+    "id": "gyarados-mega",
+    "jpName": "メガギャラドス",
+    "enName": "gyarados-mega",
+    "types": [
+      "water",
+      "dark"
+    ],
+    "abilities": [
+      "mold-breaker"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 155,
+      "defense": 109,
+      "spAttack": 70,
+      "spDefense": 130,
+      "speed": 81
+    },
+    "height": 65,
+    "weight": 3050,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10041.png"
+  },
+  {
+    "id": "ditto",
+    "jpName": "メタモン",
+    "enName": "Ditto",
+    "types": [
+      "normal"
+    ],
+    "abilities": [
+      "limber",
+      "imposter"
+    ],
+    "stats": {
+      "hp": 48,
+      "attack": 48,
+      "defense": 48,
+      "spAttack": 48,
+      "spDefense": 48,
+      "speed": 48
+    },
+    "height": 3,
+    "weight": 40,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png"
+  },
+  {
+    "id": "vaporeon",
+    "jpName": "シャワーズ",
+    "enName": "Vaporeon",
+    "types": [
+      "water"
+    ],
+    "abilities": [
+      "water-absorb",
+      "hydration"
+    ],
+    "stats": {
+      "hp": 130,
+      "attack": 65,
+      "defense": 60,
+      "spAttack": 110,
+      "spDefense": 95,
+      "speed": 65
+    },
+    "height": 10,
+    "weight": 290,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/134.png"
+  },
+  {
+    "id": "jolteon",
+    "jpName": "サンダース",
+    "enName": "Jolteon",
+    "types": [
+      "electric"
+    ],
+    "abilities": [
+      "volt-absorb",
+      "quick-feet"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 65,
+      "defense": 60,
+      "spAttack": 110,
+      "spDefense": 95,
+      "speed": 130
+    },
+    "height": 8,
+    "weight": 245,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/135.png"
+  },
+  {
+    "id": "flareon",
+    "jpName": "ブースター",
+    "enName": "Flareon",
+    "types": [
+      "fire"
+    ],
+    "abilities": [
+      "flash-fire",
+      "guts"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 130,
+      "defense": 60,
+      "spAttack": 95,
+      "spDefense": 110,
+      "speed": 65
+    },
+    "height": 9,
+    "weight": 250,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/136.png"
+  },
+  {
+    "id": "aerodactyl",
+    "jpName": "プテラ",
+    "enName": "Aerodactyl",
+    "types": [
+      "rock",
+      "flying"
+    ],
+    "abilities": [
+      "rock-head",
+      "pressure",
+      "unnerve"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 105,
+      "defense": 65,
+      "spAttack": 60,
+      "spDefense": 75,
+      "speed": 130
+    },
+    "height": 18,
+    "weight": 590,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/142.png"
+  },
+  {
+    "id": "aerodactyl-mega",
+    "jpName": "メガプテラ",
+    "enName": "aerodactyl-mega",
+    "types": [
+      "rock",
+      "flying"
+    ],
+    "abilities": [
+      "tough-claws"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 135,
+      "defense": 85,
+      "spAttack": 70,
+      "spDefense": 95,
+      "speed": 150
+    },
+    "height": 21,
+    "weight": 790,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10042.png"
+  },
+  {
+    "id": "snorlax",
+    "jpName": "カビゴン",
+    "enName": "Snorlax",
+    "types": [
+      "normal"
+    ],
+    "abilities": [
+      "immunity",
+      "thick-fat",
+      "gluttony"
+    ],
+    "stats": {
+      "hp": 160,
+      "attack": 110,
+      "defense": 65,
+      "spAttack": 65,
+      "spDefense": 110,
+      "speed": 30
+    },
+    "height": 21,
+    "weight": 4600,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png"
+  },
+  {
+    "id": "dragonite",
+    "jpName": "カイリュー",
+    "enName": "Dragonite",
+    "types": [
+      "dragon",
+      "flying"
+    ],
+    "abilities": [
+      "inner-focus",
+      "multiscale"
+    ],
+    "stats": {
+      "hp": 91,
+      "attack": 134,
+      "defense": 95,
+      "spAttack": 100,
+      "spDefense": 100,
+      "speed": 80
+    },
+    "height": 22,
+    "weight": 2100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png"
+  },
+  {
+    "id": "dragonite-mega",
+    "jpName": "メガカイリュー",
+    "enName": "dragonite-mega",
+    "types": [
+      "dragon",
+      "flying"
+    ],
+    "abilities": [
+      "multiscale"
+    ],
+    "stats": {
+      "hp": 91,
+      "attack": 124,
+      "defense": 115,
+      "spAttack": 145,
+      "spDefense": 125,
+      "speed": 100
+    },
+    "height": 22,
+    "weight": 2900,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10281.png"
+  },
+  {
+    "id": "meganium",
+    "jpName": "メガニウム",
+    "enName": "Meganium",
+    "types": [
+      "grass"
+    ],
+    "abilities": [
+      "overgrow",
+      "leaf-guard"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 82,
+      "defense": 100,
+      "spAttack": 83,
+      "spDefense": 100,
+      "speed": 80
+    },
+    "height": 18,
+    "weight": 1005,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/154.png"
+  },
+  {
+    "id": "meganium-mega",
+    "jpName": "メガメガニウム",
+    "enName": "meganium-mega",
+    "types": [
+      "grass",
+      "fairy"
+    ],
+    "abilities": [
+      "mega-sol"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 92,
+      "defense": 115,
+      "spAttack": 143,
+      "spDefense": 115,
+      "speed": 80
+    },
+    "height": 24,
+    "weight": 2010,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10282.png"
+  },
+  {
+    "id": "typhlosion",
+    "jpName": "バクフーン",
+    "enName": "Typhlosion",
+    "types": [
+      "fire"
+    ],
+    "abilities": [
+      "blaze",
+      "flash-fire"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 84,
+      "defense": 78,
+      "spAttack": 109,
+      "spDefense": 85,
+      "speed": 100
+    },
+    "height": 17,
+    "weight": 795,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/157.png"
+  },
+  {
+    "id": "typhlosion-hisui",
+    "jpName": "バクフーン(ヒスイ)",
+    "enName": "typhlosion-hisui",
+    "types": [
+      "fire",
+      "ghost"
+    ],
+    "abilities": [
+      "blaze",
+      "frisk"
+    ],
+    "stats": {
+      "hp": 73,
+      "attack": 84,
+      "defense": 78,
+      "spAttack": 119,
+      "spDefense": 85,
+      "speed": 95
+    },
+    "height": 16,
+    "weight": 698,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10233.png"
+  },
+  {
+    "id": "feraligatr",
+    "jpName": "オーダイル",
+    "enName": "Feraligatr",
+    "types": [
+      "water"
+    ],
+    "abilities": [
+      "torrent",
+      "sheer-force"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 105,
+      "defense": 100,
+      "spAttack": 79,
+      "spDefense": 83,
+      "speed": 78
+    },
+    "height": 23,
+    "weight": 888,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/160.png"
+  },
+  {
+    "id": "feraligatr-mega",
+    "jpName": "メガオーダイル",
+    "enName": "feraligatr-mega",
+    "types": [
+      "water",
+      "dragon"
+    ],
+    "abilities": [
+      "dragonize"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 160,
+      "defense": 125,
+      "spAttack": 89,
+      "spDefense": 93,
+      "speed": 78
+    },
+    "height": 23,
+    "weight": 1088,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10283.png"
+  },
+  {
+    "id": "ariados",
+    "jpName": "アリアドス",
+    "enName": "Ariados",
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "abilities": [
+      "swarm",
+      "insomnia",
+      "sniper"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 90,
+      "defense": 70,
+      "spAttack": 60,
+      "spDefense": 70,
+      "speed": 40
+    },
+    "height": 11,
+    "weight": 335,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/168.png"
+  },
+  {
+    "id": "ampharos",
+    "jpName": "デンリュウ",
+    "enName": "Ampharos",
+    "types": [
+      "electric"
+    ],
+    "abilities": [
+      "static",
+      "plus"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 75,
+      "defense": 85,
+      "spAttack": 115,
+      "spDefense": 90,
+      "speed": 55
+    },
+    "height": 14,
+    "weight": 615,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/181.png"
+  },
+  {
+    "id": "ampharos-mega",
+    "jpName": "メガデンリュウ",
+    "enName": "ampharos-mega",
+    "types": [
+      "electric",
+      "dragon"
+    ],
+    "abilities": [
+      "mold-breaker"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 95,
+      "defense": 105,
+      "spAttack": 165,
+      "spDefense": 110,
+      "speed": 45
+    },
+    "height": 14,
+    "weight": 615,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10045.png"
+  },
+  {
+    "id": "azumarill",
+    "jpName": "マリルリ",
+    "enName": "Azumarill",
+    "types": [
+      "water",
+      "fairy"
+    ],
+    "abilities": [
+      "thick-fat",
+      "huge-power",
+      "sap-sipper"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 50,
+      "defense": 80,
+      "spAttack": 60,
+      "spDefense": 80,
+      "speed": 50
+    },
+    "height": 8,
+    "weight": 285,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/184.png"
+  },
+  {
+    "id": "politoed",
+    "jpName": "ニョロトノ",
+    "enName": "Politoed",
+    "types": [
+      "water"
+    ],
+    "abilities": [
+      "water-absorb",
+      "damp",
+      "drizzle"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 75,
+      "defense": 75,
+      "spAttack": 90,
+      "spDefense": 100,
+      "speed": 70
+    },
+    "height": 11,
+    "weight": 339,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/186.png"
+  },
+  {
+    "id": "espeon",
+    "jpName": "エーフィ",
+    "enName": "Espeon",
+    "types": [
+      "psychic"
+    ],
+    "abilities": [
+      "synchronize",
+      "magic-bounce"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 65,
+      "defense": 60,
+      "spAttack": 130,
+      "spDefense": 95,
+      "speed": 110
+    },
+    "height": 9,
+    "weight": 265,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/196.png"
+  },
+  {
+    "id": "umbreon",
+    "jpName": "ブラッキー",
+    "enName": "Umbreon",
+    "types": [
+      "dark"
+    ],
+    "abilities": [
+      "synchronize",
+      "inner-focus"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 65,
+      "defense": 110,
+      "spAttack": 60,
+      "spDefense": 130,
+      "speed": 65
+    },
+    "height": 10,
+    "weight": 270,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/197.png"
+  },
+  {
+    "id": "slowking",
+    "jpName": "ヤドキング",
+    "enName": "Slowking",
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "abilities": [
+      "oblivious",
+      "own-tempo",
+      "regenerator"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 75,
+      "defense": 80,
+      "spAttack": 100,
+      "spDefense": 110,
+      "speed": 30
+    },
+    "height": 20,
+    "weight": 795,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/199.png"
+  },
+  {
+    "id": "slowking-galar",
+    "jpName": "ヤドキング(ガラル)",
+    "enName": "slowking-galar",
+    "types": [
+      "poison",
+      "psychic"
+    ],
+    "abilities": [
+      "curious-medicine",
+      "own-tempo",
+      "regenerator"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 65,
+      "defense": 80,
+      "spAttack": 110,
+      "spDefense": 110,
+      "speed": 30
+    },
+    "height": 18,
+    "weight": 795,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10172.png"
+  },
+  {
+    "id": "forretress",
+    "jpName": "フォレトス",
+    "enName": "Forretress",
+    "types": [
+      "bug",
+      "steel"
+    ],
+    "abilities": [
+      "sturdy",
+      "overcoat"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 90,
+      "defense": 140,
+      "spAttack": 60,
+      "spDefense": 60,
+      "speed": 40
+    },
+    "height": 12,
+    "weight": 1258,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/205.png"
+  },
+  {
+    "id": "steelix",
+    "jpName": "ハガネール",
+    "enName": "Steelix",
+    "types": [
+      "steel",
+      "ground"
+    ],
+    "abilities": [
+      "rock-head",
+      "sturdy",
+      "sheer-force"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 85,
+      "defense": 200,
+      "spAttack": 55,
+      "spDefense": 65,
+      "speed": 30
+    },
+    "height": 92,
+    "weight": 4000,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/208.png"
+  },
+  {
+    "id": "steelix-mega",
+    "jpName": "メガハガネール",
+    "enName": "steelix-mega",
+    "types": [
+      "steel",
+      "ground"
+    ],
+    "abilities": [
+      "sand-force"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 125,
+      "defense": 230,
+      "spAttack": 55,
+      "spDefense": 95,
+      "speed": 30
+    },
+    "height": 105,
+    "weight": 7400,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10072.png"
+  },
+  {
+    "id": "qwilfish",
+    "jpName": "ハリーセン",
+    "enName": "Qwilfish",
+    "types": [
+      "water",
+      "poison"
+    ],
+    "abilities": [
+      "poison-point",
+      "swift-swim",
+      "intimidate"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 95,
+      "defense": 85,
+      "spAttack": 55,
+      "spDefense": 55,
+      "speed": 85
+    },
+    "height": 5,
+    "weight": 39,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/211.png"
+  },
+  {
+    "id": "scizor",
+    "jpName": "ハッサム",
+    "enName": "Scizor",
+    "types": [
+      "bug",
+      "steel"
+    ],
+    "abilities": [
+      "swarm",
+      "technician",
+      "light-metal"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 130,
+      "defense": 100,
+      "spAttack": 55,
+      "spDefense": 80,
+      "speed": 65
+    },
+    "height": 18,
+    "weight": 1180,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/212.png"
+  },
+  {
+    "id": "scizor-mega",
+    "jpName": "メガハッサム",
+    "enName": "scizor-mega",
+    "types": [
+      "bug",
+      "steel"
+    ],
+    "abilities": [
+      "technician"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 150,
+      "defense": 140,
+      "spAttack": 65,
+      "spDefense": 100,
+      "speed": 75
+    },
+    "height": 20,
+    "weight": 1250,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10046.png"
+  },
+  {
+    "id": "heracross",
+    "jpName": "ヘラクロス",
+    "enName": "Heracross",
+    "types": [
+      "bug",
+      "fighting"
+    ],
+    "abilities": [
+      "swarm",
+      "guts",
+      "moxie"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 125,
+      "defense": 75,
+      "spAttack": 40,
+      "spDefense": 95,
+      "speed": 85
+    },
+    "height": 15,
+    "weight": 540,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/214.png"
+  },
+  {
+    "id": "heracross-mega",
+    "jpName": "メガヘラクロス",
+    "enName": "heracross-mega",
+    "types": [
+      "bug",
+      "fighting"
+    ],
+    "abilities": [
+      "skill-link"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 185,
+      "defense": 115,
+      "spAttack": 40,
+      "spDefense": 105,
+      "speed": 75
+    },
+    "height": 17,
+    "weight": 625,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10047.png"
+  },
+  {
+    "id": "skarmory",
+    "jpName": "エアームド",
+    "enName": "Skarmory",
+    "types": [
+      "steel",
+      "flying"
+    ],
+    "abilities": [
+      "keen-eye",
+      "sturdy",
+      "weak-armor"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 80,
+      "defense": 140,
+      "spAttack": 40,
+      "spDefense": 70,
+      "speed": 70
+    },
+    "height": 17,
+    "weight": 505,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/227.png"
+  },
+  {
+    "id": "skarmory-mega",
+    "jpName": "メガエアームド",
+    "enName": "skarmory-mega",
+    "types": [
+      "steel",
+      "flying"
+    ],
+    "abilities": [
+      "stalwart"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 140,
+      "defense": 110,
+      "spAttack": 40,
+      "spDefense": 100,
+      "speed": 110
+    },
+    "height": 17,
+    "weight": 404,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10284.png"
+  },
+  {
+    "id": "houndoom",
+    "jpName": "ヘルガー",
+    "enName": "Houndoom",
+    "types": [
+      "dark",
+      "fire"
+    ],
+    "abilities": [
+      "early-bird",
+      "flash-fire",
+      "unnerve"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 90,
+      "defense": 50,
+      "spAttack": 110,
+      "spDefense": 80,
+      "speed": 95
+    },
+    "height": 14,
+    "weight": 350,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/229.png"
+  },
+  {
+    "id": "houndoom-mega",
+    "jpName": "メガヘルガー",
+    "enName": "houndoom-mega",
+    "types": [
+      "dark",
+      "fire"
+    ],
+    "abilities": [
+      "solar-power"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 90,
+      "defense": 90,
+      "spAttack": 140,
+      "spDefense": 90,
+      "speed": 115
+    },
+    "height": 19,
+    "weight": 495,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10048.png"
+  },
+  {
+    "id": "tyranitar",
+    "jpName": "バンギラス",
+    "enName": "Tyranitar",
+    "types": [
+      "rock",
+      "dark"
+    ],
+    "abilities": [
+      "sand-stream",
+      "unnerve"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 134,
+      "defense": 110,
+      "spAttack": 95,
+      "spDefense": 100,
+      "speed": 61
+    },
+    "height": 20,
+    "weight": 2020,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/248.png"
+  },
+  {
+    "id": "tyranitar-mega",
+    "jpName": "メガバンギラス",
+    "enName": "tyranitar-mega",
+    "types": [
+      "rock",
+      "dark"
+    ],
+    "abilities": [
+      "sand-stream"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 164,
+      "defense": 150,
+      "spAttack": 95,
+      "spDefense": 120,
+      "speed": 71
+    },
+    "height": 25,
+    "weight": 2550,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10049.png"
+  },
+  {
+    "id": "sceptile",
+    "jpName": "ジュカイン",
+    "enName": "Sceptile",
+    "types": [
+      "grass"
+    ],
+    "abilities": [
+      "overgrow",
+      "unburden"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 85,
+      "defense": 65,
+      "spAttack": 105,
+      "spDefense": 85,
+      "speed": 120
+    },
+    "height": 17,
+    "weight": 522,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/254.png"
+  },
+  {
+    "id": "sceptile-mega",
+    "jpName": "メガジュカイン",
+    "enName": "sceptile-mega",
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "abilities": [
+      "lightning-rod"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 110,
+      "defense": 75,
+      "spAttack": 145,
+      "spDefense": 85,
+      "speed": 145
+    },
+    "height": 19,
+    "weight": 552,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10065.png"
+  },
+  {
+    "id": "blaziken",
+    "jpName": "バシャーモ",
+    "enName": "Blaziken",
+    "types": [
+      "fire",
+      "fighting"
+    ],
+    "abilities": [
+      "blaze",
+      "speed-boost"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 120,
+      "defense": 70,
+      "spAttack": 110,
+      "spDefense": 70,
+      "speed": 80
+    },
+    "height": 19,
+    "weight": 520,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/257.png"
+  },
+  {
+    "id": "blaziken-mega",
+    "jpName": "メガバシャーモ",
+    "enName": "blaziken-mega",
+    "types": [
+      "fire",
+      "fighting"
+    ],
+    "abilities": [
+      "speed-boost"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 160,
+      "defense": 80,
+      "spAttack": 130,
+      "spDefense": 80,
+      "speed": 100
+    },
+    "height": 19,
+    "weight": 520,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10050.png"
+  },
+  {
+    "id": "swampert",
+    "jpName": "ラグラージ",
+    "enName": "Swampert",
+    "types": [
+      "water",
+      "ground"
+    ],
+    "abilities": [
+      "torrent",
+      "damp"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 110,
+      "defense": 90,
+      "spAttack": 85,
+      "spDefense": 90,
+      "speed": 60
+    },
+    "height": 15,
+    "weight": 819,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/260.png"
+  },
+  {
+    "id": "swampert-mega",
+    "jpName": "メガラグラージ",
+    "enName": "swampert-mega",
+    "types": [
+      "water",
+      "ground"
+    ],
+    "abilities": [
+      "swift-swim"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 150,
+      "defense": 110,
+      "spAttack": 95,
+      "spDefense": 110,
+      "speed": 70
+    },
+    "height": 19,
+    "weight": 1020,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10064.png"
+  },
+  {
+    "id": "pelipper",
+    "jpName": "ペリッパー",
+    "enName": "Pelipper",
+    "types": [
+      "water",
+      "flying"
+    ],
+    "abilities": [
+      "keen-eye",
+      "drizzle",
+      "rain-dish"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 50,
+      "defense": 100,
+      "spAttack": 95,
+      "spDefense": 70,
+      "speed": 65
+    },
+    "height": 12,
+    "weight": 280,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/279.png"
+  },
+  {
+    "id": "gardevoir",
+    "jpName": "サーナイト",
+    "enName": "Gardevoir",
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "abilities": [
+      "synchronize",
+      "trace",
+      "telepathy"
+    ],
+    "stats": {
+      "hp": 68,
+      "attack": 65,
+      "defense": 65,
+      "spAttack": 125,
+      "spDefense": 115,
+      "speed": 80
+    },
+    "height": 16,
+    "weight": 484,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/282.png"
+  },
+  {
+    "id": "gardevoir-mega",
+    "jpName": "メガサーナイト",
+    "enName": "gardevoir-mega",
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "abilities": [
+      "pixilate"
+    ],
+    "stats": {
+      "hp": 68,
+      "attack": 85,
+      "defense": 65,
+      "spAttack": 165,
+      "spDefense": 135,
+      "speed": 100
+    },
+    "height": 16,
+    "weight": 484,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10051.png"
+  },
+  {
+    "id": "sableye",
+    "jpName": "ヤミラミ",
+    "enName": "Sableye",
+    "types": [
+      "dark",
+      "ghost"
+    ],
+    "abilities": [
+      "keen-eye",
+      "stall",
+      "prankster"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 75,
+      "defense": 75,
+      "spAttack": 65,
+      "spDefense": 65,
+      "speed": 50
+    },
+    "height": 5,
+    "weight": 110,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/302.png"
+  },
+  {
+    "id": "sableye-mega",
+    "jpName": "メガヤミラミ",
+    "enName": "sableye-mega",
+    "types": [
+      "dark",
+      "ghost"
+    ],
+    "abilities": [
+      "magic-bounce"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 85,
+      "defense": 125,
+      "spAttack": 85,
+      "spDefense": 115,
+      "speed": 20
+    },
+    "height": 5,
+    "weight": 1610,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10066.png"
+  },
+  {
+    "id": "mawile",
+    "jpName": "クチート",
+    "enName": "Mawile",
+    "types": [
+      "steel",
+      "fairy"
+    ],
+    "abilities": [
+      "hyper-cutter",
+      "intimidate",
+      "sheer-force"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 85,
+      "defense": 85,
+      "spAttack": 55,
+      "spDefense": 55,
+      "speed": 50
+    },
+    "height": 6,
+    "weight": 115,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/303.png"
+  },
+  {
+    "id": "mawile-mega",
+    "jpName": "メガクチート",
+    "enName": "mawile-mega",
+    "types": [
+      "steel",
+      "fairy"
+    ],
+    "abilities": [
+      "huge-power"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 105,
+      "defense": 125,
+      "spAttack": 55,
+      "spDefense": 95,
+      "speed": 50
+    },
+    "height": 10,
+    "weight": 235,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10052.png"
+  },
+  {
+    "id": "aggron",
+    "jpName": "ボスゴドラ",
+    "enName": "Aggron",
+    "types": [
+      "steel",
+      "rock"
+    ],
+    "abilities": [
+      "sturdy",
+      "rock-head",
+      "heavy-metal"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 110,
+      "defense": 180,
+      "spAttack": 60,
+      "spDefense": 60,
+      "speed": 50
+    },
+    "height": 21,
+    "weight": 3600,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/306.png"
+  },
+  {
+    "id": "aggron-mega",
+    "jpName": "メガボスゴドラ",
+    "enName": "aggron-mega",
+    "types": [
+      "steel"
+    ],
+    "abilities": [
+      "filter"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 140,
+      "defense": 230,
+      "spAttack": 60,
+      "spDefense": 80,
+      "speed": 50
+    },
+    "height": 22,
+    "weight": 3950,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10053.png"
+  },
+  {
+    "id": "medicham",
+    "jpName": "チャーレム",
+    "enName": "Medicham",
+    "types": [
+      "fighting",
+      "psychic"
+    ],
+    "abilities": [
+      "pure-power",
+      "telepathy"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 60,
+      "defense": 75,
+      "spAttack": 60,
+      "spDefense": 75,
+      "speed": 80
+    },
+    "height": 13,
+    "weight": 315,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/308.png"
+  },
+  {
+    "id": "medicham-mega",
+    "jpName": "メガチャーレム",
+    "enName": "medicham-mega",
+    "types": [
+      "fighting",
+      "psychic"
+    ],
+    "abilities": [
+      "pure-power"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 100,
+      "defense": 85,
+      "spAttack": 80,
+      "spDefense": 85,
+      "speed": 100
+    },
+    "height": 13,
+    "weight": 315,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10054.png"
+  },
+  {
+    "id": "manectric",
+    "jpName": "ライボルト",
+    "enName": "Manectric",
+    "types": [
+      "electric"
+    ],
+    "abilities": [
+      "static",
+      "lightning-rod",
+      "minus"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 75,
+      "defense": 60,
+      "spAttack": 105,
+      "spDefense": 60,
+      "speed": 105
+    },
+    "height": 15,
+    "weight": 402,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/310.png"
+  },
+  {
+    "id": "manectric-mega",
+    "jpName": "メガライボルト",
+    "enName": "manectric-mega",
+    "types": [
+      "electric"
+    ],
+    "abilities": [
+      "intimidate"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 75,
+      "defense": 80,
+      "spAttack": 135,
+      "spDefense": 80,
+      "speed": 135
+    },
+    "height": 18,
+    "weight": 440,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10055.png"
+  },
+  {
+    "id": "sharpedo",
+    "jpName": "サメハダー",
+    "enName": "Sharpedo",
+    "types": [
+      "water",
+      "dark"
+    ],
+    "abilities": [
+      "rough-skin",
+      "speed-boost"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 120,
+      "defense": 40,
+      "spAttack": 95,
+      "spDefense": 40,
+      "speed": 95
+    },
+    "height": 18,
+    "weight": 888,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/319.png"
+  },
+  {
+    "id": "sharpedo-mega",
+    "jpName": "メガサメハダー",
+    "enName": "sharpedo-mega",
+    "types": [
+      "water",
+      "dark"
+    ],
+    "abilities": [
+      "strong-jaw"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 140,
+      "defense": 70,
+      "spAttack": 110,
+      "spDefense": 65,
+      "speed": 105
+    },
+    "height": 25,
+    "weight": 1303,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10070.png"
+  },
+  {
+    "id": "camerupt",
+    "jpName": "バクーダ",
+    "enName": "Camerupt",
+    "types": [
+      "fire",
+      "ground"
+    ],
+    "abilities": [
+      "magma-armor",
+      "solid-rock",
+      "anger-point"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 100,
+      "defense": 70,
+      "spAttack": 105,
+      "spDefense": 75,
+      "speed": 40
+    },
+    "height": 19,
+    "weight": 2200,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/323.png"
+  },
+  {
+    "id": "camerupt-mega",
+    "jpName": "メガバクーダ",
+    "enName": "camerupt-mega",
+    "types": [
+      "fire",
+      "ground"
+    ],
+    "abilities": [
+      "sheer-force"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 120,
+      "defense": 100,
+      "spAttack": 145,
+      "spDefense": 105,
+      "speed": 20
+    },
+    "height": 25,
+    "weight": 3205,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10087.png"
+  },
+  {
+    "id": "torkoal",
+    "jpName": "コータス",
+    "enName": "Torkoal",
+    "types": [
+      "fire"
+    ],
+    "abilities": [
+      "white-smoke",
+      "drought",
+      "shell-armor"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 85,
+      "defense": 140,
+      "spAttack": 85,
+      "spDefense": 70,
+      "speed": 20
+    },
+    "height": 5,
+    "weight": 804,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/324.png"
+  },
+  {
+    "id": "altaria",
+    "jpName": "チルタリス",
+    "enName": "Altaria",
+    "types": [
+      "dragon",
+      "flying"
+    ],
+    "abilities": [
+      "natural-cure",
+      "cloud-nine"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 70,
+      "defense": 90,
+      "spAttack": 70,
+      "spDefense": 105,
+      "speed": 80
+    },
+    "height": 11,
+    "weight": 206,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/334.png"
+  },
+  {
+    "id": "altaria-mega",
+    "jpName": "メガチルタリス",
+    "enName": "altaria-mega",
+    "types": [
+      "dragon",
+      "fairy"
+    ],
+    "abilities": [
+      "pixilate"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 110,
+      "defense": 110,
+      "spAttack": 110,
+      "spDefense": 105,
+      "speed": 80
+    },
+    "height": 15,
+    "weight": 206,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10067.png"
+  },
+  {
+    "id": "milotic",
+    "jpName": "ミロカロス",
+    "enName": "Milotic",
+    "types": [
+      "water"
+    ],
+    "abilities": [
+      "marvel-scale",
+      "competitive",
+      "cute-charm"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 60,
+      "defense": 79,
+      "spAttack": 100,
+      "spDefense": 125,
+      "speed": 81
+    },
+    "height": 62,
+    "weight": 1620,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/350.png"
+  },
+  {
+    "id": "castform",
+    "jpName": "ポワルン",
+    "enName": "Castform",
+    "types": [
+      "normal"
+    ],
+    "abilities": [
+      "forecast"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 70,
+      "defense": 70,
+      "spAttack": 70,
+      "spDefense": 70,
+      "speed": 70
+    },
+    "height": 3,
+    "weight": 8,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/351.png"
+  },
+  {
+    "id": "banette",
+    "jpName": "ジュペッタ",
+    "enName": "Banette",
+    "types": [
+      "ghost"
+    ],
+    "abilities": [
+      "insomnia",
+      "frisk",
+      "cursed-body"
+    ],
+    "stats": {
+      "hp": 64,
+      "attack": 115,
+      "defense": 65,
+      "spAttack": 83,
+      "spDefense": 63,
+      "speed": 65
+    },
+    "height": 11,
+    "weight": 125,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/354.png"
+  },
+  {
+    "id": "banette-mega",
+    "jpName": "メガジュペッタ",
+    "enName": "banette-mega",
+    "types": [
+      "ghost"
+    ],
+    "abilities": [
+      "prankster"
+    ],
+    "stats": {
+      "hp": 64,
+      "attack": 165,
+      "defense": 75,
+      "spAttack": 93,
+      "spDefense": 83,
+      "speed": 75
+    },
+    "height": 12,
+    "weight": 130,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10056.png"
+  },
+  {
+    "id": "chimecho",
+    "jpName": "チリーン",
+    "enName": "Chimecho",
+    "types": [
+      "psychic"
+    ],
+    "abilities": [
+      "levitate"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 50,
+      "defense": 80,
+      "spAttack": 95,
+      "spDefense": 90,
+      "speed": 65
+    },
+    "height": 6,
+    "weight": 10,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/358.png"
+  },
+  {
+    "id": "chimecho-mega",
+    "jpName": "メガチリーン",
+    "enName": "chimecho-mega",
+    "types": [
+      "psychic",
+      "steel"
+    ],
+    "abilities": [
+      "levitate"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 50,
+      "defense": 110,
+      "spAttack": 135,
+      "spDefense": 120,
+      "speed": 65
+    },
+    "height": 12,
+    "weight": 80,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10306.png"
+  },
+  {
+    "id": "absol",
+    "jpName": "アブソル",
+    "enName": "Absol",
+    "types": [
+      "dark"
+    ],
+    "abilities": [
+      "pressure",
+      "super-luck",
+      "justified"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 130,
+      "defense": 60,
+      "spAttack": 75,
+      "spDefense": 60,
+      "speed": 75
+    },
+    "height": 12,
+    "weight": 470,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/359.png"
+  },
+  {
+    "id": "absol-mega",
+    "jpName": "メガアブソル",
+    "enName": "absol-mega",
+    "types": [
+      "dark"
+    ],
+    "abilities": [
+      "magic-bounce"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 150,
+      "defense": 60,
+      "spAttack": 115,
+      "spDefense": 60,
+      "speed": 115
+    },
+    "height": 12,
+    "weight": 490,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10057.png"
+  },
+  {
+    "id": "glalie",
+    "jpName": "オニゴーリ",
+    "enName": "Glalie",
+    "types": [
+      "ice"
+    ],
+    "abilities": [
+      "inner-focus",
+      "ice-body",
+      "moody"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 80,
+      "defense": 80,
+      "spAttack": 80,
+      "spDefense": 80,
+      "speed": 80
+    },
+    "height": 15,
+    "weight": 2565,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/362.png"
+  },
+  {
+    "id": "glalie-mega",
+    "jpName": "メガオニゴーリ",
+    "enName": "glalie-mega",
+    "types": [
+      "ice"
+    ],
+    "abilities": [
+      "refrigerate"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 120,
+      "defense": 80,
+      "spAttack": 120,
+      "spDefense": 80,
+      "speed": 100
+    },
+    "height": 21,
+    "weight": 3502,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10074.png"
+  },
+  {
+    "id": "metagross",
+    "jpName": "メタグロス",
+    "enName": "Metagross",
+    "types": [
+      "steel",
+      "psychic"
+    ],
+    "abilities": [
+      "clear-body",
+      "light-metal"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 135,
+      "defense": 130,
+      "spAttack": 95,
+      "spDefense": 90,
+      "speed": 70
+    },
+    "height": 16,
+    "weight": 5500,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/376.png"
+  },
+  {
+    "id": "metagross-mega",
+    "jpName": "メガメタグロス",
+    "enName": "metagross-mega",
+    "types": [
+      "steel",
+      "psychic"
+    ],
+    "abilities": [
+      "tough-claws"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 145,
+      "defense": 150,
+      "spAttack": 105,
+      "spDefense": 110,
+      "speed": 110
+    },
+    "height": 25,
+    "weight": 9429,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10076.png"
+  },
+  {
+    "id": "torterra",
+    "jpName": "ドダイトス",
+    "enName": "Torterra",
+    "types": [
+      "grass",
+      "ground"
+    ],
+    "abilities": [
+      "overgrow",
+      "shell-armor"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 109,
+      "defense": 105,
+      "spAttack": 75,
+      "spDefense": 85,
+      "speed": 56
+    },
+    "height": 22,
+    "weight": 3100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/389.png"
+  },
+  {
+    "id": "infernape",
+    "jpName": "ゴウカザル",
+    "enName": "Infernape",
+    "types": [
+      "fire",
+      "fighting"
+    ],
+    "abilities": [
+      "blaze",
+      "iron-fist"
+    ],
+    "stats": {
+      "hp": 76,
+      "attack": 104,
+      "defense": 71,
+      "spAttack": 104,
+      "spDefense": 71,
+      "speed": 108
+    },
+    "height": 12,
+    "weight": 550,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/392.png"
+  },
+  {
+    "id": "empoleon",
+    "jpName": "エンペルト",
+    "enName": "Empoleon",
+    "types": [
+      "water",
+      "steel"
+    ],
+    "abilities": [
+      "torrent",
+      "competitive"
+    ],
+    "stats": {
+      "hp": 84,
+      "attack": 86,
+      "defense": 88,
+      "spAttack": 111,
+      "spDefense": 101,
+      "speed": 60
+    },
+    "height": 17,
+    "weight": 845,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/395.png"
+  },
+  {
+    "id": "staraptor",
+    "jpName": "ムクホーク",
+    "enName": "Staraptor",
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "abilities": [
+      "intimidate",
+      "reckless"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 120,
+      "defense": 70,
+      "spAttack": 50,
+      "spDefense": 60,
+      "speed": 100
+    },
+    "height": 12,
+    "weight": 249,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/398.png"
+  },
+  {
+    "id": "staraptor-mega",
+    "jpName": "メガムクホーク",
+    "enName": "staraptor-mega",
+    "types": [
+      "fighting",
+      "flying"
+    ],
+    "abilities": [
+      "contrary"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 140,
+      "defense": 100,
+      "spAttack": 60,
+      "spDefense": 90,
+      "speed": 110
+    },
+    "height": 19,
+    "weight": 500,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10308.png"
+  },
+  {
+    "id": "luxray",
+    "jpName": "レントラー",
+    "enName": "Luxray",
+    "types": [
+      "electric"
+    ],
+    "abilities": [
+      "rivalry",
+      "intimidate",
+      "guts"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 120,
+      "defense": 79,
+      "spAttack": 95,
+      "spDefense": 79,
+      "speed": 70
+    },
+    "height": 14,
+    "weight": 420,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/405.png"
+  },
+  {
+    "id": "roserade",
+    "jpName": "ロズレイド",
+    "enName": "Roserade",
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "abilities": [
+      "natural-cure",
+      "poison-point",
+      "technician"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 70,
+      "defense": 65,
+      "spAttack": 125,
+      "spDefense": 105,
+      "speed": 90
+    },
+    "height": 9,
+    "weight": 145,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/407.png"
+  },
+  {
+    "id": "rampardos",
+    "jpName": "ラムパルド",
+    "enName": "Rampardos",
+    "types": [
+      "rock"
+    ],
+    "abilities": [
+      "mold-breaker",
+      "sheer-force"
+    ],
+    "stats": {
+      "hp": 97,
+      "attack": 165,
+      "defense": 60,
+      "spAttack": 65,
+      "spDefense": 50,
+      "speed": 58
+    },
+    "height": 16,
+    "weight": 1025,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/409.png"
+  },
+  {
+    "id": "bastiodon",
+    "jpName": "トリデプス",
+    "enName": "Bastiodon",
+    "types": [
+      "rock",
+      "steel"
+    ],
+    "abilities": [
+      "sturdy",
+      "soundproof"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 52,
+      "defense": 168,
+      "spAttack": 47,
+      "spDefense": 138,
+      "speed": 30
+    },
+    "height": 13,
+    "weight": 1495,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/411.png"
+  },
+  {
+    "id": "lopunny",
+    "jpName": "ミミロップ",
+    "enName": "Lopunny",
+    "types": [
+      "normal"
+    ],
+    "abilities": [
+      "cute-charm",
+      "klutz",
+      "limber"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 76,
+      "defense": 84,
+      "spAttack": 54,
+      "spDefense": 96,
+      "speed": 105
+    },
+    "height": 12,
+    "weight": 333,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/428.png"
+  },
+  {
+    "id": "lopunny-mega",
+    "jpName": "メガミミロップ",
+    "enName": "lopunny-mega",
+    "types": [
+      "normal",
+      "fighting"
+    ],
+    "abilities": [
+      "scrappy"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 136,
+      "defense": 94,
+      "spAttack": 54,
+      "spDefense": 96,
+      "speed": 135
+    },
+    "height": 13,
+    "weight": 283,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10088.png"
+  },
+  {
+    "id": "spiritomb",
+    "jpName": "ミカルゲ",
+    "enName": "Spiritomb",
+    "types": [
+      "ghost",
+      "dark"
+    ],
+    "abilities": [
+      "pressure",
+      "infiltrator"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 92,
+      "defense": 108,
+      "spAttack": 92,
+      "spDefense": 108,
+      "speed": 35
+    },
+    "height": 10,
+    "weight": 1080,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/442.png"
+  },
+  {
+    "id": "garchomp",
+    "jpName": "ガブリアス",
+    "enName": "Garchomp",
+    "types": [
+      "dragon",
+      "ground"
+    ],
+    "abilities": [
+      "sand-veil",
+      "rough-skin"
+    ],
+    "stats": {
+      "hp": 108,
+      "attack": 130,
+      "defense": 95,
+      "spAttack": 80,
+      "spDefense": 85,
+      "speed": 102
+    },
+    "height": 19,
+    "weight": 950,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/445.png"
+  },
+  {
+    "id": "garchomp-mega",
+    "jpName": "メガガブリアス",
+    "enName": "garchomp-mega",
+    "types": [
+      "dragon",
+      "ground"
+    ],
+    "abilities": [
+      "sand-force"
+    ],
+    "stats": {
+      "hp": 108,
+      "attack": 170,
+      "defense": 115,
+      "spAttack": 120,
+      "spDefense": 95,
+      "speed": 92
+    },
+    "height": 19,
+    "weight": 950,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10058.png"
+  },
+  {
+    "id": "lucario",
+    "jpName": "ルカリオ",
+    "enName": "Lucario",
+    "types": [
+      "fighting",
+      "steel"
+    ],
+    "abilities": [
+      "steadfast",
+      "inner-focus",
+      "justified"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 110,
+      "defense": 70,
+      "spAttack": 115,
+      "spDefense": 70,
+      "speed": 90
+    },
+    "height": 12,
+    "weight": 540,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/448.png"
+  },
+  {
+    "id": "lucario-mega",
+    "jpName": "メガルカリオ",
+    "enName": "lucario-mega",
+    "types": [
+      "fighting",
+      "steel"
+    ],
+    "abilities": [
+      "adaptability"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 145,
+      "defense": 88,
+      "spAttack": 140,
+      "spDefense": 70,
+      "speed": 112
+    },
+    "height": 13,
+    "weight": 575,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10059.png"
+  },
+  {
+    "id": "hippowdon",
+    "jpName": "カバルドン",
+    "enName": "Hippowdon",
+    "types": [
+      "ground"
+    ],
+    "abilities": [
+      "sand-stream",
+      "sand-force"
+    ],
+    "stats": {
+      "hp": 108,
+      "attack": 112,
+      "defense": 118,
+      "spAttack": 68,
+      "spDefense": 72,
+      "speed": 47
+    },
+    "height": 20,
+    "weight": 3000,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/450.png"
+  },
+  {
+    "id": "toxicroak",
+    "jpName": "ドクロッグ",
+    "enName": "Toxicroak",
+    "types": [
+      "poison",
+      "fighting"
+    ],
+    "abilities": [
+      "anticipation",
+      "dry-skin",
+      "poison-touch"
+    ],
+    "stats": {
+      "hp": 83,
+      "attack": 106,
+      "defense": 65,
+      "spAttack": 86,
+      "spDefense": 65,
+      "speed": 85
+    },
+    "height": 13,
+    "weight": 444,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/454.png"
+  },
+  {
+    "id": "abomasnow",
+    "jpName": "ユキノオー",
+    "enName": "Abomasnow",
+    "types": [
+      "grass",
+      "ice"
+    ],
+    "abilities": [
+      "snow-warning",
+      "soundproof"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 92,
+      "defense": 75,
+      "spAttack": 92,
+      "spDefense": 85,
+      "speed": 60
+    },
+    "height": 22,
+    "weight": 1355,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/460.png"
+  },
+  {
+    "id": "abomasnow-mega",
+    "jpName": "メガユキノオー",
+    "enName": "abomasnow-mega",
+    "types": [
+      "grass",
+      "ice"
+    ],
+    "abilities": [
+      "snow-warning"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 132,
+      "defense": 105,
+      "spAttack": 132,
+      "spDefense": 105,
+      "speed": 30
+    },
+    "height": 27,
+    "weight": 1850,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10060.png"
+  },
+  {
+    "id": "weavile",
+    "jpName": "マニューラ",
+    "enName": "Weavile",
+    "types": [
+      "dark",
+      "ice"
+    ],
+    "abilities": [
+      "pressure",
+      "pickpocket"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 120,
+      "defense": 65,
+      "spAttack": 45,
+      "spDefense": 85,
+      "speed": 125
+    },
+    "height": 11,
+    "weight": 340,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/461.png"
+  },
+  {
+    "id": "rhyperior",
+    "jpName": "ドサイドン",
+    "enName": "Rhyperior",
+    "types": [
+      "ground",
+      "rock"
+    ],
+    "abilities": [
+      "lightning-rod",
+      "solid-rock",
+      "reckless"
+    ],
+    "stats": {
+      "hp": 115,
+      "attack": 140,
+      "defense": 130,
+      "spAttack": 55,
+      "spDefense": 55,
+      "speed": 40
+    },
+    "height": 24,
+    "weight": 2828,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/464.png"
+  },
+  {
+    "id": "leafeon",
+    "jpName": "リーフィア",
+    "enName": "Leafeon",
+    "types": [
+      "grass"
+    ],
+    "abilities": [
+      "leaf-guard",
+      "chlorophyll"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 110,
+      "defense": 130,
+      "spAttack": 60,
+      "spDefense": 65,
+      "speed": 95
+    },
+    "height": 10,
+    "weight": 255,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/470.png"
+  },
+  {
+    "id": "glaceon",
+    "jpName": "グレイシア",
+    "enName": "Glaceon",
+    "types": [
+      "ice"
+    ],
+    "abilities": [
+      "snow-cloak",
+      "ice-body"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 60,
+      "defense": 110,
+      "spAttack": 130,
+      "spDefense": 95,
+      "speed": 65
+    },
+    "height": 8,
+    "weight": 259,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/471.png"
+  },
+  {
+    "id": "gliscor",
+    "jpName": "グライオン",
+    "enName": "Gliscor",
+    "types": [
+      "ground",
+      "flying"
+    ],
+    "abilities": [
+      "hyper-cutter",
+      "sand-veil",
+      "poison-heal"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 95,
+      "defense": 125,
+      "spAttack": 45,
+      "spDefense": 75,
+      "speed": 95
+    },
+    "height": 20,
+    "weight": 425,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/472.png"
+  },
+  {
+    "id": "mamoswine",
+    "jpName": "マンムー",
+    "enName": "Mamoswine",
+    "types": [
+      "ice",
+      "ground"
+    ],
+    "abilities": [
+      "oblivious",
+      "snow-cloak",
+      "thick-fat"
+    ],
+    "stats": {
+      "hp": 110,
+      "attack": 130,
+      "defense": 80,
+      "spAttack": 70,
+      "spDefense": 60,
+      "speed": 80
+    },
+    "height": 25,
+    "weight": 2910,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/473.png"
+  },
+  {
+    "id": "gallade",
+    "jpName": "エルレイド",
+    "enName": "Gallade",
+    "types": [
+      "psychic",
+      "fighting"
+    ],
+    "abilities": [
+      "steadfast",
+      "sharpness",
+      "justified"
+    ],
+    "stats": {
+      "hp": 68,
+      "attack": 125,
+      "defense": 65,
+      "spAttack": 65,
+      "spDefense": 115,
+      "speed": 80
+    },
+    "height": 16,
+    "weight": 520,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/475.png"
+  },
+  {
+    "id": "gallade-mega",
+    "jpName": "メガエルレイド",
+    "enName": "gallade-mega",
+    "types": [
+      "psychic",
+      "fighting"
+    ],
+    "abilities": [
+      "inner-focus"
+    ],
+    "stats": {
+      "hp": 68,
+      "attack": 165,
+      "defense": 95,
+      "spAttack": 65,
+      "spDefense": 115,
+      "speed": 110
+    },
+    "height": 16,
+    "weight": 564,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10068.png"
+  },
+  {
+    "id": "froslass",
+    "jpName": "ユキメノコ",
+    "enName": "Froslass",
+    "types": [
+      "ice",
+      "ghost"
+    ],
+    "abilities": [
+      "snow-cloak",
+      "cursed-body"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 80,
+      "defense": 70,
+      "spAttack": 80,
+      "spDefense": 70,
+      "speed": 110
+    },
+    "height": 13,
+    "weight": 266,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/478.png"
+  },
+  {
+    "id": "froslass-mega",
+    "jpName": "メガユキメノコ",
+    "enName": "froslass-mega",
+    "types": [
+      "ice",
+      "ghost"
+    ],
+    "abilities": [
+      "snow-warning"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 80,
+      "defense": 70,
+      "spAttack": 140,
+      "spDefense": 100,
+      "speed": 120
+    },
+    "height": 26,
+    "weight": 296,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10285.png"
+  },
+  {
+    "id": "rotom",
+    "jpName": "ロトム",
+    "enName": "Rotom",
+    "types": [
+      "electric",
+      "ghost"
+    ],
+    "abilities": [
+      "levitate"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 50,
+      "defense": 77,
+      "spAttack": 95,
+      "spDefense": 77,
+      "speed": 91
+    },
+    "height": 3,
+    "weight": 3,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/479.png"
+  },
+  {
+    "id": "rotom-heat",
+    "jpName": "ヒートロトム",
+    "enName": "rotom-heat",
+    "types": [
+      "electric",
+      "fire"
+    ],
+    "abilities": [
+      "levitate"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 65,
+      "defense": 107,
+      "spAttack": 105,
+      "spDefense": 107,
+      "speed": 86
+    },
+    "height": 3,
+    "weight": 3,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10008.png"
+  },
+  {
+    "id": "rotom-wash",
+    "jpName": "ウォッシュロトム",
+    "enName": "rotom-wash",
+    "types": [
+      "electric",
+      "water"
+    ],
+    "abilities": [
+      "levitate"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 65,
+      "defense": 107,
+      "spAttack": 105,
+      "spDefense": 107,
+      "speed": 86
+    },
+    "height": 3,
+    "weight": 3,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10009.png"
+  },
+  {
+    "id": "rotom-frost",
+    "jpName": "フロストロトム",
+    "enName": "rotom-frost",
+    "types": [
+      "electric",
+      "ice"
+    ],
+    "abilities": [
+      "levitate"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 65,
+      "defense": 107,
+      "spAttack": 105,
+      "spDefense": 107,
+      "speed": 86
+    },
+    "height": 3,
+    "weight": 3,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10010.png"
+  },
+  {
+    "id": "rotom-fan",
+    "jpName": "スピンロトム",
+    "enName": "rotom-fan",
+    "types": [
+      "electric",
+      "flying"
+    ],
+    "abilities": [
+      "levitate"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 65,
+      "defense": 107,
+      "spAttack": 105,
+      "spDefense": 107,
+      "speed": 86
+    },
+    "height": 3,
+    "weight": 3,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10011.png"
+  },
+  {
+    "id": "rotom-mow",
+    "jpName": "カットロトム",
+    "enName": "rotom-mow",
+    "types": [
+      "electric",
+      "grass"
+    ],
+    "abilities": [
+      "levitate"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 65,
+      "defense": 107,
+      "spAttack": 105,
+      "spDefense": 107,
+      "speed": 86
+    },
+    "height": 3,
+    "weight": 3,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10012.png"
+  },
+  {
+    "id": "serperior",
+    "jpName": "ジャローダ",
+    "enName": "Serperior",
+    "types": [
+      "grass"
+    ],
+    "abilities": [
+      "overgrow",
+      "contrary"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 75,
+      "defense": 95,
+      "spAttack": 75,
+      "spDefense": 95,
+      "speed": 113
+    },
+    "height": 33,
+    "weight": 630,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/497.png"
+  },
+  {
+    "id": "emboar",
+    "jpName": "エンブオー",
+    "enName": "Emboar",
+    "types": [
+      "fire",
+      "fighting"
+    ],
+    "abilities": [
+      "blaze",
+      "reckless"
+    ],
+    "stats": {
+      "hp": 110,
+      "attack": 123,
+      "defense": 65,
+      "spAttack": 100,
+      "spDefense": 65,
+      "speed": 65
+    },
+    "height": 16,
+    "weight": 1500,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/500.png"
+  },
+  {
+    "id": "emboar-mega",
+    "jpName": "メガエンブオー",
+    "enName": "emboar-mega",
+    "types": [
+      "fire",
+      "fighting"
+    ],
+    "abilities": [
+      "mold-breaker"
+    ],
+    "stats": {
+      "hp": 110,
+      "attack": 148,
+      "defense": 75,
+      "spAttack": 110,
+      "spDefense": 110,
+      "speed": 75
+    },
+    "height": 18,
+    "weight": 1803,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10286.png"
+  },
+  {
+    "id": "samurott",
+    "jpName": "ダイケンキ",
+    "enName": "Samurott",
+    "types": [
+      "water"
+    ],
+    "abilities": [
+      "torrent",
+      "shell-armor"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 100,
+      "defense": 85,
+      "spAttack": 108,
+      "spDefense": 70,
+      "speed": 70
+    },
+    "height": 15,
+    "weight": 946,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/503.png"
+  },
+  {
+    "id": "samurott-hisui",
+    "jpName": "ダイケンキ(ヒスイ)",
+    "enName": "samurott-hisui",
+    "types": [
+      "water",
+      "dark"
+    ],
+    "abilities": [
+      "torrent",
+      "sharpness"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 108,
+      "defense": 80,
+      "spAttack": 100,
+      "spDefense": 65,
+      "speed": 85
+    },
+    "height": 15,
+    "weight": 582,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10236.png"
+  },
+  {
+    "id": "watchog",
+    "jpName": "ミルホッグ",
+    "enName": "Watchog",
+    "types": [
+      "normal"
+    ],
+    "abilities": [
+      "illuminate",
+      "keen-eye",
+      "analytic"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 85,
+      "defense": 69,
+      "spAttack": 60,
+      "spDefense": 69,
+      "speed": 77
+    },
+    "height": 11,
+    "weight": 270,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/505.png"
+  },
+  {
+    "id": "liepard",
+    "jpName": "レパルダス",
+    "enName": "Liepard",
+    "types": [
+      "dark"
+    ],
+    "abilities": [
+      "limber",
+      "unburden",
+      "prankster"
+    ],
+    "stats": {
+      "hp": 64,
+      "attack": 88,
+      "defense": 50,
+      "spAttack": 88,
+      "spDefense": 50,
+      "speed": 106
+    },
+    "height": 11,
+    "weight": 375,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/510.png"
+  },
+  {
+    "id": "simisage",
+    "jpName": "ヤナッキー",
+    "enName": "Simisage",
+    "types": [
+      "grass"
+    ],
+    "abilities": [
+      "gluttony",
+      "overgrow"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 98,
+      "defense": 63,
+      "spAttack": 98,
+      "spDefense": 63,
+      "speed": 101
+    },
+    "height": 11,
+    "weight": 305,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/512.png"
+  },
+  {
+    "id": "simisear",
+    "jpName": "バオッキー",
+    "enName": "Simisear",
+    "types": [
+      "fire"
+    ],
+    "abilities": [
+      "gluttony",
+      "blaze"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 98,
+      "defense": 63,
+      "spAttack": 98,
+      "spDefense": 63,
+      "speed": 101
+    },
+    "height": 10,
+    "weight": 280,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/514.png"
+  },
+  {
+    "id": "simipour",
+    "jpName": "ヒヤッキー",
+    "enName": "Simipour",
+    "types": [
+      "water"
+    ],
+    "abilities": [
+      "gluttony",
+      "torrent"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 98,
+      "defense": 63,
+      "spAttack": 98,
+      "spDefense": 63,
+      "speed": 101
+    },
+    "height": 10,
+    "weight": 290,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/516.png"
+  },
+  {
+    "id": "musharna",
+    "jpName": "ムシャーナ",
+    "enName": "Musharna",
+    "types": [
+      "psychic"
+    ],
+    "abilities": [
+      "forewarn",
+      "synchronize",
+      "telepathy"
+    ],
+    "stats": {
+      "hp": 116,
+      "attack": 55,
+      "defense": 85,
+      "spAttack": 107,
+      "spDefense": 95,
+      "speed": 29
+    },
+    "height": 11,
+    "weight": 605,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/518.png"
+  },
+  {
+    "id": "excadrill",
+    "jpName": "ドリュウズ",
+    "enName": "Excadrill",
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "abilities": [
+      "sand-rush",
+      "sand-force",
+      "mold-breaker"
+    ],
+    "stats": {
+      "hp": 110,
+      "attack": 135,
+      "defense": 60,
+      "spAttack": 50,
+      "spDefense": 65,
+      "speed": 88
+    },
+    "height": 7,
+    "weight": 404,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/530.png"
+  },
+  {
+    "id": "excadrill-mega",
+    "jpName": "メガドリュウズ",
+    "enName": "excadrill-mega",
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "abilities": [
+      "piercing-drill"
+    ],
+    "stats": {
+      "hp": 110,
+      "attack": 165,
+      "defense": 100,
+      "spAttack": 65,
+      "spDefense": 65,
+      "speed": 103
+    },
+    "height": 9,
+    "weight": 600,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10287.png"
+  },
+  {
+    "id": "audino",
+    "jpName": "タブンネ",
+    "enName": "Audino",
+    "types": [
+      "normal"
+    ],
+    "abilities": [
+      "healer",
+      "regenerator",
+      "klutz"
+    ],
+    "stats": {
+      "hp": 103,
+      "attack": 60,
+      "defense": 86,
+      "spAttack": 60,
+      "spDefense": 86,
+      "speed": 50
+    },
+    "height": 11,
+    "weight": 310,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/531.png"
+  },
+  {
+    "id": "audino-mega",
+    "jpName": "メガタブンネ",
+    "enName": "audino-mega",
+    "types": [
+      "normal",
+      "fairy"
+    ],
+    "abilities": [
+      "healer"
+    ],
+    "stats": {
+      "hp": 103,
+      "attack": 60,
+      "defense": 126,
+      "spAttack": 80,
+      "spDefense": 126,
+      "speed": 50
+    },
+    "height": 15,
+    "weight": 320,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10069.png"
+  },
+  {
+    "id": "conkeldurr",
+    "jpName": "ローブシン",
+    "enName": "Conkeldurr",
+    "types": [
+      "fighting"
+    ],
+    "abilities": [
+      "guts",
+      "sheer-force",
+      "iron-fist"
+    ],
+    "stats": {
+      "hp": 105,
+      "attack": 140,
+      "defense": 95,
+      "spAttack": 55,
+      "spDefense": 65,
+      "speed": 45
+    },
+    "height": 14,
+    "weight": 870,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/534.png"
+  },
+  {
+    "id": "scolipede",
+    "jpName": "ペンドラー",
+    "enName": "Scolipede",
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "abilities": [
+      "poison-point",
+      "swarm",
+      "speed-boost"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 100,
+      "defense": 89,
+      "spAttack": 55,
+      "spDefense": 69,
+      "speed": 112
+    },
+    "height": 25,
+    "weight": 2005,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/545.png"
+  },
+  {
+    "id": "scolipede-mega",
+    "jpName": "メガペンドラー",
+    "enName": "scolipede-mega",
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "abilities": [
+      "shell-armor"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 140,
+      "defense": 149,
+      "spAttack": 75,
+      "spDefense": 99,
+      "speed": 62
+    },
+    "height": 32,
+    "weight": 2305,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10288.png"
+  },
+  {
+    "id": "whimsicott",
+    "jpName": "エルフーン",
+    "enName": "Whimsicott",
+    "types": [
+      "grass",
+      "fairy"
+    ],
+    "abilities": [
+      "prankster",
+      "infiltrator",
+      "chlorophyll"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 67,
+      "defense": 85,
+      "spAttack": 77,
+      "spDefense": 75,
+      "speed": 116
+    },
+    "height": 7,
+    "weight": 66,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/547.png"
+  },
+  {
+    "id": "krookodile",
+    "jpName": "ワルビアル",
+    "enName": "Krookodile",
+    "types": [
+      "ground",
+      "dark"
+    ],
+    "abilities": [
+      "intimidate",
+      "moxie",
+      "anger-point"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 117,
+      "defense": 80,
+      "spAttack": 65,
+      "spDefense": 70,
+      "speed": 92
+    },
+    "height": 15,
+    "weight": 963,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/553.png"
+  },
+  {
+    "id": "scrafty",
+    "jpName": "ズルズキン",
+    "enName": "Scrafty",
+    "types": [
+      "dark",
+      "fighting"
+    ],
+    "abilities": [
+      "shed-skin",
+      "moxie",
+      "intimidate"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 90,
+      "defense": 115,
+      "spAttack": 45,
+      "spDefense": 115,
+      "speed": 58
+    },
+    "height": 11,
+    "weight": 300,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/560.png"
+  },
+  {
+    "id": "scrafty-mega",
+    "jpName": "メガズルズキン",
+    "enName": "scrafty-mega",
+    "types": [
+      "dark",
+      "fighting"
+    ],
+    "abilities": [
+      "intimidate"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 130,
+      "defense": 135,
+      "spAttack": 55,
+      "spDefense": 135,
+      "speed": 68
+    },
+    "height": 11,
+    "weight": 310,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10289.png"
+  },
+  {
+    "id": "cofagrigus",
+    "jpName": "デスカーン",
+    "enName": "Cofagrigus",
+    "types": [
+      "ghost"
+    ],
+    "abilities": [
+      "mummy"
+    ],
+    "stats": {
+      "hp": 58,
+      "attack": 50,
+      "defense": 145,
+      "spAttack": 95,
+      "spDefense": 105,
+      "speed": 30
+    },
+    "height": 17,
+    "weight": 765,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/563.png"
+  },
+  {
+    "id": "garbodor",
+    "jpName": "ダストダス",
+    "enName": "Garbodor",
+    "types": [
+      "poison"
+    ],
+    "abilities": [
+      "stench",
+      "weak-armor",
+      "aftermath"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 95,
+      "defense": 82,
+      "spAttack": 60,
+      "spDefense": 82,
+      "speed": 75
+    },
+    "height": 19,
+    "weight": 1073,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/569.png"
+  },
+  {
+    "id": "zoroark",
+    "jpName": "ゾロアーク",
+    "enName": "Zoroark",
+    "types": [
+      "dark"
+    ],
+    "abilities": [
+      "illusion"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 105,
+      "defense": 60,
+      "spAttack": 120,
+      "spDefense": 60,
+      "speed": 105
+    },
+    "height": 16,
+    "weight": 811,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/571.png"
+  },
+  {
+    "id": "zoroark-hisui",
+    "jpName": "ゾロアーク(ヒスイ)",
+    "enName": "zoroark-hisui",
+    "types": [
+      "normal",
+      "ghost"
+    ],
+    "abilities": [
+      "illusion"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 100,
+      "defense": 60,
+      "spAttack": 125,
+      "spDefense": 60,
+      "speed": 110
+    },
+    "height": 16,
+    "weight": 730,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10239.png"
+  },
+  {
+    "id": "reuniclus",
+    "jpName": "ランクルス",
+    "enName": "Reuniclus",
+    "types": [
+      "psychic"
+    ],
+    "abilities": [
+      "overcoat",
+      "magic-guard",
+      "regenerator"
+    ],
+    "stats": {
+      "hp": 110,
+      "attack": 65,
+      "defense": 75,
+      "spAttack": 125,
+      "spDefense": 85,
+      "speed": 30
+    },
+    "height": 10,
+    "weight": 201,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/579.png"
+  },
+  {
+    "id": "vanilluxe",
+    "jpName": "バイバニラ",
+    "enName": "Vanilluxe",
+    "types": [
+      "ice"
+    ],
+    "abilities": [
+      "ice-body",
+      "snow-warning",
+      "weak-armor"
+    ],
+    "stats": {
+      "hp": 71,
+      "attack": 95,
+      "defense": 85,
+      "spAttack": 110,
+      "spDefense": 95,
+      "speed": 79
+    },
+    "height": 13,
+    "weight": 575,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/584.png"
+  },
+  {
+    "id": "emolga",
+    "jpName": "エモンガ",
+    "enName": "Emolga",
+    "types": [
+      "electric",
+      "flying"
+    ],
+    "abilities": [
+      "static",
+      "motor-drive"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 75,
+      "defense": 60,
+      "spAttack": 75,
+      "spDefense": 60,
+      "speed": 103
+    },
+    "height": 4,
+    "weight": 50,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/587.png"
+  },
+  {
+    "id": "eelektross",
+    "jpName": "シビルドン",
+    "enName": "Eelektross",
+    "types": [
+      "electric"
+    ],
+    "abilities": [
+      "levitate"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 115,
+      "defense": 80,
+      "spAttack": 105,
+      "spDefense": 80,
+      "speed": 50
+    },
+    "height": 21,
+    "weight": 805,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/604.png"
+  },
+  {
+    "id": "eelektross-mega",
+    "jpName": "メガシビルドン",
+    "enName": "eelektross-mega",
+    "types": [
+      "electric"
+    ],
+    "abilities": [
+      "eelevate"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 145,
+      "defense": 80,
+      "spAttack": 135,
+      "spDefense": 90,
+      "speed": 80
+    },
+    "height": 30,
+    "weight": 1800,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10290.png"
+  },
+  {
+    "id": "chandelure",
+    "jpName": "シャンデラ",
+    "enName": "Chandelure",
+    "types": [
+      "ghost",
+      "fire"
+    ],
+    "abilities": [
+      "flash-fire",
+      "flame-body",
+      "infiltrator"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 55,
+      "defense": 90,
+      "spAttack": 145,
+      "spDefense": 90,
+      "speed": 80
+    },
+    "height": 10,
+    "weight": 343,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/609.png"
+  },
+  {
+    "id": "chandelure-mega",
+    "jpName": "メガシャンデラ",
+    "enName": "chandelure-mega",
+    "types": [
+      "ghost",
+      "fire"
+    ],
+    "abilities": [
+      "infiltrator"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 75,
+      "defense": 110,
+      "spAttack": 175,
+      "spDefense": 110,
+      "speed": 90
+    },
+    "height": 25,
+    "weight": 696,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10291.png"
+  },
+  {
+    "id": "beartic",
+    "jpName": "ツンベアー",
+    "enName": "Beartic",
+    "types": [
+      "ice"
+    ],
+    "abilities": [
+      "snow-cloak",
+      "slush-rush",
+      "swift-swim"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 130,
+      "defense": 80,
+      "spAttack": 70,
+      "spDefense": 80,
+      "speed": 50
+    },
+    "height": 26,
+    "weight": 2600,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/614.png"
+  },
+  {
+    "id": "stunfisk",
+    "jpName": "マッギョ",
+    "enName": "Stunfisk",
+    "types": [
+      "ground",
+      "electric"
+    ],
+    "abilities": [
+      "static",
+      "limber",
+      "sand-veil"
+    ],
+    "stats": {
+      "hp": 109,
+      "attack": 66,
+      "defense": 84,
+      "spAttack": 81,
+      "spDefense": 99,
+      "speed": 32
+    },
+    "height": 7,
+    "weight": 110,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/618.png"
+  },
+  {
+    "id": "stunfisk-galar",
+    "jpName": "マッギョ(ガラル)",
+    "enName": "stunfisk-galar",
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "abilities": [
+      "mimicry"
+    ],
+    "stats": {
+      "hp": 109,
+      "attack": 81,
+      "defense": 99,
+      "spAttack": 66,
+      "spDefense": 84,
+      "speed": 32
+    },
+    "height": 7,
+    "weight": 205,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10180.png"
+  },
+  {
+    "id": "golurk",
+    "jpName": "ゴルーグ",
+    "enName": "Golurk",
+    "types": [
+      "ground",
+      "ghost"
+    ],
+    "abilities": [
+      "iron-fist",
+      "klutz",
+      "no-guard"
+    ],
+    "stats": {
+      "hp": 89,
+      "attack": 124,
+      "defense": 80,
+      "spAttack": 55,
+      "spDefense": 80,
+      "speed": 55
+    },
+    "height": 28,
+    "weight": 3300,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/623.png"
+  },
+  {
+    "id": "golurk-mega",
+    "jpName": "メガゴルーグ",
+    "enName": "golurk-mega",
+    "types": [
+      "ground",
+      "ghost"
+    ],
+    "abilities": [
+      "unseen-fist"
+    ],
+    "stats": {
+      "hp": 89,
+      "attack": 159,
+      "defense": 105,
+      "spAttack": 70,
+      "spDefense": 105,
+      "speed": 55
+    },
+    "height": 40,
+    "weight": 3300,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10313.png"
+  },
+  {
+    "id": "hydreigon",
+    "jpName": "サザンドラ",
+    "enName": "Hydreigon",
+    "types": [
+      "dark",
+      "dragon"
+    ],
+    "abilities": [
+      "levitate"
+    ],
+    "stats": {
+      "hp": 92,
+      "attack": 105,
+      "defense": 90,
+      "spAttack": 125,
+      "spDefense": 90,
+      "speed": 98
+    },
+    "height": 18,
+    "weight": 1600,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/635.png"
+  },
+  {
+    "id": "volcarona",
+    "jpName": "ウルガモス",
+    "enName": "Volcarona",
+    "types": [
+      "bug",
+      "fire"
+    ],
+    "abilities": [
+      "flame-body",
+      "swarm"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 60,
+      "defense": 65,
+      "spAttack": 135,
+      "spDefense": 105,
+      "speed": 100
+    },
+    "height": 16,
+    "weight": 460,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/637.png"
+  },
+  {
+    "id": "chesnaught",
+    "jpName": "ブリガロン",
+    "enName": "Chesnaught",
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "abilities": [
+      "overgrow",
+      "bulletproof"
+    ],
+    "stats": {
+      "hp": 88,
+      "attack": 107,
+      "defense": 122,
+      "spAttack": 74,
+      "spDefense": 75,
+      "speed": 64
+    },
+    "height": 16,
+    "weight": 900,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/652.png"
+  },
+  {
+    "id": "chesnaught-mega",
+    "jpName": "メガブリガロン",
+    "enName": "chesnaught-mega",
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "abilities": [
+      "bulletproof"
+    ],
+    "stats": {
+      "hp": 88,
+      "attack": 137,
+      "defense": 172,
+      "spAttack": 74,
+      "spDefense": 115,
+      "speed": 44
+    },
+    "height": 16,
+    "weight": 900,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10292.png"
+  },
+  {
+    "id": "delphox",
+    "jpName": "マフォクシー",
+    "enName": "Delphox",
+    "types": [
+      "fire",
+      "psychic"
+    ],
+    "abilities": [
+      "blaze",
+      "magician"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 69,
+      "defense": 72,
+      "spAttack": 114,
+      "spDefense": 100,
+      "speed": 104
+    },
+    "height": 15,
+    "weight": 390,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/655.png"
+  },
+  {
+    "id": "delphox-mega",
+    "jpName": "メガマフォクシー",
+    "enName": "delphox-mega",
+    "types": [
+      "fire",
+      "psychic"
+    ],
+    "abilities": [
+      "levitate"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 69,
+      "defense": 72,
+      "spAttack": 159,
+      "spDefense": 125,
+      "speed": 134
+    },
+    "height": 15,
+    "weight": 390,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10293.png"
+  },
+  {
+    "id": "greninja",
+    "jpName": "ゲッコウガ",
+    "enName": "Greninja",
+    "types": [
+      "water",
+      "dark"
+    ],
+    "abilities": [
+      "torrent",
+      "protean"
+    ],
+    "stats": {
+      "hp": 72,
+      "attack": 95,
+      "defense": 67,
+      "spAttack": 103,
+      "spDefense": 71,
+      "speed": 122
+    },
+    "height": 15,
+    "weight": 400,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/658.png"
+  },
+  {
+    "id": "greninja-mega",
+    "jpName": "メガゲッコウガ",
+    "enName": "greninja-mega",
+    "types": [
+      "water",
+      "dark"
+    ],
+    "abilities": [
+      "protean"
+    ],
+    "stats": {
+      "hp": 72,
+      "attack": 125,
+      "defense": 77,
+      "spAttack": 133,
+      "spDefense": 81,
+      "speed": 142
+    },
+    "height": 15,
+    "weight": 400,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10294.png"
+  },
+  {
+    "id": "diggersby",
+    "jpName": "ホルード",
+    "enName": "Diggersby",
+    "types": [
+      "normal",
+      "ground"
+    ],
+    "abilities": [
+      "pickup",
+      "cheek-pouch",
+      "huge-power"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 56,
+      "defense": 77,
+      "spAttack": 50,
+      "spDefense": 77,
+      "speed": 78
+    },
+    "height": 10,
+    "weight": 424,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/660.png"
+  },
+  {
+    "id": "talonflame",
+    "jpName": "ファイアロー",
+    "enName": "Talonflame",
+    "types": [
+      "fire",
+      "flying"
+    ],
+    "abilities": [
+      "flame-body",
+      "gale-wings"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 81,
+      "defense": 71,
+      "spAttack": 74,
+      "spDefense": 69,
+      "speed": 126
+    },
+    "height": 12,
+    "weight": 245,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/663.png"
+  },
+  {
+    "id": "vivillon",
+    "jpName": "ビビヨン",
+    "enName": "Vivillon",
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "abilities": [
+      "shield-dust",
+      "compound-eyes",
+      "friend-guard"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 52,
+      "defense": 50,
+      "spAttack": 90,
+      "spDefense": 50,
+      "speed": 89
+    },
+    "height": 12,
+    "weight": 170,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/666.png"
+  },
+  {
+    "id": "pyroar-male",
+    "jpName": "カエンジシ",
+    "enName": "pyroar-male",
+    "types": [
+      "fire",
+      "normal"
+    ],
+    "abilities": [
+      "rivalry",
+      "unnerve",
+      "moxie"
+    ],
+    "stats": {
+      "hp": 86,
+      "attack": 68,
+      "defense": 72,
+      "spAttack": 109,
+      "spDefense": 66,
+      "speed": 106
+    },
+    "height": 15,
+    "weight": 815,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/668.png"
+  },
+  {
+    "id": "pyroar-mega",
+    "jpName": "メガカエンジシ",
+    "enName": "pyroar-mega",
+    "types": [
+      "fire",
+      "normal"
+    ],
+    "abilities": [
+      "fire-mane"
+    ],
+    "stats": {
+      "hp": 86,
+      "attack": 88,
+      "defense": 92,
+      "spAttack": 129,
+      "spDefense": 86,
+      "speed": 126
+    },
+    "height": 15,
+    "weight": 933,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10295.png"
+  },
+  {
+    "id": "floette",
+    "jpName": "フラエッテ(えいえん)",
+    "enName": "Floette",
+    "types": [
+      "fairy"
+    ],
+    "abilities": [
+      "flower-veil",
+      "symbiosis"
+    ],
+    "stats": {
+      "hp": 54,
+      "attack": 45,
+      "defense": 47,
+      "spAttack": 75,
+      "spDefense": 98,
+      "speed": 52
+    },
+    "height": 2,
+    "weight": 9,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/670.png"
+  },
+  {
+    "id": "floette-mega",
+    "jpName": "メガフラエッテ",
+    "enName": "floette-mega",
+    "types": [
+      "fairy"
+    ],
+    "abilities": [
+      "fairy-aura"
+    ],
+    "stats": {
+      "hp": 74,
+      "attack": 85,
+      "defense": 87,
+      "spAttack": 155,
+      "spDefense": 148,
+      "speed": 102
+    },
+    "height": 2,
+    "weight": 1008,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10296.png"
+  },
+  {
+    "id": "florges",
+    "jpName": "フラージェス",
+    "enName": "Florges",
+    "types": [
+      "fairy"
+    ],
+    "abilities": [
+      "flower-veil",
+      "symbiosis"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 65,
+      "defense": 68,
+      "spAttack": 112,
+      "spDefense": 154,
+      "speed": 75
+    },
+    "height": 11,
+    "weight": 100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/671.png"
+  },
+  {
+    "id": "pangoro",
+    "jpName": "ゴロンダ",
+    "enName": "Pangoro",
+    "types": [
+      "fighting",
+      "dark"
+    ],
+    "abilities": [
+      "iron-fist",
+      "mold-breaker",
+      "scrappy"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 124,
+      "defense": 78,
+      "spAttack": 69,
+      "spDefense": 71,
+      "speed": 58
+    },
+    "height": 21,
+    "weight": 1360,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/675.png"
+  },
+  {
+    "id": "furfrou",
+    "jpName": "トリミアン",
+    "enName": "Furfrou",
+    "types": [
+      "normal"
+    ],
+    "abilities": [
+      "fur-coat"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 80,
+      "defense": 60,
+      "spAttack": 65,
+      "spDefense": 90,
+      "speed": 102
+    },
+    "height": 12,
+    "weight": 280,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/676.png"
+  },
+  {
+    "id": "meowstic-male",
+    "jpName": "ニャオニクス♂",
+    "enName": "meowstic-male",
+    "types": [
+      "psychic"
+    ],
+    "abilities": [
+      "keen-eye",
+      "infiltrator",
+      "prankster"
+    ],
+    "stats": {
+      "hp": 74,
+      "attack": 48,
+      "defense": 76,
+      "spAttack": 83,
+      "spDefense": 81,
+      "speed": 104
+    },
+    "height": 6,
+    "weight": 85,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/678.png"
+  },
+  {
+    "id": "meowstic-male-mega",
+    "jpName": "メガニャオニクス♂",
+    "enName": "meowstic-male-mega",
+    "types": [
+      "psychic"
+    ],
+    "abilities": [
+      "trace"
+    ],
+    "stats": {
+      "hp": 74,
+      "attack": 48,
+      "defense": 76,
+      "spAttack": 143,
+      "spDefense": 101,
+      "speed": 124
+    },
+    "height": 8,
+    "weight": 101,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10314.png"
+  },
+  {
+    "id": "meowstic-female",
+    "jpName": "ニャオニクス♀",
+    "enName": "meowstic-female",
+    "types": [
+      "psychic"
+    ],
+    "abilities": [
+      "keen-eye",
+      "infiltrator",
+      "competitive"
+    ],
+    "stats": {
+      "hp": 74,
+      "attack": 48,
+      "defense": 76,
+      "spAttack": 83,
+      "spDefense": 81,
+      "speed": 104
+    },
+    "height": 6,
+    "weight": 85,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10025.png"
+  },
+  {
+    "id": "meowstic-female-mega",
+    "jpName": "メガニャオニクス♀",
+    "enName": "meowstic-female-mega",
+    "types": [
+      "psychic"
+    ],
+    "abilities": [
+      "trace"
+    ],
+    "stats": {
+      "hp": 74,
+      "attack": 48,
+      "defense": 76,
+      "spAttack": 143,
+      "spDefense": 101,
+      "speed": 124
+    },
+    "height": 8,
+    "weight": 101,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10326.png"
+  },
+  {
+    "id": "aegislash-shield",
+    "jpName": "ギルガルド(シールド)",
+    "enName": "aegislash-shield",
+    "types": [
+      "steel",
+      "ghost"
+    ],
+    "abilities": [
+      "stance-change"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 50,
+      "defense": 140,
+      "spAttack": 50,
+      "spDefense": 140,
+      "speed": 60
+    },
+    "height": 17,
+    "weight": 530,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/681.png"
+  },
+  {
+    "id": "aegislash-blade",
+    "jpName": "ギルガルド(ブレード)",
+    "enName": "aegislash-blade",
+    "types": [
+      "steel",
+      "ghost"
+    ],
+    "abilities": [
+      "stance-change"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 140,
+      "defense": 50,
+      "spAttack": 140,
+      "spDefense": 50,
+      "speed": 60
+    },
+    "height": 17,
+    "weight": 530,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10026.png"
+  },
+  {
+    "id": "aromatisse",
+    "jpName": "フレフワン",
+    "enName": "Aromatisse",
+    "types": [
+      "fairy"
+    ],
+    "abilities": [
+      "healer",
+      "aroma-veil"
+    ],
+    "stats": {
+      "hp": 101,
+      "attack": 72,
+      "defense": 72,
+      "spAttack": 99,
+      "spDefense": 89,
+      "speed": 29
+    },
+    "height": 8,
+    "weight": 155,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/683.png"
+  },
+  {
+    "id": "slurpuff",
+    "jpName": "ペロリーム",
+    "enName": "Slurpuff",
+    "types": [
+      "fairy"
+    ],
+    "abilities": [
+      "sweet-veil",
+      "unburden"
+    ],
+    "stats": {
+      "hp": 82,
+      "attack": 80,
+      "defense": 86,
+      "spAttack": 85,
+      "spDefense": 75,
+      "speed": 72
+    },
+    "height": 8,
+    "weight": 50,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/685.png"
+  },
+  {
+    "id": "malamar",
+    "jpName": "カラマネロ",
+    "enName": "Malamar",
+    "types": [
+      "dark",
+      "psychic"
+    ],
+    "abilities": [
+      "contrary",
+      "suction-cups",
+      "infiltrator"
+    ],
+    "stats": {
+      "hp": 86,
+      "attack": 92,
+      "defense": 88,
+      "spAttack": 68,
+      "spDefense": 75,
+      "speed": 73
+    },
+    "height": 15,
+    "weight": 470,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/687.png"
+  },
+  {
+    "id": "malamar-mega",
+    "jpName": "メガカラマネロ",
+    "enName": "malamar-mega",
+    "types": [
+      "dark",
+      "psychic"
+    ],
+    "abilities": [
+      "contrary"
+    ],
+    "stats": {
+      "hp": 86,
+      "attack": 102,
+      "defense": 88,
+      "spAttack": 98,
+      "spDefense": 120,
+      "speed": 88
+    },
+    "height": 29,
+    "weight": 698,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10297.png"
+  },
+  {
+    "id": "barbaracle",
+    "jpName": "ガメノデス",
+    "enName": "Barbaracle",
+    "types": [
+      "rock",
+      "water"
+    ],
+    "abilities": [
+      "tough-claws",
+      "sniper",
+      "pickpocket"
+    ],
+    "stats": {
+      "hp": 72,
+      "attack": 105,
+      "defense": 115,
+      "spAttack": 54,
+      "spDefense": 86,
+      "speed": 68
+    },
+    "height": 13,
+    "weight": 960,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/689.png"
+  },
+  {
+    "id": "barbaracle-mega",
+    "jpName": "メガガメノデス",
+    "enName": "barbaracle-mega",
+    "types": [
+      "rock",
+      "fighting"
+    ],
+    "abilities": [
+      "tough-claws"
+    ],
+    "stats": {
+      "hp": 72,
+      "attack": 140,
+      "defense": 130,
+      "spAttack": 64,
+      "spDefense": 106,
+      "speed": 88
+    },
+    "height": 22,
+    "weight": 1000,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10298.png"
+  },
+  {
+    "id": "dragalge",
+    "jpName": "ドラミドロ",
+    "enName": "Dragalge",
+    "types": [
+      "poison",
+      "dragon"
+    ],
+    "abilities": [
+      "poison-point",
+      "poison-touch",
+      "adaptability"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 75,
+      "defense": 90,
+      "spAttack": 97,
+      "spDefense": 123,
+      "speed": 44
+    },
+    "height": 18,
+    "weight": 815,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/691.png"
+  },
+  {
+    "id": "dragalge-mega",
+    "jpName": "メガドラミドロ",
+    "enName": "dragalge-mega",
+    "types": [
+      "poison",
+      "dragon"
+    ],
+    "abilities": [
+      "regenerator"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 85,
+      "defense": 105,
+      "spAttack": 132,
+      "spDefense": 163,
+      "speed": 44
+    },
+    "height": 21,
+    "weight": 1003,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10299.png"
+  },
+  {
+    "id": "clawitzer",
+    "jpName": "ブロスター",
+    "enName": "Clawitzer",
+    "types": [
+      "water"
+    ],
+    "abilities": [
+      "mega-launcher"
+    ],
+    "stats": {
+      "hp": 71,
+      "attack": 73,
+      "defense": 88,
+      "spAttack": 120,
+      "spDefense": 89,
+      "speed": 59
+    },
+    "height": 13,
+    "weight": 353,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/693.png"
+  },
+  {
+    "id": "heliolisk",
+    "jpName": "エレザード",
+    "enName": "Heliolisk",
+    "types": [
+      "electric",
+      "normal"
+    ],
+    "abilities": [
+      "dry-skin",
+      "sand-veil",
+      "solar-power"
+    ],
+    "stats": {
+      "hp": 62,
+      "attack": 55,
+      "defense": 52,
+      "spAttack": 109,
+      "spDefense": 94,
+      "speed": 109
+    },
+    "height": 10,
+    "weight": 210,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/695.png"
+  },
+  {
+    "id": "tyrantrum",
+    "jpName": "ガチゴラス",
+    "enName": "Tyrantrum",
+    "types": [
+      "rock",
+      "dragon"
+    ],
+    "abilities": [
+      "strong-jaw",
+      "rock-head"
+    ],
+    "stats": {
+      "hp": 82,
+      "attack": 121,
+      "defense": 119,
+      "spAttack": 69,
+      "spDefense": 59,
+      "speed": 71
+    },
+    "height": 25,
+    "weight": 2700,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/697.png"
+  },
+  {
+    "id": "aurorus",
+    "jpName": "アマルルガ",
+    "enName": "Aurorus",
+    "types": [
+      "rock",
+      "ice"
+    ],
+    "abilities": [
+      "refrigerate",
+      "snow-warning"
+    ],
+    "stats": {
+      "hp": 123,
+      "attack": 77,
+      "defense": 72,
+      "spAttack": 99,
+      "spDefense": 92,
+      "speed": 58
+    },
+    "height": 27,
+    "weight": 2250,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/699.png"
+  },
+  {
+    "id": "sylveon",
+    "jpName": "ニンフィア",
+    "enName": "Sylveon",
+    "types": [
+      "fairy"
+    ],
+    "abilities": [
+      "cute-charm",
+      "pixilate"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 65,
+      "defense": 65,
+      "spAttack": 110,
+      "spDefense": 130,
+      "speed": 60
+    },
+    "height": 10,
+    "weight": 235,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/700.png"
+  },
+  {
+    "id": "hawlucha",
+    "jpName": "ルチャブル",
+    "enName": "Hawlucha",
+    "types": [
+      "fighting",
+      "flying"
+    ],
+    "abilities": [
+      "limber",
+      "unburden",
+      "mold-breaker"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 92,
+      "defense": 75,
+      "spAttack": 74,
+      "spDefense": 63,
+      "speed": 118
+    },
+    "height": 8,
+    "weight": 215,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/701.png"
+  },
+  {
+    "id": "hawlucha-mega",
+    "jpName": "メガルチャブル",
+    "enName": "hawlucha-mega",
+    "types": [
+      "fighting",
+      "flying"
+    ],
+    "abilities": [
+      "no-guard"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 137,
+      "defense": 100,
+      "spAttack": 74,
+      "spDefense": 93,
+      "speed": 118
+    },
+    "height": 10,
+    "weight": 250,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10300.png"
+  },
+  {
+    "id": "dedenne",
+    "jpName": "デデンネ",
+    "enName": "Dedenne",
+    "types": [
+      "electric",
+      "fairy"
+    ],
+    "abilities": [
+      "cheek-pouch",
+      "pickup",
+      "plus"
+    ],
+    "stats": {
+      "hp": 67,
+      "attack": 58,
+      "defense": 57,
+      "spAttack": 81,
+      "spDefense": 67,
+      "speed": 101
+    },
+    "height": 2,
+    "weight": 22,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/702.png"
+  },
+  {
+    "id": "goodra",
+    "jpName": "ヌメルゴン",
+    "enName": "Goodra",
+    "types": [
+      "dragon"
+    ],
+    "abilities": [
+      "sap-sipper",
+      "hydration",
+      "gooey"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 100,
+      "defense": 70,
+      "spAttack": 110,
+      "spDefense": 150,
+      "speed": 80
+    },
+    "height": 20,
+    "weight": 1505,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/706.png"
+  },
+  {
+    "id": "goodra-hisui",
+    "jpName": "ヌメルゴン(ヒスイ)",
+    "enName": "goodra-hisui",
+    "types": [
+      "steel",
+      "dragon"
+    ],
+    "abilities": [
+      "sap-sipper",
+      "shell-armor",
+      "gooey"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 100,
+      "defense": 100,
+      "spAttack": 110,
+      "spDefense": 150,
+      "speed": 60
+    },
+    "height": 17,
+    "weight": 3341,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10242.png"
+  },
+  {
+    "id": "klefki",
+    "jpName": "クレッフィ",
+    "enName": "Klefki",
+    "types": [
+      "steel",
+      "fairy"
+    ],
+    "abilities": [
+      "prankster",
+      "magician"
+    ],
+    "stats": {
+      "hp": 57,
+      "attack": 80,
+      "defense": 91,
+      "spAttack": 80,
+      "spDefense": 87,
+      "speed": 75
+    },
+    "height": 2,
+    "weight": 30,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/707.png"
+  },
+  {
+    "id": "trevenant",
+    "jpName": "オーロット",
+    "enName": "Trevenant",
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "abilities": [
+      "natural-cure",
+      "frisk",
+      "harvest"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 110,
+      "defense": 76,
+      "spAttack": 65,
+      "spDefense": 82,
+      "speed": 56
+    },
+    "height": 15,
+    "weight": 710,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/709.png"
+  },
+  {
+    "id": "gourgeist-average",
+    "jpName": "パンプジン(普通)",
+    "enName": "gourgeist-average",
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "abilities": [
+      "pickup",
+      "frisk",
+      "insomnia"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 90,
+      "defense": 122,
+      "spAttack": 58,
+      "spDefense": 75,
+      "speed": 84
+    },
+    "height": 9,
+    "weight": 125,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/711.png"
+  },
+  {
+    "id": "gourgeist-small",
+    "jpName": "パンプジン(小)",
+    "enName": "gourgeist-small",
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "abilities": [
+      "pickup",
+      "frisk",
+      "insomnia"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 85,
+      "defense": 122,
+      "spAttack": 58,
+      "spDefense": 75,
+      "speed": 99
+    },
+    "height": 7,
+    "weight": 95,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10030.png"
+  },
+  {
+    "id": "gourgeist-large",
+    "jpName": "パンプジン(大)",
+    "enName": "gourgeist-large",
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "abilities": [
+      "pickup",
+      "frisk",
+      "insomnia"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 95,
+      "defense": 122,
+      "spAttack": 58,
+      "spDefense": 75,
+      "speed": 69
+    },
+    "height": 11,
+    "weight": 140,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10031.png"
+  },
+  {
+    "id": "gourgeist-super",
+    "jpName": "パンプジン(特大)",
+    "enName": "gourgeist-super",
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "abilities": [
+      "pickup",
+      "frisk",
+      "insomnia"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 100,
+      "defense": 122,
+      "spAttack": 58,
+      "spDefense": 75,
+      "speed": 54
+    },
+    "height": 17,
+    "weight": 390,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10032.png"
+  },
+  {
+    "id": "avalugg",
+    "jpName": "クレベース",
+    "enName": "Avalugg",
+    "types": [
+      "ice"
+    ],
+    "abilities": [
+      "own-tempo",
+      "ice-body",
+      "sturdy"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 117,
+      "defense": 184,
+      "spAttack": 44,
+      "spDefense": 46,
+      "speed": 28
+    },
+    "height": 20,
+    "weight": 5050,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/713.png"
+  },
+  {
+    "id": "avalugg-hisui",
+    "jpName": "クレベース(ヒスイ)",
+    "enName": "avalugg-hisui",
+    "types": [
+      "ice",
+      "rock"
+    ],
+    "abilities": [
+      "strong-jaw",
+      "ice-body",
+      "sturdy"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 127,
+      "defense": 184,
+      "spAttack": 34,
+      "spDefense": 36,
+      "speed": 38
+    },
+    "height": 14,
+    "weight": 2624,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10243.png"
+  },
+  {
+    "id": "noivern",
+    "jpName": "オンバーン",
+    "enName": "Noivern",
+    "types": [
+      "flying",
+      "dragon"
+    ],
+    "abilities": [
+      "frisk",
+      "infiltrator",
+      "telepathy"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 70,
+      "defense": 80,
+      "spAttack": 97,
+      "spDefense": 80,
+      "speed": 123
+    },
+    "height": 15,
+    "weight": 850,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/715.png"
+  },
+  {
+    "id": "decidueye",
+    "jpName": "ジュナイパー",
+    "enName": "Decidueye",
+    "types": [
+      "grass",
+      "ghost"
+    ],
+    "abilities": [
+      "overgrow",
+      "long-reach"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 107,
+      "defense": 75,
+      "spAttack": 100,
+      "spDefense": 100,
+      "speed": 70
+    },
+    "height": 16,
+    "weight": 366,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/724.png"
+  },
+  {
+    "id": "decidueye-hisui",
+    "jpName": "ジュナイパー(ヒスイ)",
+    "enName": "decidueye-hisui",
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "abilities": [
+      "overgrow",
+      "scrappy"
+    ],
+    "stats": {
+      "hp": 88,
+      "attack": 112,
+      "defense": 80,
+      "spAttack": 95,
+      "spDefense": 95,
+      "speed": 60
+    },
+    "height": 16,
+    "weight": 370,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10244.png"
+  },
+  {
+    "id": "incineroar",
+    "jpName": "ガオガエン",
+    "enName": "Incineroar",
+    "types": [
+      "fire",
+      "dark"
+    ],
+    "abilities": [
+      "blaze",
+      "intimidate"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 115,
+      "defense": 90,
+      "spAttack": 80,
+      "spDefense": 90,
+      "speed": 60
+    },
+    "height": 18,
+    "weight": 830,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/727.png"
+  },
+  {
+    "id": "primarina",
+    "jpName": "アシレーヌ",
+    "enName": "Primarina",
+    "types": [
+      "water",
+      "fairy"
+    ],
+    "abilities": [
+      "torrent",
+      "liquid-voice"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 74,
+      "defense": 74,
+      "spAttack": 126,
+      "spDefense": 116,
+      "speed": 60
+    },
+    "height": 18,
+    "weight": 440,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/730.png"
+  },
+  {
+    "id": "toucannon",
+    "jpName": "ドデカバシ",
+    "enName": "Toucannon",
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "abilities": [
+      "keen-eye",
+      "skill-link",
+      "sheer-force"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 120,
+      "defense": 75,
+      "spAttack": 75,
+      "spDefense": 75,
+      "speed": 60
+    },
+    "height": 11,
+    "weight": 260,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/733.png"
+  },
+  {
+    "id": "crabominable",
+    "jpName": "ケケンカニ",
+    "enName": "Crabominable",
+    "types": [
+      "fighting",
+      "ice"
+    ],
+    "abilities": [
+      "hyper-cutter",
+      "iron-fist",
+      "anger-point"
+    ],
+    "stats": {
+      "hp": 97,
+      "attack": 132,
+      "defense": 77,
+      "spAttack": 62,
+      "spDefense": 67,
+      "speed": 43
+    },
+    "height": 17,
+    "weight": 1800,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/740.png"
+  },
+  {
+    "id": "crabominable-mega",
+    "jpName": "メガケケンカニ",
+    "enName": "crabominable-mega",
+    "types": [
+      "fighting",
+      "ice"
+    ],
+    "abilities": [
+      "iron-fist"
+    ],
+    "stats": {
+      "hp": 97,
+      "attack": 157,
+      "defense": 122,
+      "spAttack": 62,
+      "spDefense": 107,
+      "speed": 33
+    },
+    "height": 26,
+    "weight": 2528,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10315.png"
+  },
+  {
+    "id": "lycanroc-midday",
+    "jpName": "ルガルガン(まひる)",
+    "enName": "lycanroc-midday",
+    "types": [
+      "rock"
+    ],
+    "abilities": [
+      "keen-eye",
+      "sand-rush",
+      "steadfast"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 115,
+      "defense": 65,
+      "spAttack": 55,
+      "spDefense": 65,
+      "speed": 112
+    },
+    "height": 8,
+    "weight": 250,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/745.png"
+  },
+  {
+    "id": "lycanroc-midnight",
+    "jpName": "ルガルガン(まよなか)",
+    "enName": "lycanroc-midnight",
+    "types": [
+      "rock"
+    ],
+    "abilities": [
+      "keen-eye",
+      "vital-spirit",
+      "no-guard"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 115,
+      "defense": 75,
+      "spAttack": 55,
+      "spDefense": 75,
+      "speed": 82
+    },
+    "height": 11,
+    "weight": 250,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10126.png"
+  },
+  {
+    "id": "lycanroc-dusk",
+    "jpName": "ルガルガン(たそがれ)",
+    "enName": "lycanroc-dusk",
+    "types": [
+      "rock"
+    ],
+    "abilities": [
+      "tough-claws"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 117,
+      "defense": 65,
+      "spAttack": 55,
+      "spDefense": 65,
+      "speed": 110
+    },
+    "height": 8,
+    "weight": 250,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10152.png"
+  },
+  {
+    "id": "toxapex",
+    "jpName": "ドヒドイデ",
+    "enName": "Toxapex",
+    "types": [
+      "poison",
+      "water"
+    ],
+    "abilities": [
+      "merciless",
+      "limber",
+      "regenerator"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 63,
+      "defense": 152,
+      "spAttack": 53,
+      "spDefense": 142,
+      "speed": 35
+    },
+    "height": 7,
+    "weight": 145,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/748.png"
+  },
+  {
+    "id": "mudsdale",
+    "jpName": "バンバドロ",
+    "enName": "Mudsdale",
+    "types": [
+      "ground"
+    ],
+    "abilities": [
+      "own-tempo",
+      "stamina",
+      "inner-focus"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 125,
+      "defense": 100,
+      "spAttack": 55,
+      "spDefense": 85,
+      "speed": 35
+    },
+    "height": 25,
+    "weight": 9200,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/750.png"
+  },
+  {
+    "id": "araquanid",
+    "jpName": "オニシズクモ",
+    "enName": "Araquanid",
+    "types": [
+      "water",
+      "bug"
+    ],
+    "abilities": [
+      "water-bubble",
+      "water-absorb"
+    ],
+    "stats": {
+      "hp": 68,
+      "attack": 70,
+      "defense": 92,
+      "spAttack": 50,
+      "spDefense": 132,
+      "speed": 42
+    },
+    "height": 18,
+    "weight": 820,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/752.png"
+  },
+  {
+    "id": "salazzle",
+    "jpName": "エンニュート",
+    "enName": "Salazzle",
+    "types": [
+      "poison",
+      "fire"
+    ],
+    "abilities": [
+      "corrosion",
+      "oblivious"
+    ],
+    "stats": {
+      "hp": 68,
+      "attack": 64,
+      "defense": 60,
+      "spAttack": 111,
+      "spDefense": 60,
+      "speed": 117
+    },
+    "height": 12,
+    "weight": 222,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/758.png"
+  },
+  {
+    "id": "tsareena",
+    "jpName": "アマージョ",
+    "enName": "Tsareena",
+    "types": [
+      "grass"
+    ],
+    "abilities": [
+      "leaf-guard",
+      "queenly-majesty",
+      "sweet-veil"
+    ],
+    "stats": {
+      "hp": 72,
+      "attack": 120,
+      "defense": 98,
+      "spAttack": 50,
+      "spDefense": 98,
+      "speed": 72
+    },
+    "height": 12,
+    "weight": 214,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/763.png"
+  },
+  {
+    "id": "oranguru",
+    "jpName": "ヤレユータン",
+    "enName": "Oranguru",
+    "types": [
+      "normal",
+      "psychic"
+    ],
+    "abilities": [
+      "inner-focus",
+      "telepathy",
+      "symbiosis"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 60,
+      "defense": 80,
+      "spAttack": 90,
+      "spDefense": 110,
+      "speed": 60
+    },
+    "height": 15,
+    "weight": 760,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/765.png"
+  },
+  {
+    "id": "passimian",
+    "jpName": "ナゲツケサル",
+    "enName": "Passimian",
+    "types": [
+      "fighting"
+    ],
+    "abilities": [
+      "receiver",
+      "defiant"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 120,
+      "defense": 90,
+      "spAttack": 40,
+      "spDefense": 60,
+      "speed": 80
+    },
+    "height": 20,
+    "weight": 828,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/766.png"
+  },
+  {
+    "id": "mimikyu-disguised",
+    "jpName": "ミミッキュ",
+    "enName": "mimikyu-disguised",
+    "types": [
+      "ghost",
+      "fairy"
+    ],
+    "abilities": [
+      "disguise"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 90,
+      "defense": 80,
+      "spAttack": 50,
+      "spDefense": 105,
+      "speed": 96
+    },
+    "height": 2,
+    "weight": 7,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/778.png"
+  },
+  {
+    "id": "drampa",
+    "jpName": "ジジーロン",
+    "enName": "Drampa",
+    "types": [
+      "normal",
+      "dragon"
+    ],
+    "abilities": [
+      "berserk",
+      "sap-sipper",
+      "cloud-nine"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 60,
+      "defense": 85,
+      "spAttack": 135,
+      "spDefense": 91,
+      "speed": 36
+    },
+    "height": 30,
+    "weight": 1850,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/780.png"
+  },
+  {
+    "id": "drampa-mega",
+    "jpName": "メガジジーロン",
+    "enName": "drampa-mega",
+    "types": [
+      "normal",
+      "dragon"
+    ],
+    "abilities": [
+      "berserk"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 85,
+      "defense": 110,
+      "spAttack": 160,
+      "spDefense": 116,
+      "speed": 36
+    },
+    "height": 30,
+    "weight": 2405,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10302.png"
+  },
+  {
+    "id": "kommo-o",
+    "jpName": "ジャラランガ",
+    "enName": "Kommo-o",
+    "types": [
+      "dragon",
+      "fighting"
+    ],
+    "abilities": [
+      "bulletproof",
+      "soundproof",
+      "overcoat"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 110,
+      "defense": 125,
+      "spAttack": 100,
+      "spDefense": 105,
+      "speed": 85
+    },
+    "height": 16,
+    "weight": 782,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/784.png"
+  },
+  {
+    "id": "corviknight",
+    "jpName": "アーマーガア",
+    "enName": "Corviknight",
+    "types": [
+      "flying",
+      "steel"
+    ],
+    "abilities": [
+      "pressure",
+      "unnerve",
+      "mirror-armor"
+    ],
+    "stats": {
+      "hp": 98,
+      "attack": 87,
+      "defense": 105,
+      "spAttack": 53,
+      "spDefense": 85,
+      "speed": 67
+    },
+    "height": 22,
+    "weight": 750,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/823.png"
+  },
+  {
+    "id": "flapple",
+    "jpName": "アップリュー",
+    "enName": "Flapple",
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "abilities": [
+      "ripen",
+      "gluttony",
+      "hustle"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 110,
+      "defense": 80,
+      "spAttack": 95,
+      "spDefense": 60,
+      "speed": 70
+    },
+    "height": 3,
+    "weight": 10,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/841.png"
+  },
+  {
+    "id": "appletun",
+    "jpName": "タルップル",
+    "enName": "Appletun",
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "abilities": [
+      "ripen",
+      "gluttony",
+      "thick-fat"
+    ],
+    "stats": {
+      "hp": 110,
+      "attack": 85,
+      "defense": 80,
+      "spAttack": 100,
+      "spDefense": 80,
+      "speed": 30
+    },
+    "height": 4,
+    "weight": 130,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/842.png"
+  },
+  {
+    "id": "sandaconda",
+    "jpName": "サダイジャ",
+    "enName": "Sandaconda",
+    "types": [
+      "ground"
+    ],
+    "abilities": [
+      "sand-spit",
+      "shed-skin",
+      "sand-veil"
+    ],
+    "stats": {
+      "hp": 72,
+      "attack": 107,
+      "defense": 125,
+      "spAttack": 65,
+      "spDefense": 70,
+      "speed": 71
+    },
+    "height": 38,
+    "weight": 655,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/844.png"
+  },
+  {
+    "id": "polteageist",
+    "jpName": "ポットデス",
+    "enName": "Polteageist",
+    "types": [
+      "ghost"
+    ],
+    "abilities": [
+      "weak-armor",
+      "cursed-body"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 65,
+      "defense": 65,
+      "spAttack": 134,
+      "spDefense": 114,
+      "speed": 70
+    },
+    "height": 2,
+    "weight": 4,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/855.png"
+  },
+  {
+    "id": "hatterene",
+    "jpName": "ブリムオン",
+    "enName": "Hatterene",
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "abilities": [
+      "healer",
+      "anticipation",
+      "magic-bounce"
+    ],
+    "stats": {
+      "hp": 57,
+      "attack": 90,
+      "defense": 95,
+      "spAttack": 136,
+      "spDefense": 103,
+      "speed": 29
+    },
+    "height": 21,
+    "weight": 51,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/858.png"
+  },
+  {
+    "id": "grimmsnarl",
+    "jpName": "オーロンゲ",
+    "enName": "Grimmsnarl",
+    "types": [
+      "dark",
+      "fairy"
+    ],
+    "abilities": [
+      "prankster",
+      "frisk",
+      "pickpocket"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 120,
+      "defense": 65,
+      "spAttack": 95,
+      "spDefense": 75,
+      "speed": 60
+    },
+    "height": 15,
+    "weight": 610,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/861.png"
+  },
+  {
+    "id": "mr-rime",
+    "jpName": "バリコオル",
+    "enName": "Mr. Rime",
+    "types": [
+      "ice",
+      "psychic"
+    ],
+    "abilities": [
+      "tangled-feet",
+      "screen-cleaner",
+      "ice-body"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 85,
+      "defense": 75,
+      "spAttack": 110,
+      "spDefense": 100,
+      "speed": 70
+    },
+    "height": 15,
+    "weight": 582,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/866.png"
+  },
+  {
+    "id": "runerigus",
+    "jpName": "デスバーン",
+    "enName": "Runerigus",
+    "types": [
+      "ground",
+      "ghost"
+    ],
+    "abilities": [
+      "wandering-spirit"
+    ],
+    "stats": {
+      "hp": 58,
+      "attack": 95,
+      "defense": 145,
+      "spAttack": 50,
+      "spDefense": 105,
+      "speed": 30
+    },
+    "height": 16,
+    "weight": 666,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/867.png"
+  },
+  {
+    "id": "alcremie",
+    "jpName": "マホイップ",
+    "enName": "Alcremie",
+    "types": [
+      "fairy"
+    ],
+    "abilities": [
+      "sweet-veil",
+      "aroma-veil"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 60,
+      "defense": 75,
+      "spAttack": 110,
+      "spDefense": 121,
+      "speed": 64
+    },
+    "height": 3,
+    "weight": 5,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/869.png"
+  },
+  {
+    "id": "falinks",
+    "jpName": "タイレーツ",
+    "enName": "Falinks",
+    "types": [
+      "fighting"
+    ],
+    "abilities": [
+      "battle-armor",
+      "defiant"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 100,
+      "defense": 100,
+      "spAttack": 70,
+      "spDefense": 60,
+      "speed": 75
+    },
+    "height": 30,
+    "weight": 620,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/870.png"
+  },
+  {
+    "id": "falinks-mega",
+    "jpName": "メガタイレーツ",
+    "enName": "falinks-mega",
+    "types": [
+      "fighting"
+    ],
+    "abilities": [
+      "defiant"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 135,
+      "defense": 135,
+      "spAttack": 70,
+      "spDefense": 65,
+      "speed": 100
+    },
+    "height": 16,
+    "weight": 990,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10303.png"
+  },
+  {
+    "id": "morpeko-full-belly",
+    "jpName": "モルペコ",
+    "enName": "morpeko-full-belly",
+    "types": [
+      "electric",
+      "dark"
+    ],
+    "abilities": [
+      "hunger-switch"
+    ],
+    "stats": {
+      "hp": 58,
+      "attack": 95,
+      "defense": 58,
+      "spAttack": 70,
+      "spDefense": 58,
+      "speed": 97
+    },
+    "height": 3,
+    "weight": 30,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/877.png"
+  },
+  {
+    "id": "dragapult",
+    "jpName": "ドラパルト",
+    "enName": "Dragapult",
+    "types": [
+      "dragon",
+      "ghost"
+    ],
+    "abilities": [
+      "clear-body",
+      "infiltrator",
+      "cursed-body"
+    ],
+    "stats": {
+      "hp": 88,
+      "attack": 120,
+      "defense": 75,
+      "spAttack": 100,
+      "spDefense": 75,
+      "speed": 142
+    },
+    "height": 30,
+    "weight": 500,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/887.png"
+  },
+  {
+    "id": "wyrdeer",
+    "jpName": "アヤシシ",
+    "enName": "Wyrdeer",
+    "types": [
+      "normal",
+      "psychic"
+    ],
+    "abilities": [
+      "intimidate",
+      "frisk",
+      "sap-sipper"
+    ],
+    "stats": {
+      "hp": 103,
+      "attack": 105,
+      "defense": 72,
+      "spAttack": 105,
+      "spDefense": 75,
+      "speed": 65
+    },
+    "height": 18,
+    "weight": 951,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/899.png"
+  },
+  {
+    "id": "kleavor",
+    "jpName": "バサギリ",
+    "enName": "Kleavor",
+    "types": [
+      "bug",
+      "rock"
+    ],
+    "abilities": [
+      "swarm",
+      "sheer-force",
+      "sharpness"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 135,
+      "defense": 95,
+      "spAttack": 45,
+      "spDefense": 70,
+      "speed": 85
+    },
+    "height": 18,
+    "weight": 890,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/900.png"
+  },
+  {
+    "id": "basculegion-male",
+    "jpName": "イダイトウ♂",
+    "enName": "basculegion-male",
+    "types": [
+      "water",
+      "ghost"
+    ],
+    "abilities": [
+      "swift-swim",
+      "adaptability",
+      "mold-breaker"
+    ],
+    "stats": {
+      "hp": 120,
+      "attack": 112,
+      "defense": 65,
+      "spAttack": 80,
+      "spDefense": 75,
+      "speed": 78
+    },
+    "height": 30,
+    "weight": 1100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/902.png"
+  },
+  {
+    "id": "basculegion-female",
+    "jpName": "イダイトウ♀",
+    "enName": "basculegion-female",
+    "types": [
+      "water",
+      "ghost"
+    ],
+    "abilities": [
+      "swift-swim",
+      "adaptability",
+      "mold-breaker"
+    ],
+    "stats": {
+      "hp": 120,
+      "attack": 92,
+      "defense": 65,
+      "spAttack": 100,
+      "spDefense": 75,
+      "speed": 78
+    },
+    "height": 30,
+    "weight": 1100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10248.png"
+  },
+  {
+    "id": "sneasler",
+    "jpName": "オオニューラ",
+    "enName": "Sneasler",
+    "types": [
+      "fighting",
+      "poison"
+    ],
+    "abilities": [
+      "pressure",
+      "unburden",
+      "poison-touch"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 130,
+      "defense": 60,
+      "spAttack": 40,
+      "spDefense": 80,
+      "speed": 120
+    },
+    "height": 13,
+    "weight": 430,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/903.png"
+  },
+  {
+    "id": "overqwil",
+    "jpName": "ハリーマン",
+    "enName": "Overqwil",
+    "types": [
+      "dark",
+      "poison"
+    ],
+    "abilities": [
+      "poison-point",
+      "swift-swim",
+      "intimidate"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 115,
+      "defense": 95,
+      "spAttack": 65,
+      "spDefense": 65,
+      "speed": 85
+    },
+    "height": 25,
+    "weight": 605,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/904.png"
+  },
+  {
+    "id": "meowscarada",
+    "jpName": "マスカーニャ",
+    "enName": "Meowscarada",
+    "types": [
+      "grass",
+      "dark"
+    ],
+    "abilities": [
+      "overgrow",
+      "protean"
+    ],
+    "stats": {
+      "hp": 76,
+      "attack": 110,
+      "defense": 70,
+      "spAttack": 81,
+      "spDefense": 70,
+      "speed": 123
+    },
+    "height": 15,
+    "weight": 312,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/908.png"
+  },
+  {
+    "id": "skeledirge",
+    "jpName": "ラウドボーン",
+    "enName": "Skeledirge",
+    "types": [
+      "fire",
+      "ghost"
+    ],
+    "abilities": [
+      "blaze",
+      "unaware"
+    ],
+    "stats": {
+      "hp": 104,
+      "attack": 75,
+      "defense": 100,
+      "spAttack": 110,
+      "spDefense": 75,
+      "speed": 66
+    },
+    "height": 16,
+    "weight": 3265,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/911.png"
+  },
+  {
+    "id": "quaquaval",
+    "jpName": "ウェーニバル",
+    "enName": "Quaquaval",
+    "types": [
+      "water",
+      "fighting"
+    ],
+    "abilities": [
+      "torrent",
+      "moxie"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 120,
+      "defense": 80,
+      "spAttack": 85,
+      "spDefense": 75,
+      "speed": 85
+    },
+    "height": 18,
+    "weight": 619,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/914.png"
+  },
+  {
+    "id": "maushold-family-of-four",
+    "jpName": "イッカネズミ",
+    "enName": "maushold-family-of-four",
+    "types": [
+      "normal"
+    ],
+    "abilities": [
+      "friend-guard",
+      "cheek-pouch",
+      "technician"
+    ],
+    "stats": {
+      "hp": 74,
+      "attack": 75,
+      "defense": 70,
+      "spAttack": 65,
+      "spDefense": 75,
+      "speed": 111
+    },
+    "height": 3,
+    "weight": 28,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/925.png"
+  },
+  {
+    "id": "garganacl",
+    "jpName": "キョジオーン",
+    "enName": "Garganacl",
+    "types": [
+      "rock"
+    ],
+    "abilities": [
+      "purifying-salt",
+      "sturdy",
+      "clear-body"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 100,
+      "defense": 130,
+      "spAttack": 45,
+      "spDefense": 90,
+      "speed": 35
+    },
+    "height": 23,
+    "weight": 2400,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/934.png"
+  },
+  {
+    "id": "armarouge",
+    "jpName": "グレンアルマ",
+    "enName": "Armarouge",
+    "types": [
+      "fire",
+      "psychic"
+    ],
+    "abilities": [
+      "flash-fire",
+      "weak-armor"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 60,
+      "defense": 100,
+      "spAttack": 125,
+      "spDefense": 80,
+      "speed": 75
+    },
+    "height": 15,
+    "weight": 850,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/936.png"
+  },
+  {
+    "id": "ceruledge",
+    "jpName": "ソウブレイズ",
+    "enName": "Ceruledge",
+    "types": [
+      "fire",
+      "ghost"
+    ],
+    "abilities": [
+      "flash-fire",
+      "weak-armor"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 125,
+      "defense": 80,
+      "spAttack": 60,
+      "spDefense": 100,
+      "speed": 85
+    },
+    "height": 16,
+    "weight": 620,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/937.png"
+  },
+  {
+    "id": "bellibolt",
+    "jpName": "ハラバリー",
+    "enName": "Bellibolt",
+    "types": [
+      "electric"
+    ],
+    "abilities": [
+      "electromorphosis",
+      "static",
+      "damp"
+    ],
+    "stats": {
+      "hp": 109,
+      "attack": 64,
+      "defense": 91,
+      "spAttack": 103,
+      "spDefense": 83,
+      "speed": 45
+    },
+    "height": 12,
+    "weight": 1130,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/939.png"
+  },
+  {
+    "id": "scovillain",
+    "jpName": "スコヴィラン",
+    "enName": "Scovillain",
+    "types": [
+      "grass",
+      "fire"
+    ],
+    "abilities": [
+      "chlorophyll",
+      "insomnia",
+      "moody"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 108,
+      "defense": 65,
+      "spAttack": 108,
+      "spDefense": 65,
+      "speed": 75
+    },
+    "height": 9,
+    "weight": 150,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/952.png"
+  },
+  {
+    "id": "scovillain-mega",
+    "jpName": "メガスコヴィラン",
+    "enName": "scovillain-mega",
+    "types": [
+      "grass",
+      "fire"
+    ],
+    "abilities": [
+      "spicy-spray"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 138,
+      "defense": 85,
+      "spAttack": 138,
+      "spDefense": 85,
+      "speed": 75
+    },
+    "height": 12,
+    "weight": 220,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10320.png"
+  },
+  {
+    "id": "espathra",
+    "jpName": "クエスパトラ",
+    "enName": "Espathra",
+    "types": [
+      "psychic"
+    ],
+    "abilities": [
+      "opportunist",
+      "frisk",
+      "speed-boost"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 60,
+      "defense": 60,
+      "spAttack": 101,
+      "spDefense": 60,
+      "speed": 105
+    },
+    "height": 19,
+    "weight": 900,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/956.png"
+  },
+  {
+    "id": "tinkaton",
+    "jpName": "デカヌチャン",
+    "enName": "Tinkaton",
+    "types": [
+      "fairy",
+      "steel"
+    ],
+    "abilities": [
+      "mold-breaker",
+      "own-tempo",
+      "pickpocket"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 75,
+      "defense": 77,
+      "spAttack": 70,
+      "spDefense": 105,
+      "speed": 94
+    },
+    "height": 7,
+    "weight": 1128,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/959.png"
+  },
+  {
+    "id": "palafin-zero",
+    "jpName": "イルカマン(ナイーブ)",
+    "enName": "palafin-zero",
+    "types": [
+      "water"
+    ],
+    "abilities": [
+      "zero-to-hero"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 70,
+      "defense": 72,
+      "spAttack": 53,
+      "spDefense": 62,
+      "speed": 100
+    },
+    "height": 13,
+    "weight": 602,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/964.png"
+  },
+  {
+    "id": "palafin-hero",
+    "jpName": "イルカマン(マイティ)",
+    "enName": "palafin-hero",
+    "types": [
+      "water"
+    ],
+    "abilities": [
+      "zero-to-hero"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 160,
+      "defense": 97,
+      "spAttack": 106,
+      "spDefense": 87,
+      "speed": 100
+    },
+    "height": 18,
+    "weight": 974,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10256.png"
+  },
+  {
+    "id": "orthworm",
+    "jpName": "ミミズズ",
+    "enName": "Orthworm",
+    "types": [
+      "steel"
+    ],
+    "abilities": [
+      "earth-eater",
+      "sand-veil"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 85,
+      "defense": 145,
+      "spAttack": 60,
+      "spDefense": 55,
+      "speed": 65
+    },
+    "height": 25,
+    "weight": 3100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/968.png"
+  },
+  {
+    "id": "glimmora",
+    "jpName": "キラフロル",
+    "enName": "Glimmora",
+    "types": [
+      "rock",
+      "poison"
+    ],
+    "abilities": [
+      "toxic-debris",
+      "corrosion"
+    ],
+    "stats": {
+      "hp": 83,
+      "attack": 55,
+      "defense": 90,
+      "spAttack": 130,
+      "spDefense": 81,
+      "speed": 86
+    },
+    "height": 15,
+    "weight": 450,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/970.png"
+  },
+  {
+    "id": "glimmora-mega",
+    "jpName": "メガキラフロル",
+    "enName": "glimmora-mega",
+    "types": [
+      "rock",
+      "poison"
+    ],
+    "abilities": [
+      "adaptability"
+    ],
+    "stats": {
+      "hp": 83,
+      "attack": 90,
+      "defense": 105,
+      "spAttack": 150,
+      "spDefense": 96,
+      "speed": 101
+    },
+    "height": 28,
+    "weight": 770,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10321.png"
+  },
+  {
+    "id": "houndstone",
+    "jpName": "ハカドッグ",
+    "enName": "Houndstone",
+    "types": [
+      "ghost"
+    ],
+    "abilities": [
+      "sand-rush",
+      "fluffy"
+    ],
+    "stats": {
+      "hp": 72,
+      "attack": 101,
+      "defense": 100,
+      "spAttack": 50,
+      "spDefense": 97,
+      "speed": 68
+    },
+    "height": 20,
+    "weight": 150,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/972.png"
+  },
+  {
+    "id": "annihilape",
+    "jpName": "コノヨザル",
+    "enName": "Annihilape",
+    "types": [
+      "fighting",
+      "ghost"
+    ],
+    "abilities": [
+      "vital-spirit",
+      "inner-focus",
+      "defiant"
+    ],
+    "stats": {
+      "hp": 110,
+      "attack": 115,
+      "defense": 80,
+      "spAttack": 50,
+      "spDefense": 90,
+      "speed": 90
+    },
+    "height": 12,
+    "weight": 560,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/979.png"
+  },
+  {
+    "id": "farigiraf",
+    "jpName": "リキキリン",
+    "enName": "Farigiraf",
+    "types": [
+      "normal",
+      "psychic"
+    ],
+    "abilities": [
+      "cud-chew",
+      "armor-tail",
+      "sap-sipper"
+    ],
+    "stats": {
+      "hp": 120,
+      "attack": 90,
+      "defense": 70,
+      "spAttack": 110,
+      "spDefense": 70,
+      "speed": 60
+    },
+    "height": 32,
+    "weight": 1600,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/981.png"
+  },
+  {
+    "id": "kingambit",
+    "jpName": "ドドゲザン",
+    "enName": "Kingambit",
+    "types": [
+      "dark",
+      "steel"
+    ],
+    "abilities": [
+      "defiant",
+      "supreme-overlord",
+      "pressure"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 135,
+      "defense": 120,
+      "spAttack": 60,
+      "spDefense": 85,
+      "speed": 50
+    },
+    "height": 20,
+    "weight": 1200,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/983.png"
+  },
+  {
+    "id": "gholdengo",
+    "jpName": "サーフゴー",
+    "enName": "Gholdengo",
+    "types": [
+      "steel",
+      "ghost"
+    ],
+    "abilities": [
+      "good-as-gold"
+    ],
+    "stats": {
+      "hp": 87,
+      "attack": 60,
+      "defense": 95,
+      "spAttack": 133,
+      "spDefense": 91,
+      "speed": 84
+    },
+    "height": 12,
+    "weight": 300,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1000.png"
+  },
+  {
+    "id": "sinistcha",
+    "jpName": "ヤバソチャ",
+    "enName": "Sinistcha",
+    "types": [
+      "grass",
+      "ghost"
+    ],
+    "abilities": [
+      "hospitality",
+      "heatproof"
+    ],
+    "stats": {
+      "hp": 71,
+      "attack": 60,
+      "defense": 106,
+      "spAttack": 121,
+      "spDefense": 80,
+      "speed": 70
+    },
+    "height": 2,
+    "weight": 22,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1013.png"
+  },
+  {
+    "id": "archaludon",
+    "jpName": "ブリジュラス",
+    "enName": "Archaludon",
+    "types": [
+      "steel",
+      "dragon"
+    ],
+    "abilities": [
+      "stamina",
+      "sturdy",
+      "stalwart"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 105,
+      "defense": 130,
+      "spAttack": 125,
+      "spDefense": 65,
+      "speed": 85
+    },
+    "height": 20,
+    "weight": 600,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1018.png"
+  },
+  {
+    "id": "hydrapple",
+    "jpName": "カミツオロチ",
+    "enName": "Hydrapple",
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "abilities": [
+      "supersweet-syrup",
+      "regenerator",
+      "sticky-hold"
+    ],
+    "stats": {
+      "hp": 106,
+      "attack": 80,
+      "defense": 110,
+      "spAttack": 120,
+      "spDefense": 80,
+      "speed": 44
+    },
+    "height": 18,
+    "weight": 930,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1019.png"
+  }
+]
