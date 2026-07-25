@@ -2,26 +2,28 @@ import { Plus } from "lucide-react";
 
 function DashboardHeader() {
   return (
-    <header className="border-b border-slate-200 bg-white">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
-        <div>
-          <p className="text-sm font-medium text-slate-500">
-            ダッシュボード
-          </p>
+    <header className="flex items-start justify-between gap-4">
+      <div>
+        <p className="text-sm font-semibold text-blue-600">
+          Dashboard
+        </p>
 
-          <h2 className="text-xl font-bold tracking-tight text-slate-900">
-            ホーム
-          </h2>
-        </div>
+        <h1 className="mt-1 text-2xl font-bold text-slate-900">
+          ホーム
+        </h1>
 
-        <button
-          type="button"
-          className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
-        >
-          <Plus size={18} />
-          新しい構築
-        </button>
+        <p className="mt-2 text-sm text-slate-500">
+          現在の構築や環境データを確認し、対戦準備を進めましょう。
+        </p>
       </div>
+
+      <button
+        type="button"
+        className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+      >
+        <Plus size={18} />
+        新しい構築
+      </button>
     </header>
   );
 }

@@ -2,6 +2,8 @@ import { Search, Swords, Table2 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { usePlanner } from "../context/PlannerContext";
 import { getPokemonById } from "../data/pokemon";
+import PokemonIcon from "../components/common/PokemonIcon";
+import TypeBadge from "../components/common/TypeBadge";
 import type { MatchupRating } from "../types/pokemon";
 
 const ratingOrder: MatchupRating[] = [
@@ -196,16 +198,38 @@ function MatchupsPage() {
                     const pokemon = getPokemonById(teamMember.pokemonId);
                     return (
                       <th
-                        key={teamMember.id}
-                        className="min-w-32 border-b border-r border-slate-200 px-3 py-3 text-center"
-                      >
-                        <span className="block text-sm font-bold text-slate-800">
-                          {pokemon?.name ?? teamMember.pokemonId}
-                        </span>
-                        <span className="mt-1 block font-normal text-slate-400">
-                          {teamMember.item || "持ち物未設定"}
-                        </span>
-                      </th>
+  key={teamMember.id}
+  className="min-w-36 border-b border-r border-slate-200 px-3 py-3 text-center"
+>
+  <div className="flex flex-col items-center">
+    <PokemonIcon
+      pokemonId={teamMember.pokemonId}
+      pokemonName={pokemon?.name}
+      size={40}
+    />
+
+    <span className="mt-1 block text-sm font-bold text-slate-800">
+      {pokemon?.name ?? teamMember.pokemonId}
+    </span>
+
+    {pokemon && (
+      <div className="mt-1 flex flex-wrap justify-center gap-1">
+        {pokemon.types
+          .filter(
+            (typeId): typeId is NonNullable<typeof typeId> =>
+              Boolean(typeId),
+          )
+          .map((typeId) => (
+            <TypeBadge key={typeId} typeId={typeId} />
+          ))}
+      </div>
+    )}
+
+    <span className="mt-1 block font-normal text-slate-400">
+      {teamMember.item || "持ち物未設定"}
+    </span>
+  </div>
+</th>
                     );
                   })}
                   <th className="min-w-28 border-b border-slate-200 px-3 py-3 text-center">
@@ -223,20 +247,41 @@ function MatchupsPage() {
                     <tr key={entry.id} className="hover:bg-slate-50/60">
                       <td className="sticky left-0 z-10 border-b border-r border-slate-200 bg-white px-4 py-3">
                         <div className="flex items-center gap-3">
-                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">
-                            {entry.rank}
-                          </span>
-                          <div className="min-w-0">
-                            <p className="font-bold text-slate-900">
-                              {enemy?.name ?? entry.pokemonId}
-                            </p>
-                            <p className="mt-0.5 truncate text-xs text-slate-500">
-                              {entry.assumedMoves.length
-                                ? entry.assumedMoves.join(" / ")
-                                : "想定技未設定"}
-                            </p>
-                          </div>
-                        </div>
+  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">
+    {entry.rank}
+  </span>
+
+  <PokemonIcon
+    pokemonId={entry.pokemonId}
+    pokemonName={enemy?.name}
+    size={40}
+  />
+
+  <div className="min-w-0">
+    <p className="font-bold text-slate-900">
+      {enemy?.name ?? entry.pokemonId}
+    </p>
+
+    {enemy && (
+      <div className="mt-1 flex flex-wrap gap-1">
+        {enemy.types
+          .filter(
+            (typeId): typeId is NonNullable<typeof typeId> =>
+              Boolean(typeId),
+          )
+          .map((typeId) => (
+            <TypeBadge key={typeId} typeId={typeId} />
+          ))}
+      </div>
+    )}
+
+    <p className="mt-1 truncate text-xs text-slate-500">
+      {entry.assumedMoves.length
+        ? entry.assumedMoves.join(" / ")
+        : "想定技未設定"}
+    </p>
+  </div>
+</div>
                       </td>
 
                       {teamPokemon.map((teamMember) => {

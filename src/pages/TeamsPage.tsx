@@ -21,7 +21,7 @@ import { useLocation } from "react-router-dom";
 import TypeBadge from "../components/common/TypeBadge";
 import TeamPokemonEditor from "../components/teams/TeamPokemonEditor";
 import { getAbilityName } from "../data/abilities";
-import { getPokemonById } from "../data/pokemon";
+import { getPokemonById, pokemonMaster } from "../data/pokemon";
 import {
   getTeamRole,
   getTeamRoleName,
@@ -37,6 +37,8 @@ import type {
 import { analyzeTeam } from "../utils/teamAnalysis";
 import { analyzeTeamTypeCoverage } from "../utils/teamTypeCoverage";
 import { getMoveByName } from "../data/moves";
+import PokemonIcon from "../components/common/PokemonIcon";
+import PokemonAutocomplete from "../components/common/PokemonAutocomplete";
 
 type TeamModalMode = "create" | "edit";
 
@@ -144,6 +146,8 @@ function TeamsPage() {
     deleteTeam,
     duplicateTeam,
     updateTeamPokemon,
+    addPokemonToTeam,
+    removePokemonFromTeam,
   } = usePlanner();
 
   const [
@@ -153,6 +157,10 @@ function TeamsPage() {
 
   const [teamModal, setTeamModal] =
     useState<TeamModalState | null>(null);
+
+  const [isAddPokemonOpen, setIsAddPokemonOpen] = useState(false);
+  const [selectedPokemonId, setSelectedPokemonId] = useState("");
+  const [addPokemonMessage, setAddPokemonMessage] = useState<string | null>(null);
 
   const [teamForm, setTeamForm] =
     useState<TeamFormData>({
@@ -297,9 +305,50 @@ function TeamsPage() {
     setEditingTeamPokemon(null);
   }
 
+  function openAddPokemonModal() {
+    setSelectedPokemonId("");
+    setAddPokemonMessage(null);
+    setIsAddPokemonOpen(true);
+  }
+
+  function closeAddPokemonModal() {
+    setIsAddPokemonOpen(false);
+    setSelectedPokemonId("");
+    setAddPokemonMessage(null);
+  }
+
+  function handleAddPokemon() {
+    if (!selectedPokemonId) {
+      setAddPokemonMessage("追加するポケモンを選択してください。");
+      return;
+    }
+
+    const result = addPokemonToTeam(selectedPokemonId);
+
+    if (!result.success) {
+      setAddPokemonMessage(result.message);
+      return;
+    }
+
+    closeAddPokemonModal();
+  }
+
+  function handleRemovePokemon(teamPokemon: TeamPokemon) {
+    const pokemon = getPokemonById(teamPokemon.pokemonId);
+    const confirmed = window.confirm(
+      `${pokemon?.name ?? teamPokemon.pokemonId}を構築から外しますか？`,
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    removePokemonFromTeam(teamPokemon.pokemonId);
+  }
+
   if (!currentTeam) {
     return (
-      <div className="p-4 sm:p-6 lg:p-8">
+      <div>
         <div className="mx-auto max-w-5xl rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm">
           <h1 className="text-2xl font-bold text-slate-900">
             構築がありません
@@ -343,8 +392,7 @@ function TeamsPage() {
   );
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8">
-      <div className="mx-auto max-w-7xl">
+    <div>
         <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <p className="text-sm font-semibold text-blue-600">
@@ -456,8 +504,7 @@ function TeamsPage() {
             </div>
           </div>
 
-          {currentTeam.pokemon.length > 0 ? (
-            <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
               {currentTeam.pokemon.map(
                 (teamPokemon) => {
                   const pokemon = getPokemonById(
@@ -471,42 +518,58 @@ function TeamsPage() {
                   return (
                     <article
                       key={teamPokemon.id}
-                      className="group relative rounded-2xl border border-slate-200 bg-slate-50 p-4 transition hover:border-blue-300 hover:shadow-sm"
+                      className="group relative rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-blue-300 hover:shadow-md"
                     >
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setEditingTeamPokemon(
-                            teamPokemon,
-                          )
-                        }
-                        className="absolute right-3 top-3 rounded-lg bg-white px-2.5 py-1.5 text-xs font-semibold text-blue-600 shadow-sm transition hover:bg-blue-50"
-                      >
-                        編集
-                      </button>
+                      <div className="absolute right-3 top-3 flex items-center gap-1.5">
+                        <button
+                          type="button"
+                          onClick={() => setEditingTeamPokemon(teamPokemon)}
+                          className="rounded-lg bg-white px-2.5 py-1.5 text-xs font-semibold text-blue-600 shadow-sm transition hover:bg-blue-50"
+                        >
+                          編集
+                        </button>
 
-                      <div className="pr-16">
-                        <h3 className="font-bold text-slate-900">
-                          {pokemon.name}
-                        </h3>
-
-                        <div className="mt-2 flex flex-wrap gap-1.5">
-                          {pokemon.types
-                            .filter(
-                              (
-                                typeId,
-                              ): typeId is NonNullable<
-                                typeof typeId
-                              > => Boolean(typeId),
-                            )
-                            .map((typeId) => (
-                              <TypeBadge
-                                key={typeId}
-                                typeId={typeId}
-                              />
-                            ))}
-                        </div>
+                        <button
+                          type="button"
+                          onClick={() => handleRemovePokemon(teamPokemon)}
+                          className="rounded-lg bg-white p-1.5 text-slate-400 shadow-sm transition hover:bg-red-50 hover:text-red-600"
+                          aria-label={`${pokemon.name}を構築から外す`}
+                          title="構築から外す"
+                        >
+                          <Trash2 size={15} />
+                        </button>
                       </div>
+
+                      <div className="flex items-start gap-3 pr-16">
+  <PokemonIcon
+    pokemonId={pokemon.id}
+    pokemonName={pokemon.name}
+    size={56}
+  />
+
+  <div className="min-w-0">
+    <h3 className="font-bold text-slate-900">
+      {pokemon.name}
+    </h3>
+
+    <div className="mt-2 flex flex-wrap gap-1.5">
+      {pokemon.types
+        .filter(
+          (
+            typeId,
+          ): typeId is NonNullable<
+            typeof typeId
+          > => Boolean(typeId),
+        )
+        .map((typeId) => (
+          <TypeBadge
+            key={typeId}
+            typeId={typeId}
+          />
+        ))}
+    </div>
+  </div>
+</div>
 
                       <dl className="mt-4 space-y-2 text-sm">
                         <div className="flex gap-2">
@@ -649,18 +712,20 @@ function TeamsPage() {
                   );
                 },
               )}
-            </div>
-          ) : (
-            <div className="mt-5 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-5 py-10 text-center">
-              <p className="font-semibold text-slate-700">
-                ポケモンが登録されていません
-              </p>
-
-              <p className="mt-1 text-sm text-slate-500">
-                候補ポケモン画面から構築へ追加できます。
-              </p>
-            </div>
-          )}
+            {currentTeam.pokemon.length < 6 && (
+              <button
+                type="button"
+                onClick={openAddPokemonModal}
+                className="flex min-h-72 flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 text-slate-500 transition hover:border-blue-400 hover:bg-blue-50 hover:text-blue-600"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-sm">
+                  <Plus size={24} />
+                </span>
+                <span className="mt-3 font-bold">ポケモンを追加</span>
+                <span className="mt-1 text-xs">構築は最大6匹まで</span>
+              </button>
+            )}
+          </div>
         </section>
 
         <section className="mt-6">
@@ -855,6 +920,22 @@ function TeamsPage() {
           />
         )}
 
+        {isAddPokemonOpen && (
+          <AddPokemonModal
+            selectedPokemonId={selectedPokemonId}
+            options={pokemonMaster.filter(
+              (pokemon) =>
+                !currentTeam.pokemon.some(
+                  (teamPokemon) => teamPokemon.pokemonId === pokemon.id,
+                ),
+            )}
+            message={addPokemonMessage}
+            onPokemonChange={setSelectedPokemonId}
+            onAdd={handleAddPokemon}
+            onClose={closeAddPokemonModal}
+          />
+        )}
+
         {teamModal && (
           <TeamModal
             modal={teamModal}
@@ -865,6 +946,74 @@ function TeamsPage() {
             onClose={closeTeamModal}
           />
         )}
+      </div>
+  );
+}
+
+type AddPokemonModalProps = {
+  selectedPokemonId: string;
+  options: typeof pokemonMaster;
+  message: string | null;
+  onPokemonChange: (pokemonId: string) => void;
+  onAdd: () => void;
+  onClose: () => void;
+};
+
+function AddPokemonModal({
+  selectedPokemonId,
+  options,
+  message,
+  onPokemonChange,
+  onAdd,
+  onClose,
+}: AddPokemonModalProps) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 p-4">
+      <div className="w-full max-w-lg rounded-2xl bg-white shadow-xl">
+        <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+          <div>
+            <h2 className="text-lg font-bold text-slate-900">ポケモンを追加</h2>
+            <p className="mt-1 text-sm text-slate-500">
+              構築へ直接追加するポケモンを選択します。
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+            aria-label="閉じる"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        <div className="p-6">
+          <PokemonAutocomplete
+            value={selectedPokemonId}
+            onChange={onPokemonChange}
+            options={options}
+            placeholder="ポケモンを検索"
+          />
+          {message && <p className="mt-3 text-sm text-red-600">{message}</p>}
+        </div>
+
+        <div className="flex justify-end gap-3 border-t border-slate-200 px-6 py-4">
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+          >
+            キャンセル
+          </button>
+          <button
+            type="button"
+            onClick={onAdd}
+            disabled={!selectedPokemonId}
+            className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
+          >
+            追加する
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -90,8 +90,7 @@ function CoveragePage() {
   }, [selectedPokemon, selectedAbilityId]);
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8">
-      <div className="mx-auto max-w-7xl">
+    <div>
         <div>
           <p className="text-sm font-semibold text-blue-600">
             Type Coverage
@@ -232,7 +231,6 @@ function CoveragePage() {
           無効・ダメージ倍率補正を計算しています。
         </div>
       </div>
-    </div>
   );
 }
 

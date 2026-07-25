@@ -7,23 +7,23 @@ function DashboardHero() {
   const { currentTeam } = usePlanner();
 
   return (
-    <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-      <div className="flex flex-col gap-6 xl:flex-row xl:items-center xl:justify-between">
+    <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
         <div>
-          <p className="text-sm font-semibold text-blue-600">
-            おかえりなさい
-          </p>
+  <p className="text-sm font-semibold text-blue-600">
+    現在の構築
+  </p>
 
-          <h3 className="mt-2 text-3xl font-bold tracking-tight text-slate-900">
-            構築の状態を確認しましょう
-          </h3>
+  <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900">
+    {currentTeam ? currentTeam.name : "構築がありません"}
+  </h2>
 
-          <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-500">
-            {currentTeam
-              ? `現在は「${currentTeam.name}」を編集中です。仮想敵への対応状況や未評価データを確認できます。`
-              : "構築を作成して、パーティの管理を始めましょう。"}
-          </p>
-        </div>
+  <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-500">
+    {currentTeam
+      ? "仮想敵・候補・評価状況を確認できます。"
+      : "構築を作成して、パーティの管理を始めましょう。"}
+  </p>
+</div>
 
         <button
           type="button"

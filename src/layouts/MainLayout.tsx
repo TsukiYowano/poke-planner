@@ -66,8 +66,37 @@ function MainLayout() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-100 text-slate-900">
-      <div className="flex min-h-screen">
+  <div className="relative min-h-screen overflow-x-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 text-slate-900">
+
+    {/* 背景 */}
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+      {/* 青・紫のぼかし */}
+<div className="absolute -left-40 -top-40 h-[32rem] w-[32rem] rounded-full bg-sky-300/20 blur-3xl" />
+
+<div className="absolute right-[-8rem] top-1/4 h-[28rem] w-[28rem] rounded-full bg-violet-300/20 blur-3xl" />
+
+<div className="absolute bottom-[-8rem] left-1/3 h-[24rem] w-[24rem] rounded-full bg-cyan-200/20 blur-3xl" />
+
+      {/* モンスターボール */}
+      <div className="absolute right-[-8rem] top-[-8rem] h-[34rem] w-[34rem] opacity-[0.06]">
+        <div className="relative h-full w-full rounded-full border-[16px] border-slate-700">
+          {/* 横線 */}
+          <div className="absolute left-0 top-1/2 h-[12px] w-full -translate-y-1/2 bg-slate-700" />
+
+          {/* 真ん中 */}
+          <div className="absolute left-1/2 top-1/2 h-30 w-30 -translate-x-1/2 -translate-y-1/2 rounded-full border-[16px] border-slate-700 bg-white" />
+        </div>
+      </div>
+
+      {/* 左下にも少しだけ */}
+      <div className="absolute -bottom-20 -left-20 h-56 w-56 opacity-[0.04]">
+        <div className="relative h-full w-full rounded-full border-[10px] border-slate-700">
+          <div className="absolute left-0 top-1/2 h-[10px] w-full -translate-y-1/2 bg-slate-700" />
+          <div className="absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full border-[8px] border-slate-700 bg-white" />
+        </div>
+      </div>
+    </div>
+      <div className="relative z-10 flex min-h-screen">
         {/* PC用サイドバー */}
         <Sidebar mode="desktop" />
 
@@ -97,7 +126,9 @@ function MainLayout() {
           </header>
 
           <main className="min-w-0">
-            <Outlet />
+            <div className="mx-auto w-full max-w-[1440px] px-4 py-6 sm:px-6 lg:px-8 lg:py-7">
+              <Outlet />
+            </div>
           </main>
         </div>
       </div>

@@ -94,6 +94,20 @@ function formatNumber(
   return value === null ? "―" : String(value);
 }
 
+export function getMoveByName(
+  moveName: string,
+): MoveMaster | undefined {
+  const normalizedName = moveName.trim();
+
+  if (!normalizedName) {
+    return undefined;
+  }
+
+  return searchMove(normalizedName).find(
+    (move) => move.name === normalizedName,
+  );
+}
+
 function MoveAutocomplete({
   value,
   onChange,

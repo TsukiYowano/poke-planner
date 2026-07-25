@@ -14,6 +14,9 @@ import type {
   RecommendationReason,
 } from "../types/pokemon";
 import { recommendCandidates } from "../utils/recommendation";
+import PokemonIcon from "../components/common/PokemonIcon";
+import TypeBadge from "../components/common/TypeBadge";
+import { getPokemonById } from "../data/pokemon";
 
 type MessageState = {
   type: "success" | "error";
@@ -117,31 +120,48 @@ function RecommendationCard({
     <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex min-w-0 items-start gap-4">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-slate-900 text-sm font-bold text-white">
-            {rank}
-          </div>
+  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-slate-900 text-sm font-bold text-white">
+    {rank}
+  </div>
 
-          <div className="min-w-0">
-            <div className="flex flex-wrap items-center gap-2">
-              <h2 className="text-lg font-bold text-slate-900">
-                {pokemon.name}
-              </h2>
+  <PokemonIcon
+    pokemonId={pokemon.id}
+    pokemonName={pokemon.name}
+    size={56}
+  />
 
-              <span
-                className={[
-                  "rounded-full border px-2.5 py-1 text-xs font-bold",
-                  recommendationRank.className,
-                ].join(" ")}
-              >
-                {recommendationRank.label}ランク
-              </span>
-            </div>
+  <div className="min-w-0">
+    <div className="flex flex-wrap items-center gap-2">
+      <h2 className="text-lg font-bold text-slate-900">
+        {pokemon.name}
+      </h2>
 
-            <p className="mt-1 text-sm text-slate-500">
-              {recommendationRank.description}
-            </p>
-          </div>
-        </div>
+      <span
+        className={[
+          "rounded-full border px-2.5 py-1 text-xs font-bold",
+          recommendationRank.className,
+        ].join(" ")}
+      >
+        {recommendationRank.label}ランク
+      </span>
+    </div>
+
+    <div className="mt-2 flex flex-wrap gap-1.5">
+      {pokemon.types
+        .filter(
+          (typeId): typeId is NonNullable<typeof typeId> =>
+            Boolean(typeId),
+        )
+        .map((typeId) => (
+          <TypeBadge key={typeId} typeId={typeId} />
+        ))}
+    </div>
+
+    <p className="mt-2 text-sm text-slate-500">
+      {recommendationRank.description}
+    </p>
+  </div>
+</div>
 
         <div className="flex shrink-0 items-center gap-3">
           <div className="text-right">
@@ -433,19 +453,40 @@ function RecommendationsPage() {
           {currentTeam.pokemon.length > 0 ? (
             currentTeam.pokemon.map(
               (teamPokemon) => {
-                const pokemon =
-                  pokemonMasterMap[
-                    teamPokemon.pokemonId
-                  ];
+                const pokemon = getPokemonById(
+  teamPokemon.pokemonId,
+);
 
                 return (
-                  <span
-                    key={teamPokemon.id}
-                    className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm font-medium text-slate-700"
-                  >
-                    {pokemon?.name ??
-                      teamPokemon.pokemonId}
-                  </span>
+                  <div
+  key={teamPokemon.id}
+  className="flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2"
+>
+  <PokemonIcon
+    pokemonId={teamPokemon.pokemonId}
+    pokemonName={pokemon?.name}
+    size={36}
+  />
+
+  <div className="min-w-0">
+    <span className="text-sm font-medium text-slate-700">
+      {pokemon?.name ?? teamPokemon.pokemonId}
+    </span>
+
+    {pokemon && (
+      <div className="mt-1 flex flex-wrap gap-1">
+        {pokemon.types
+          .filter(
+            (typeId): typeId is NonNullable<typeof typeId> =>
+              Boolean(typeId),
+          )
+          .map((typeId) => (
+            <TypeBadge key={typeId} typeId={typeId} />
+          ))}
+      </div>
+    )}
+  </div>
+</div>
                 );
               },
             )
@@ -515,5 +556,4 @@ function RecommendationsPage() {
     </div>
   );
 }
-
 export default RecommendationsPage;

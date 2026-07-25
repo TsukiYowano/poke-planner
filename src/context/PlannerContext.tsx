@@ -6,6 +6,15 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { supabase } from "../lib/supabase";
+import {
+  loadPlannerData,
+  savePlannerData,
+} from "../repositories/SupabaseRepository";
+import {
+  loadTop50,
+  type Top50Ranking,
+} from "../repositories/Top50Repository";
 import { initialCandidates } from "../data/candidates";
 import { pokemonMaster } from "../data/pokemon";
 import { initialRankingSet } from "../data/rankings";
@@ -83,6 +92,8 @@ type PlannerContextValue = {
   exportPlannerData: () => string;
   importPlannerData: (json: string) => ActionResult;
   resetPlannerData: () => void;
+
+  addPokemonToTeam: (pokemonId: string) => ActionResult;
 };
 
 const PlannerContext = createContext<PlannerContextValue | null>(null);
@@ -253,6 +264,59 @@ function normalizeRankingSet(
   };
 }
 
+function mergeTop50Ranking(
+  currentRankingSet: RankingSet,
+  top50Rankings: Top50Ranking[],
+): RankingSet {
+  const currentEntriesByPokemonId = new Map(
+    currentRankingSet.entries.map((entry) => [
+      entry.pokemonId,
+      entry,
+    ]),
+  );
+
+  const entries: RankingEntry[] = top50Rankings.map(
+    (ranking) => {
+      const existingEntry = currentEntriesByPokemonId.get(
+        ranking.pokemon_id,
+      );
+
+      if (existingEntry) {
+        return {
+          ...existingEntry,
+          rank: ranking.rank,
+          pokemonId: ranking.pokemon_id,
+          assumedMoves: [...existingEntry.assumedMoves],
+          roleIds: [...existingEntry.roleIds],
+          tags: [...existingEntry.tags],
+        };
+      }
+
+      const pokemon = pokemonMaster.find(
+        (item) => item.id === ranking.pokemon_id,
+      );
+
+      return {
+        id: createId("ranking-entry"),
+        pokemonId: ranking.pokemon_id,
+        rank: ranking.rank,
+        assumedAbilityId:
+          pokemon?.abilityIds[0] ?? undefined,
+        assumedMoves: [],
+        roleIds: [],
+        tags: [],
+        memo: "",
+      };
+    },
+  );
+
+  return {
+    ...currentRankingSet,
+    entries,
+    updatedAt: new Date().toISOString(),
+  };
+}
+
 function loadStoredRankingSet(): RankingSet {
   const fallback = cloneInitialRankingSet();
 
@@ -312,12 +376,164 @@ export function PlannerProvider({
     loadStoredMatchups,
   );
 
+  const [cloudUserId, setCloudUserId] = useState<string | null>(
+    null,
+  );
+
+  const [cloudSyncReady, setCloudSyncReady] = useState(false);
+
+  async function refreshTop50Ranking(): Promise<void> {
+  try {
+    const top50Rankings = await loadTop50();
+
+    if (top50Rankings.length === 0) {
+      console.warn(
+        "SupabaseにTOP50ランキングが登録されていません。",
+      );
+      return;
+    }
+
+    setRankingSet((current) =>
+      mergeTop50Ranking(current, top50Rankings),
+    );
+  } catch (error) {
+    console.error(
+      "TOP50ランキングの読み込みに失敗しました。",
+      error,
+    );
+  }
+}
+
   const currentTeam = useMemo(
     () =>
       teams.find((team) => team.id === currentTeamId) ??
       teams[0],
     [teams, currentTeamId],
   );
+
+  useEffect(() => {
+  void refreshTop50Ranking();
+}, []);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    void supabase.auth.getSession().then(({ data, error }) => {
+      if (!isMounted) {
+        return;
+      }
+
+      if (error) {
+        console.error("ログイン情報の取得に失敗しました。", error);
+        return;
+      }
+
+      setCloudUserId(data.session?.user.id ?? null);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setCloudSyncReady(false);
+      setCloudUserId(session?.user.id ?? null);
+    });
+
+    return () => {
+      isMounted = false;
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!cloudUserId) {
+      setCloudSyncReady(false);
+      return;
+    }
+
+    let isCancelled = false;
+    setCloudSyncReady(false);
+
+    void loadPlannerData(cloudUserId)
+      .then((cloudData) => {
+        if (isCancelled) {
+          return;
+        }
+
+        if (cloudData) {
+          const result = importPlannerData(
+            JSON.stringify(cloudData),
+          );
+
+          if (!result.success) {
+            console.error(
+              "Supabaseのデータ形式が不正です。",
+              result.message,
+            );
+          }
+        }
+
+        setCloudSyncReady(true);
+void refreshTop50Ranking();
+      })
+      .catch((error: unknown) => {
+        if (isCancelled) {
+          return;
+        }
+
+        console.error(
+          "Supabaseからの読み込みに失敗しました。",
+          error,
+        );
+
+        // 読み込みに失敗した場合は、誤ってローカルデータで
+        // クラウドを上書きしないよう自動保存を開始しない。
+        setCloudSyncReady(false);
+      });
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [cloudUserId]);
+
+  useEffect(() => {
+    if (!cloudUserId || !cloudSyncReady) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      const data: PlannerExportData = {
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        teams,
+        currentTeamId,
+        candidates,
+        rankingSet,
+        matchups,
+      };
+
+      void savePlannerData(
+        cloudUserId,
+        JSON.stringify(data),
+      ).catch((error: unknown) => {
+        console.error(
+          "Supabaseへの保存に失敗しました。",
+          error,
+        );
+      });
+    }, 700);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [
+    cloudUserId,
+    cloudSyncReady,
+    teams,
+    currentTeamId,
+    candidates,
+    rankingSet,
+    matchups,
+  ]);
 
   useEffect(() => {
     localStorage.setItem(
@@ -359,6 +575,22 @@ export function PlannerProvider({
       JSON.stringify(matchups),
     );
   }, [matchups]);
+
+  useEffect(() => {
+  const validRankingEntryIds = new Set(
+    rankingSet.entries.map((entry) => entry.id),
+  );
+
+  setMatchups((current) => {
+    const filtered = current.filter((matchup) =>
+      validRankingEntryIds.has(matchup.rankingEntryId),
+    );
+
+    return filtered.length === current.length
+      ? current
+      : filtered;
+  });
+}, [rankingSet.entries]);
 
   useEffect(() => {
     if (teams.length === 0) {
@@ -699,6 +931,74 @@ export function PlannerProvider({
     return { success: true };
   }
 
+  function addPokemonToTeam(
+  pokemonId: string,
+): ActionResult {
+  const pokemon = pokemonMaster.find(
+    (item) => item.id === pokemonId,
+  );
+
+  if (!pokemon) {
+    return {
+      success: false,
+      message: "ポケモンが見つかりません。",
+    };
+  }
+
+  if (!currentTeam) {
+    return {
+      success: false,
+      message: "追加先の構築がありません。",
+    };
+  }
+
+  if (currentTeam.pokemon.length >= 6) {
+    return {
+      success: false,
+      message: "構築には6匹までしか追加できません。",
+    };
+  }
+
+  if (
+    currentTeam.pokemon.some(
+      (teamPokemon) =>
+        teamPokemon.pokemonId === pokemonId,
+    )
+  ) {
+    return {
+      success: false,
+      message: "すでに構築へ入っています。",
+    };
+  }
+
+  const newTeamPokemon: TeamPokemon = {
+    id: createId("team-pokemon"),
+    pokemonId,
+    abilityId: pokemon.abilityIds[0],
+    moves: [],
+    roleIds: [],
+    tags: [],
+    memo: "",
+  };
+
+  setTeams((current) =>
+    current.map((team) =>
+      team.id === currentTeam.id
+        ? {
+            ...team,
+            updatedAt: new Date().toISOString(),
+            pokemon: [
+              ...team.pokemon,
+              newTeamPokemon,
+            ],
+          }
+        : team,
+    ),
+  );
+
+  return { success: true };
+}
+
   function removePokemonFromTeam(pokemonId: string) {
     if (!currentTeam) {
       return;
@@ -991,12 +1291,17 @@ export function PlannerProvider({
       setCurrentTeamIdState(importedCurrentTeamId);
 
       setCandidates(
-        parsed.candidates.map((candidate) => ({
-          ...candidate,
-          roleIds: candidate.roleIds ?? [],
-          tags: candidate.tags ?? [],
-        })),
-      );
+  parsed.candidates
+    .filter(
+      (candidate) =>
+        candidate.pokemonId !== "wash-rotom",
+    )
+    .map((candidate) => ({
+      ...candidate,
+      roleIds: candidate.roleIds ?? [],
+      tags: candidate.tags ?? [],
+    })),
+);
 
       setRankingSet(
         normalizeRankingSet(parsed.rankingSet),
@@ -1049,6 +1354,7 @@ export function PlannerProvider({
       updateCandidate,
       removeCandidate,
       addCandidateToTeam,
+      addPokemonToTeam,
       removePokemonFromTeam,
       isPokemonInTeam,
 

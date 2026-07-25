@@ -23,6 +23,7 @@ import type {
   CandidateStatus,
 } from "../types/pokemon";
 import PokemonAutocomplete from "../components/common/PokemonAutocomplete";
+import PokemonIcon from "../components/common/PokemonIcon";
 
 function getStatusLabel(
   status: CandidateStatus,
@@ -195,8 +196,7 @@ function CandidatesPage() {
   }
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8">
-      <div className="mx-auto max-w-7xl">
+    <div>
         <header>
           <p className="text-sm font-semibold text-blue-600">
             Candidate Pool
@@ -294,54 +294,53 @@ function CandidatesPage() {
                   className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <div className="flex flex-wrap items-center gap-2">
-                        <h2 className="font-bold text-slate-900">
-                          {pokemon.name}
-                        </h2>
+                    <div className="flex items-start gap-3">
+  <PokemonIcon
+    pokemonId={pokemon.id}
+    pokemonName={pokemon.name}
+    size={56}
+  />
 
-                        <span
-                          className={[
-                            "rounded-full px-2.5 py-1 text-xs font-semibold",
-                            getStatusStyle(
-                              candidate.status,
-                            ),
-                          ].join(" ")}
-                        >
-                          {getStatusLabel(
-                            candidate.status,
-                          )}
-                        </span>
-                      </div>
+  <div className="min-w-0">
+    <div className="flex flex-wrap items-center gap-2">
+      <h2 className="font-bold text-slate-900">
+        {pokemon.name}
+      </h2>
 
-                      <p className="mt-1 text-sm font-bold text-blue-600">
-                        推薦スコア {recommendation.score}
-                      </p>
+      <span
+        className={[
+          "rounded-full px-2.5 py-1 text-xs font-semibold",
+          getStatusStyle(candidate.status),
+        ].join(" ")}
+      >
+        {getStatusLabel(candidate.status)}
+      </span>
+    </div>
 
-                      <div className="mt-2 flex flex-wrap gap-1.5">
-                        {pokemon.types
-                          .filter(
-                            (
-                              typeId,
-                            ): typeId is NonNullable<
-                              typeof typeId
-                            > =>
-                              Boolean(
-                                typeId,
-                              ),
-                          )
-                          .map((typeId) => (
-                            <span
-                              key={typeId}
-                              className="rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600"
-                            >
-                              {getPokemonTypeName(
-                                typeId,
-                              )}
-                            </span>
-                          ))}
-                      </div>
-                    </div>
+    <p className="mt-1 text-sm font-bold text-blue-600">
+      推薦スコア {recommendation.score}
+    </p>
+
+    <div className="mt-2 flex flex-wrap gap-1.5">
+      {pokemon.types
+        .filter(
+          (
+            typeId,
+          ): typeId is NonNullable<
+            typeof typeId
+          > => Boolean(typeId),
+        )
+        .map((typeId) => (
+          <span
+            key={typeId}
+            className="rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600"
+          >
+            {getPokemonTypeName(typeId)}
+          </span>
+        ))}
+    </div>
+  </div>
+</div>
 
                     <button
                       type="button"
@@ -553,7 +552,6 @@ function CandidatesPage() {
           />
         )}
       </div>
-    </div>
   );
 }
 

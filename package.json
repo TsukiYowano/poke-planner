@@ -13,6 +13,7 @@
     "fetch:moves": "tsx scripts/fetchMoves.ts"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.110.8",
     "@tailwindcss/vite": "^4.3.3",
     "lucide-react": "^1.26.0",
     "react": "^19.2.7",
