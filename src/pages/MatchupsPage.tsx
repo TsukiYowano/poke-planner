@@ -15,6 +15,19 @@ const ratingOrder: MatchupRating[] = [
   "very-bad",
 ];
 
+const ratingFilterOptions: Array<{
+  value: MatchupRating | "all";
+  label: string;
+}> = [
+  { value: "all", label: "すべて" },
+  { value: "very-good", label: "◎" },
+  { value: "good", label: "○" },
+  { value: "even", label: "△" },
+  { value: "bad", label: "×" },
+  { value: "very-bad", label: "××" },
+  { value: "unrated", label: "－" },
+];
+
 const ratingConfig: Record<
   MatchupRating,
   { label: string; title: string; className: string; score: number }
@@ -67,6 +80,8 @@ function MatchupsPage() {
   } = usePlanner();
 
   const [searchText, setSearchText] = useState("");
+  const [ratingFilters, setRatingFilters] =
+  useState<MatchupRating[]>([]);
   const [editingCell, setEditingCell] = useState<{
     teamPokemonId: string;
     rankingEntryId: string;
@@ -75,20 +90,49 @@ function MatchupsPage() {
   const teamPokemon = currentTeam?.pokemon ?? [];
 
   const entries = useMemo(() => {
-    const query = searchText.trim().toLowerCase();
+  const query = searchText.trim().toLowerCase();
 
-    return [...rankingSet.entries]
-      .sort((a, b) => a.rank - b.rank)
-      .filter((entry) => {
-        if (!query) return true;
-        const pokemon = getPokemonById(entry.pokemonId);
-        return [pokemon?.name, entry.memo, ...entry.tags, ...entry.assumedMoves]
+  return [...rankingSet.entries]
+    .sort((a, b) => a.rank - b.rank)
+    .filter((entry) => {
+      const pokemon = getPokemonById(entry.pokemonId);
+
+      const matchesSearch =
+        !query ||
+        [
+          pokemon?.name,
+          entry.memo,
+          ...entry.tags,
+          ...entry.assumedMoves,
+        ]
           .filter(Boolean)
           .join(" ")
           .toLowerCase()
           .includes(query);
-      });
-  }, [rankingSet.entries, searchText]);
+
+      if (!matchesSearch) {
+        return false;
+      }
+
+      if (ratingFilters.length === 0) {
+  return true;
+}
+
+return teamPokemon.some((teamMember) => {
+  const rating =
+    findMatchup(teamMember.id, entry.id)?.rating ??
+    "unrated";
+
+  return ratingFilters.includes(rating);
+});
+    });
+}, [
+  rankingSet.entries,
+  searchText,
+  ratingFilters,
+  teamPokemon,
+  matchups,
+]);
 
   function findMatchup(teamPokemonId: string, rankingEntryId: string) {
     return matchups.find(
@@ -169,29 +213,71 @@ function MatchupsPage() {
             </p>
           </div>
 
-          <div className="relative">
-            <Search
-              size={17}
-              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
-            />
-            <input
-              type="search"
-              value={searchText}
-              onChange={(event) => setSearchText(event.target.value)}
-              placeholder="仮想敵を検索"
-              className="w-full rounded-lg border border-slate-300 py-2 pl-9 pr-3 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 sm:w-64"
-            />
-          </div>
+          <div className="flex w-full flex-col gap-3 sm:w-auto">
+  <div className="flex flex-wrap gap-2">
+    {ratingFilterOptions.map((option) => {
+      const isSelected =
+  option.value === "all"
+    ? ratingFilters.length === 0
+    : ratingFilters.includes(option.value);
+
+      return (
+        <button
+          key={option.value}
+          type="button"
+          onClick={() => {
+  if (option.value === "all") {
+    setRatingFilters([]);
+    return;
+  }
+
+  const rating: MatchupRating = option.value;
+
+  setRatingFilters((current) =>
+    current.includes(rating)
+      ? current.filter((value) => value !== rating)
+      : [...current, rating],
+  );
+}}
+          className={`rounded-lg border px-3 py-1.5 text-xs font-bold transition ${
+            isSelected
+              ? "border-blue-600 bg-blue-600 text-white"
+              : "border-slate-200 bg-white text-slate-600 hover:bg-slate-50"
+          }`}
+        >
+          {option.label}
+        </button>
+      );
+    })}
+  </div>
+
+  <div className="relative">
+    <Search
+      size={17}
+      className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+    />
+
+    <input
+      type="search"
+      value={searchText}
+      onChange={(event) =>
+        setSearchText(event.target.value)
+      }
+      placeholder="仮想敵を検索"
+      className="w-full rounded-lg border border-slate-300 py-2 pl-9 pr-3 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 sm:w-64"
+    />
+  </div>
+</div>
         </div>
 
         {rankingSet.entries.length === 0 ? (
           <EmptyState message="先に仮想敵・TOP50ページで仮想敵を登録してください。" />
         ) : (
-          <div className="overflow-x-auto">
-            <table className="min-w-[980px] w-full border-collapse text-sm">
+          <div className="w-full max-w-full overflow-x-auto">
+               <table className="w-max min-w-full table-fixed border-collapse text-sm">
               <thead>
                 <tr className="bg-slate-50 text-left text-xs font-semibold text-slate-500">
-                  <th className="sticky left-0 z-20 min-w-56 border-b border-r border-slate-200 bg-slate-50 px-4 py-3">
+                  <th className="sticky left-0 z-20 w-56 min-w-56 border-b border-r border-slate-200 bg-slate-50 px-4 py-3">
                     順位・仮想敵
                   </th>
                   {teamPokemon.map((teamMember) => {
@@ -232,7 +318,7 @@ function MatchupsPage() {
 </th>
                     );
                   })}
-                  <th className="min-w-28 border-b border-slate-200 px-3 py-3 text-center">
+                  <th className="w-28 min-w-28 border-b border-slate-200 px-3 py-3 text-center">
                     担当数
                   </th>
                 </tr>
@@ -245,7 +331,7 @@ function MatchupsPage() {
 
                   return (
                     <tr key={entry.id} className="hover:bg-slate-50/60">
-                      <td className="sticky left-0 z-10 border-b border-r border-slate-200 bg-white px-4 py-3">
+                      <td className="sticky left-0 z-10 w-56 min-w-56 border-b border-r border-slate-200 bg-white px-4 py-3">
                         <div className="flex items-center gap-3">
   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">
     {entry.rank}
@@ -327,7 +413,7 @@ function MatchupsPage() {
                         );
                       })}
 
-                      <td className="border-b border-slate-200 px-3 py-3 text-center">
+                      <td className="w-28 min-w-28 border-b border-slate-200 px-3 py-3 text-center">
                         <p className="text-lg font-bold text-slate-900">
                           {summary.goodCount}
                         </p>
