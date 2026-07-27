@@ -1,6 +1,6 @@
 import { ArrowUp, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 
 function MainLayout() {
@@ -112,15 +112,19 @@ function MainLayout() {
               <Menu size={23} strokeWidth={1.8} />
             </button>
 
-            <div className="text-center">
-              <p className="text-xs font-semibold uppercase tracking-wider text-blue-600">
-                Pokémon Champions
-              </p>
+            <NavLink
+  to="/"
+  className="text-center rounded-lg transition hover:opacity-75"
+  aria-label="ホームへ戻る"
+>
+  <p className="text-xs font-semibold uppercase tracking-wider text-blue-600">
+    Pokémon Champions
+  </p>
 
-              <p className="text-base font-bold text-slate-900">
-                PokéPlanner
-              </p>
-            </div>
+  <p className="text-base font-bold text-slate-900">
+    PokéPlanner
+  </p>
+</NavLink>
 
             <div className="h-10 w-10" />
           </header>

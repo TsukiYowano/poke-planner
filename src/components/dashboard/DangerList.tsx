@@ -1,34 +1,39 @@
 import { CircleAlert } from "lucide-react";
-
-const dangerousPokemon = [
-  {
-    rank: 1,
-    name: "メガバシャーモ",
-    score: 92,
-  },
-  {
-    rank: 2,
-    name: "カバルドン",
-    score: 85,
-  },
-  {
-    rank: 3,
-    name: "メガギャラドス",
-    score: 78,
-  },
-  {
-    rank: 4,
-    name: "マスカーニャ",
-    score: 72,
-  },
-  {
-    rank: 5,
-    name: "メガリザードンY",
-    score: 69,
-  },
-];
+import { useMemo } from "react";
+import { usePlanner } from "../../context/PlannerContext";
+import { getPokemonById } from "../../data/pokemon";
+import { getDangerousPokemon } from "../../utils/matchupAnalysis";
 
 function DangerList() {
+  const {
+    currentTeam,
+    rankingSet,
+    matchups,
+  } = usePlanner();
+
+  const dangerousPokemon = useMemo(() => {
+    if (!currentTeam) {
+      return [];
+    }
+
+    return getDangerousPokemon(
+      currentTeam.pokemon,
+      rankingSet.entries,
+      matchups,
+      5,
+    );
+  }, [
+    currentTeam,
+    rankingSet.entries,
+    matchups,
+  ]);
+
+  const hasTeamPokemon =
+    (currentTeam?.pokemon.length ?? 0) > 0;
+
+  const hasRankingEntries =
+    rankingSet.entries.length > 0;
+
   return (
     <article className="rounded-xl border border-slate-200 bg-white shadow-sm">
       <div className="border-b border-slate-200 px-6 py-5">
@@ -49,29 +54,100 @@ function DangerList() {
         </p>
       </div>
 
-      <div className="divide-y divide-slate-100">
-        {dangerousPokemon.map((pokemon) => (
-          <div
-            key={pokemon.name}
-            className="flex items-center justify-between px-6 py-3.5"
-          >
-            <div className="flex items-center gap-3">
-              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-100 text-xs font-bold text-slate-500">
-                {pokemon.rank}
-              </span>
+      {dangerousPokemon.length > 0 ? (
+        <div className="divide-y divide-slate-100">
+          {dangerousPokemon.map(
+            ({
+              rankingEntry,
+              coverageCount,
+              dangerScore,
+            }) => {
+              const pokemon = getPokemonById(
+                rankingEntry.pokemonId,
+              );
 
-              <span className="text-sm font-semibold text-slate-800">
-                {pokemon.name}
-              </span>
-            </div>
+              return (
+                <div
+                  key={rankingEntry.id}
+                  className="flex items-center justify-between gap-4 px-6 py-3.5"
+                >
+                  <div className="flex min-w-0 items-center gap-3">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-xs font-bold text-slate-500">
+                      {rankingEntry.rank}
+                    </span>
 
-            <span className="text-sm font-bold text-rose-600">
-              {pokemon.score}
-            </span>
-          </div>
-        ))}
-      </div>
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-semibold text-slate-800">
+                        {pokemon?.name ??
+                          "不明なポケモン"}
+                      </p>
+
+                      <p className="mt-0.5 text-xs text-slate-500">
+                        {coverageCount === 0
+                          ? "有利な担当なし"
+                          : "有利な担当1匹"}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="shrink-0 text-right">
+                    <span className="text-sm font-bold text-rose-600">
+                      {dangerScore}
+                    </span>
+
+                    <p className="text-[10px] font-medium text-slate-400">
+                      危険度
+                    </p>
+                  </div>
+                </div>
+              );
+            },
+          )}
+        </div>
+      ) : (
+        <EmptyState
+          hasTeamPokemon={hasTeamPokemon}
+          hasRankingEntries={hasRankingEntries}
+        />
+      )}
     </article>
+  );
+}
+
+type EmptyStateProps = {
+  hasTeamPokemon: boolean;
+  hasRankingEntries: boolean;
+};
+
+function EmptyState({
+  hasTeamPokemon,
+  hasRankingEntries,
+}: EmptyStateProps) {
+  let message =
+    "担当数1以下の要注意ポケモンはいません。";
+
+  if (!hasTeamPokemon) {
+    message =
+      "構築にポケモンを登録すると診断されます。";
+  } else if (!hasRankingEntries) {
+    message =
+      "ランキングを登録すると診断されます。";
+  }
+
+  return (
+    <div className="flex min-h-44 items-center justify-center px-6 py-8">
+      <div className="text-center">
+        <CircleAlert
+          size={28}
+          strokeWidth={1.5}
+          className="mx-auto text-slate-300"
+        />
+
+        <p className="mt-3 text-sm text-slate-500">
+          {message}
+        </p>
+      </div>
+    </div>
   );
 }
 

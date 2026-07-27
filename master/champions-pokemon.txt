@@ -212,10 +212,10 @@
 フラージェス	florges
 ゴロンダ	pangoro
 トリミアン	furfrou
-ニャオニクス♂	meowstic-male
-メガニャオニクス♂	meowstic-male-mega
-ニャオニクス♀	meowstic-female
-メガニャオニクス♀	meowstic-female-mega
+ニャオニクス(オス)	meowstic-male
+メガニャオニクス(オス)	meowstic-male-mega
+ニャオニクス(メス)	meowstic-female
+メガニャオニクス(メス)	meowstic-female-mega
 ギルガルド(シールド)	aegislash-shield
 ギルガルド(ブレード)	aegislash-blade
 フレフワン	aromatisse
@@ -282,8 +282,8 @@
 ドラパルト	dragapult
 アヤシシ	wyrdeer
 バサギリ	kleavor
-イダイトウ♂	basculegion-male
-イダイトウ♀	basculegion-female
+イダイトウ(オス)	basculegion-male
+イダイトウ(メス)	basculegion-female
 オオニューラ	sneasler
 ハリーマン	overqwil
 マスカーニャ	meowscarada

@@ -155,6 +155,9 @@ function getBasePokemonId(
 function convertPokemon(
   rawPokemon: RawPokemonMaster,
 ): PokemonMaster {
+    if (rawPokemon.id === "basculegion-male") {
+    console.log(rawPokemon.jpName);
+  }
   const types = rawPokemon.types.filter(
     isPokemonTypeId,
   );
