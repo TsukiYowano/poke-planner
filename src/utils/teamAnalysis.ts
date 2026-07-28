@@ -1,5 +1,6 @@
 import { teamRoles } from "../data/roles";
 import type {
+  CandidatePokemon,
   Team,
   TeamRoleCategory,
   TeamRoleId,
@@ -32,6 +33,7 @@ const importantRoleIds: TeamRoleId[] = [
 
 export function analyzeTeam(
   team: Team,
+  candidates: CandidatePokemon[],
 ): TeamAnalysis {
   const roleCountMap = new Map<
     TeamRoleId,
@@ -39,7 +41,10 @@ export function analyzeTeam(
   >();
 
   for (const pokemon of team.pokemon) {
-    for (const roleId of pokemon.roleIds) {
+    const candidate = candidates.find(
+      (item) => item.id === pokemon.candidatePokemonId,
+    );
+    for (const roleId of candidate?.roleIds ?? []) {
       const currentCount =
         roleCountMap.get(roleId) ?? 0;
 
@@ -62,8 +67,11 @@ export function analyzeTeam(
   >();
 
   for (const pokemon of team.pokemon) {
+    const candidate = candidates.find(
+      (item) => item.id === pokemon.candidatePokemonId,
+    );
     const pokemonCategories = new Set(
-      pokemon.roleIds.map((roleId) => {
+      (candidate?.roleIds ?? []).map((roleId) => {
         const role = teamRoles.find(
           (item) => item.id === roleId,
         );

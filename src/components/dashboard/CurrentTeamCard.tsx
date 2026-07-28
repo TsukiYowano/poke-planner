@@ -2,7 +2,7 @@ import { ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import TypeBadge from "../common/TypeBadge";
 import { usePlanner } from "../../context/PlannerContext";
-import { getPokemonById } from "../../data/pokemon";
+import { resolveTeamPokemon } from "../../utils/plannerSelectors";
 
 function getStatusLabel(
   status: "draft" | "testing" | "active" | "archived",
@@ -52,7 +52,10 @@ function formatUpdatedAt(value: string): string {
 
 function CurrentTeamCard() {
   const navigate = useNavigate();
-  const { currentTeam } = usePlanner();
+  const { plannerData } = usePlanner();
+  const currentTeam = plannerData.teams.find(
+    (team) => team.id === plannerData.currentTeamId,
+  );
 
   if (!currentTeam) {
     return (
@@ -110,8 +113,9 @@ function CurrentTeamCard() {
         {currentTeam.pokemon.length > 0 ? (
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {currentTeam.pokemon.map((teamPokemon) => {
-              const pokemon = getPokemonById(
-                teamPokemon.pokemonId,
+              const { pokemon } = resolveTeamPokemon(
+                teamPokemon,
+                plannerData.candidates,
               );
 
               if (!pokemon) {

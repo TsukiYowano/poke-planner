@@ -2,6 +2,7 @@ import { pokemonMasterMap } from "../data/pokemon";
 import { pokemonTypes } from "../data/types";
 import { calculateTypeEffectiveness } from "./typeEffectiveness";
 import type {
+  CandidatePokemon,
   PokemonTypeId,
   Team,
 } from "../types/pokemon";
@@ -18,6 +19,7 @@ export type TeamTypeCoverage = {
 
 export function analyzeTeamTypeCoverage(
   team: Team,
+  candidates: CandidatePokemon[],
 ): TeamTypeCoverage[] {
   return pokemonTypes.map((type) => {
     const attackingType = type.id;
@@ -33,8 +35,11 @@ export function analyzeTeamTypeCoverage(
     };
 
     for (const teamPokemon of team.pokemon) {
+      const candidate = candidates.find(
+        (item) => item.id === teamPokemon.candidatePokemonId,
+      );
       const pokemon =
-        pokemonMasterMap[teamPokemon.pokemonId];
+        pokemonMasterMap[candidate?.pokemonId ?? ""];
 
       if (!pokemon) {
         continue;

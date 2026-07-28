@@ -50,11 +50,8 @@ function formatUpdatedAt(value: string): string {
 function RecentTeams() {
   const navigate = useNavigate();
 
-  const {
-    teams,
-    currentTeamId,
-    setCurrentTeam,
-  } = usePlanner();
+  const { plannerData, setCurrentTeam } = usePlanner();
+  const { teams, currentTeamId } = plannerData;
 
   const recentTeams = [...teams]
     .sort(

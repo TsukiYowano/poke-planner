@@ -1,503 +1,553 @@
-import { Search, Swords, Table2 } from "lucide-react";
 import { useMemo, useState } from "react";
+import { Edit3, MessageSquare, Search, X } from "lucide-react";
 import { usePlanner } from "../context/PlannerContext";
-import { getPokemonById } from "../data/pokemon";
+import { pokemonMasterMap } from "../data/pokemon";
 import PokemonIcon from "../components/common/PokemonIcon";
-import TypeBadge from "../components/common/TypeBadge";
-import type { MatchupRating } from "../types/pokemon";
-
-const ratingOrder: MatchupRating[] = [
-  "unrated",
-  "very-good",
-  "good",
-  "even",
-  "bad",
-  "very-bad",
-];
-
-const ratingFilterOptions: Array<{
-  value: MatchupRating | "all";
-  label: string;
-}> = [
-  { value: "all", label: "すべて" },
-  { value: "very-good", label: "◎" },
-  { value: "good", label: "○" },
-  { value: "even", label: "△" },
-  { value: "bad", label: "×" },
-  { value: "very-bad", label: "××" },
-  { value: "unrated", label: "－" },
-];
+import { useSynchronizedHorizontalScroll } from "../hooks/useSynchronizedHorizontalScroll";
+import type {
+  CandidatePokemon,
+  Matchup,
+  MatchupRating,
+  RankingEntry,
+} from "../types/pokemon";
+import {
+  createMatchupMap,
+  filterMatchupCandidates,
+  filterRankingEntries,
+  getNextMatchupRating,
+  getCandidateDisplayName,
+  matchupKey,
+  matchupRatings,
+  matchupUiText,
+  summarizeCandidateMatchups,
+  type CandidateMatchupSummary,
+  type MatchupMode,
+} from "../utils/matchupTable";
 
 const ratingConfig: Record<
   MatchupRating,
-  { label: string; title: string; className: string; score: number }
+  { label: string; name: string; className: string }
 > = {
+  unrated: {
+    label: "－",
+    name: "未評価",
+    className: "border-slate-200 bg-white text-slate-400",
+  },
   "very-good": {
     label: "◎",
-    title: "明確に有利",
+    name: "とても有利",
     className: "border-emerald-300 bg-emerald-100 text-emerald-800",
-    score: 4,
   },
   good: {
     label: "○",
-    title: "有利",
-    className: "border-blue-300 bg-blue-100 text-blue-800",
-    score: 3,
+    name: "有利",
+    className: "border-green-300 bg-green-50 text-green-700",
   },
   even: {
     label: "△",
-    title: "五分・要注意",
-    className: "border-amber-300 bg-amber-100 text-amber-800",
-    score: 2,
+    name: "互角",
+    className: "border-amber-300 bg-amber-50 text-amber-700",
   },
   bad: {
     label: "×",
-    title: "不利",
-    className: "border-orange-300 bg-orange-100 text-orange-800",
-    score: 1,
+    name: "不利",
+    className: "border-red-300 bg-red-50 text-red-700",
   },
   "very-bad": {
     label: "××",
-    title: "明確に不利",
-    className: "border-red-300 bg-red-100 text-red-800",
-    score: 0,
-  },
-  unrated: {
-    label: "－",
-    title: "未評価",
-    className: "border-slate-200 bg-white text-slate-400 hover:bg-slate-50",
-    score: 0,
+    name: "とても不利",
+    className: "border-rose-400 bg-rose-100 text-rose-800",
   },
 };
 
-function MatchupsPage() {
-  const {
-    currentTeam,
-    rankingSet,
-    matchups,
-    setMatchupRating,
-    updateMatchupMemo,
-  } = usePlanner();
-
-  const [searchText, setSearchText] = useState("");
-  const [ratingFilters, setRatingFilters] =
-  useState<MatchupRating[]>([]);
-  const [editingCell, setEditingCell] = useState<{
-    teamPokemonId: string;
-    rankingEntryId: string;
-  } | null>(null);
-
-  const teamPokemon = currentTeam?.pokemon ?? [];
-
-  const entries = useMemo(() => {
-  const query = searchText.trim().toLowerCase();
-
-  return [...rankingSet.entries]
-    .sort((a, b) => a.rank - b.rank)
-    .filter((entry) => {
-      const pokemon = getPokemonById(entry.pokemonId);
-
-      const matchesSearch =
-        !query ||
-        [
-          pokemon?.name,
-          entry.memo,
-          ...entry.tags,
-          ...entry.assumedMoves,
-        ]
-          .filter(Boolean)
-          .join(" ")
-          .toLowerCase()
-          .includes(query);
-
-      if (!matchesSearch) {
-        return false;
-      }
-
-      if (ratingFilters.length === 0) {
-  return true;
+function getPokemonName(pokemonId: string): string | undefined {
+  return pokemonMasterMap[pokemonId]?.name;
 }
 
-return teamPokemon.some((teamMember) => {
-  const rating =
-    findMatchup(teamMember.id, entry.id)?.rating ??
-    "unrated";
+function getCandidateName(candidate: CandidatePokemon): string {
+  return getCandidateDisplayName(candidate, getPokemonName);
+}
 
-  return ratingFilters.includes(rating);
-});
-    });
-}, [
-  rankingSet.entries,
-  searchText,
-  ratingFilters,
-  teamPokemon,
-  matchups,
-]);
+function MatchupsPage() {
+  const { plannerData, setMatchupRating, updateMatchupMemo } = usePlanner();
+  const { candidates, rankingSet, matchups } = plannerData;
+  const currentTeam = plannerData.teams.find(
+    (team) => team.id === plannerData.currentTeamId,
+  );
+  const [mode, setMode] = useState<MatchupMode>("team");
+  const [candidateQuery, setCandidateQuery] = useState("");
+  const [rankingQuery, setRankingQuery] = useState("");
+  const [editing, setEditing] = useState<{
+    candidate: CandidatePokemon;
+    entry: RankingEntry;
+  } | null>(null);
 
-  function findMatchup(teamPokemonId: string, rankingEntryId: string) {
-    return matchups.find(
-      (matchup) =>
-        matchup.teamPokemonId === teamPokemonId &&
-        matchup.rankingEntryId === rankingEntryId,
-    );
+  const visibleCandidates = useMemo(
+    () =>
+      filterMatchupCandidates(
+        mode,
+        candidates,
+        currentTeam,
+        candidateQuery,
+        getPokemonName,
+      ),
+    [candidateQuery, candidates, currentTeam, mode],
+  );
+  const entries = useMemo(
+    () =>
+      filterRankingEntries(
+        rankingSet.entries,
+        rankingQuery,
+        getPokemonName,
+      ),
+    [rankingQuery, rankingSet.entries],
+  );
+  const matchupMap = useMemo(() => createMatchupMap(matchups), [matchups]);
+  const summaries = useMemo(
+    () =>
+      summarizeCandidateMatchups(
+        visibleCandidates,
+        rankingSet.entries,
+        matchups,
+      ),
+    [matchups, rankingSet.entries, visibleCandidates],
+  );
+  const summaryMap = useMemo(
+    () => new Map(summaries.map((summary) => [summary.candidateId, summary])),
+    [summaries],
+  );
+
+  function getMatchup(candidateId: string, entryId: string) {
+    return matchupMap.get(matchupKey(candidateId, entryId));
   }
 
-  function cycleRating(teamPokemonId: string, rankingEntryId: string) {
-    const currentRating =
-      findMatchup(teamPokemonId, rankingEntryId)?.rating ?? "unrated";
-    const nextIndex = (ratingOrder.indexOf(currentRating) + 1) % ratingOrder.length;
-    setMatchupRating(teamPokemonId, rankingEntryId, ratingOrder[nextIndex]);
-  }
-
-  function getEnemySummary(rankingEntryId: string) {
-    const ratings = teamPokemon.map(
-      (pokemon) => findMatchup(pokemon.id, rankingEntryId)?.rating ?? "unrated",
-    );
-    const rated = ratings.filter((rating) => rating !== "unrated");
-    const goodCount = ratings.filter(
-      (rating) => rating === "very-good" || rating === "good",
-    ).length;
-    const best = rated.sort(
-      (a, b) => ratingConfig[b].score - ratingConfig[a].score,
-    )[0];
-
-    return {
-      goodCount,
-      best: best ?? "unrated",
-    };
-  }
-
-  if (!currentTeam) {
-    return <EmptyState message="構築が登録されていません。" />;
-  }
-
-  if (teamPokemon.length === 0) {
-    return <EmptyState message="相性を評価する構築ポケモンがいません。" />;
+  function cycleRating(candidateId: string, entryId: string) {
+    const rating = getMatchup(candidateId, entryId)?.rating ?? "unrated";
+    setMatchupRating(candidateId, entryId, getNextMatchupRating(rating));
   }
 
   return (
-    <div className="space-y-6">
-      <header className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div>
-          <p className="flex items-center gap-2 text-sm font-semibold text-blue-600">
-            <Swords size={17} /> MATCHUP MATRIX
-          </p>
-          <h1 className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
-            相性表
-          </h1>
-          <p className="mt-2 text-sm text-slate-600">
-            仮想敵と構築ポケモンの対面評価をクリックで記録します。
-          </p>
-        </div>
-
-        <div className="flex flex-wrap gap-2 text-xs font-semibold">
-          {(["very-good", "good", "even", "bad", "very-bad"] as MatchupRating[]).map(
-            (rating) => (
-              <span
-                key={rating}
-                className={`rounded-lg border px-2.5 py-1.5 ${ratingConfig[rating].className}`}
-              >
-                {ratingConfig[rating].label} {ratingConfig[rating].title}
-              </span>
-            ),
-          )}
-        </div>
+    <div>
+      <header>
+        <p className="text-sm font-semibold text-blue-600">
+          候補ポケモン相性
+        </p>
+        <h1 className="mt-1 text-2xl font-bold text-slate-900">
+          候補ポケモン相性表
+        </h1>
+        <p className="mt-2 text-sm text-slate-500">
+          仮想敵ごとの評価とメモを候補単位で共有・比較します。
+        </p>
       </header>
 
-      <section className="rounded-2xl border border-slate-200 bg-white shadow-sm">
-        <div className="flex flex-col gap-4 border-b border-slate-200 p-5 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <h2 className="font-bold text-slate-900">{currentTeam.name}</h2>
-            <p className="mt-1 text-sm text-slate-500">
-              評価ボタンを押すと「－ → ◎ → ○ → △ → × → ××」の順で切り替わります。
-            </p>
-          </div>
+      <MatchupFilters
+        mode={mode}
+        candidateQuery={candidateQuery}
+        rankingQuery={rankingQuery}
+        onModeChange={setMode}
+        onCandidateQueryChange={setCandidateQuery}
+        onRankingQueryChange={setRankingQuery}
+      />
 
-          <div className="flex w-full flex-col gap-3 sm:w-auto">
-  <div className="flex flex-wrap gap-2">
-    {ratingFilterOptions.map((option) => {
-      const isSelected =
-  option.value === "all"
-    ? ratingFilters.length === 0
-    : ratingFilters.includes(option.value);
+      {visibleCandidates.length > 0 && (
+        <MatchupSummary
+          candidates={visibleCandidates}
+          summaries={summaryMap}
+        />
+      )}
 
-      return (
-        <button
-          key={option.value}
-          type="button"
-          onClick={() => {
-  if (option.value === "all") {
-    setRatingFilters([]);
-    return;
-  }
-
-  const rating: MatchupRating = option.value;
-
-  setRatingFilters((current) =>
-    current.includes(rating)
-      ? current.filter((value) => value !== rating)
-      : [...current, rating],
-  );
-}}
-          className={`rounded-lg border px-3 py-1.5 text-xs font-bold transition ${
-            isSelected
-              ? "border-blue-600 bg-blue-600 text-white"
-              : "border-slate-200 bg-white text-slate-600 hover:bg-slate-50"
-          }`}
-        >
-          {option.label}
-        </button>
-      );
-    })}
-  </div>
-
-  <div className="relative">
-    <Search
-      size={17}
-      className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
-    />
-
-    <input
-      type="search"
-      value={searchText}
-      onChange={(event) =>
-        setSearchText(event.target.value)
-      }
-      placeholder="仮想敵を検索"
-      className="w-full rounded-lg border border-slate-300 py-2 pl-9 pr-3 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 sm:w-64"
-    />
-  </div>
-</div>
-        </div>
-
-        {rankingSet.entries.length === 0 ? (
-          <EmptyState message="先に仮想敵・TOP50ページで仮想敵を登録してください。" />
-        ) : (
-          <div className="w-full max-w-full overflow-x-auto">
-               <table className="w-max min-w-full table-fixed border-collapse text-sm">
-              <thead>
-                <tr className="bg-slate-50 text-left text-xs font-semibold text-slate-500">
-                  <th className="sticky left-0 z-20 w-56 min-w-56 border-b border-r border-slate-200 bg-slate-50 px-4 py-3">
-                    順位・仮想敵
-                  </th>
-                  {teamPokemon.map((teamMember) => {
-                    const pokemon = getPokemonById(teamMember.pokemonId);
-                    return (
-                      <th
-  key={teamMember.id}
-  className="min-w-36 border-b border-r border-slate-200 px-3 py-3 text-center"
->
-  <div className="flex flex-col items-center">
-    <PokemonIcon
-      pokemonId={teamMember.pokemonId}
-      pokemonName={pokemon?.name}
-      size={40}
-    />
-
-    <span className="mt-1 block text-sm font-bold text-slate-800">
-      {pokemon?.name ?? teamMember.pokemonId}
-    </span>
-
-    {pokemon && (
-      <div className="mt-1 flex flex-wrap justify-center gap-1">
-        {pokemon.types
-          .filter(
-            (typeId): typeId is NonNullable<typeof typeId> =>
-              Boolean(typeId),
-          )
-          .map((typeId) => (
-            <TypeBadge key={typeId} typeId={typeId} />
-          ))}
-      </div>
-    )}
-
-    <span className="mt-1 block font-normal text-slate-400">
-      {teamMember.item || "持ち物未設定"}
-    </span>
-  </div>
-</th>
-                    );
-                  })}
-                  <th className="w-28 min-w-28 border-b border-slate-200 px-3 py-3 text-center">
-                    担当数
-                  </th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {entries.map((entry) => {
-                  const enemy = getPokemonById(entry.pokemonId);
-                  const summary = getEnemySummary(entry.id);
-
-                  return (
-                    <tr key={entry.id} className="hover:bg-slate-50/60">
-                      <td className="sticky left-0 z-10 w-56 min-w-56 border-b border-r border-slate-200 bg-white px-4 py-3">
-                        <div className="flex items-center gap-3">
-  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">
-    {entry.rank}
-  </span>
-
-  <PokemonIcon
-    pokemonId={entry.pokemonId}
-    pokemonName={enemy?.name}
-    size={40}
-  />
-
-  <div className="min-w-0">
-    <p className="font-bold text-slate-900">
-      {enemy?.name ?? entry.pokemonId}
-    </p>
-
-    {enemy && (
-      <div className="mt-1 flex flex-wrap gap-1">
-        {enemy.types
-          .filter(
-            (typeId): typeId is NonNullable<typeof typeId> =>
-              Boolean(typeId),
-          )
-          .map((typeId) => (
-            <TypeBadge key={typeId} typeId={typeId} />
-          ))}
-      </div>
-    )}
-
-    <p className="mt-1 truncate text-xs text-slate-500">
-      {entry.assumedMoves.length
-        ? entry.assumedMoves.join(" / ")
-        : "想定技未設定"}
-    </p>
-  </div>
-</div>
-                      </td>
-
-                      {teamPokemon.map((teamMember) => {
-                        const matchup = findMatchup(teamMember.id, entry.id);
-                        const rating = matchup?.rating ?? "unrated";
-                        const config = ratingConfig[rating];
-
-                        return (
-                          <td
-                            key={teamMember.id}
-                            className="border-b border-r border-slate-200 px-3 py-3 text-center"
-                          >
-                            <button
-                              type="button"
-                              title={`${config.title}。右クリックでメモ編集`}
-                              onClick={() => cycleRating(teamMember.id, entry.id)}
-                              onContextMenu={(event) => {
-                                event.preventDefault();
-                                setEditingCell({
-                                  teamPokemonId: teamMember.id,
-                                  rankingEntryId: entry.id,
-                                });
-                              }}
-                              className={`inline-flex h-10 min-w-12 items-center justify-center rounded-lg border px-3 text-base font-bold transition ${config.className}`}
-                            >
-                              {config.label}
-                            </button>
-                            {matchup?.memo && (
-                              <button
-                                type="button"
-                                onClick={() =>
-                                  setEditingCell({
-                                    teamPokemonId: teamMember.id,
-                                    rankingEntryId: entry.id,
-                                  })
-                                }
-                                className="mt-1 block w-full truncate text-[11px] text-blue-600 hover:underline"
-                              >
-                                メモあり
-                              </button>
-                            )}
-                          </td>
-                        );
-                      })}
-
-                      <td className="w-28 min-w-28 border-b border-slate-200 px-3 py-3 text-center">
-                        <p className="text-lg font-bold text-slate-900">
-                          {summary.goodCount}
-                        </p>
-                        <p className="text-[11px] text-slate-500">
-                          ○以上 / {teamPokemon.length}
-                        </p>
-                        <span
-                          className={`mt-1 inline-flex rounded-md border px-2 py-0.5 text-xs font-bold ${ratingConfig[summary.best].className}`}
-                        >
-                          最良 {ratingConfig[summary.best].label}
-                        </span>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </section>
-
-      {editingCell && (
-        <MemoDialog
-          memo={
-            findMatchup(editingCell.teamPokemonId, editingCell.rankingEntryId)
-              ?.memo ?? ""
+      {visibleCandidates.length === 0 ? (
+        <EmptyState
+          message={
+            candidateQuery
+              ? matchupUiText.noCandidateSearchResults
+              : mode === "team"
+                ? matchupUiText.noTeamCandidates
+                : matchupUiText.noVisibleCandidates
           }
+        />
+      ) : entries.length === 0 ? (
+        <EmptyState message="検索条件に一致する仮想敵がありません。" />
+      ) : (
+        <CandidateMatchupTable
+          candidates={visibleCandidates}
+          entries={entries}
+          summaryMap={summaryMap}
+          matchupMap={matchupMap}
+          onCycleRating={cycleRating}
+          onEditMemo={(candidate, entry) => setEditing({ candidate, entry })}
+        />
+      )}
+
+      {editing && (
+        <MatchupEditor
+          candidate={editing.candidate}
+          entry={editing.entry}
+          memo={getMatchup(editing.candidate.id, editing.entry.id)?.memo ?? ""}
           onSave={(memo) => {
-            updateMatchupMemo(
-              editingCell.teamPokemonId,
-              editingCell.rankingEntryId,
-              memo,
-            );
-            setEditingCell(null);
+            updateMatchupMemo(editing.candidate.id, editing.entry.id, memo);
+            setEditing(null);
           }}
-          onClose={() => setEditingCell(null)}
+          onClose={() => setEditing(null)}
         />
       )}
     </div>
   );
 }
 
-function MemoDialog({
+function MatchupFilters({
+  mode,
+  candidateQuery,
+  rankingQuery,
+  onModeChange,
+  onCandidateQueryChange,
+  onRankingQueryChange,
+}: {
+  mode: MatchupMode;
+  candidateQuery: string;
+  rankingQuery: string;
+  onModeChange: (mode: MatchupMode) => void;
+  onCandidateQueryChange: (query: string) => void;
+  onRankingQueryChange: (query: string) => void;
+}) {
+  return (
+    <section className="mt-5 space-y-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="inline-flex rounded-xl bg-slate-100 p-1">
+        {([
+          ["team", "現在の構築"],
+          ["candidate", matchupUiText.candidateList],
+        ] as const).map(([value, label]) => (
+          <button
+            key={value}
+            type="button"
+            onClick={() => onModeChange(value)}
+            className={[
+              "rounded-lg px-4 py-2 text-sm font-semibold",
+              mode === value
+                ? "bg-white text-blue-700 shadow-sm"
+                : "text-slate-500",
+            ].join(" ")}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+      <div className="grid gap-3 md:grid-cols-2">
+        <SearchInput
+          value={candidateQuery}
+          onChange={onCandidateQueryChange}
+          placeholder={matchupUiText.candidateSearch}
+        />
+        <SearchInput
+          value={rankingQuery}
+          onChange={onRankingQueryChange}
+          placeholder="仮想敵名を検索"
+        />
+      </div>
+    </section>
+  );
+}
+
+function SearchInput({
+  value,
+  onChange,
+  placeholder,
+}: {
+  value: string;
+  onChange: (value: string) => void;
+  placeholder: string;
+}) {
+  return (
+    <label className="relative block">
+      <Search
+        size={17}
+        className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+      />
+      <input
+        type="search"
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        placeholder={placeholder}
+        className="w-full rounded-xl border border-slate-300 bg-white py-2.5 pl-10 pr-3 text-sm"
+      />
+    </label>
+  );
+}
+
+function CandidateMatchupTable({
+  candidates,
+  entries,
+  summaryMap,
+  matchupMap,
+  onCycleRating,
+  onEditMemo,
+}: {
+  candidates: CandidatePokemon[];
+  entries: RankingEntry[];
+  summaryMap: Map<string, CandidateMatchupSummary>;
+  matchupMap: Map<string, Matchup>;
+  onCycleRating: (candidateId: string, entryId: string) => void;
+  onEditMemo: (candidate: CandidatePokemon, entry: RankingEntry) => void;
+}) {
+  const {
+    topScrollRef,
+    tableScrollRef,
+    topSpacerRef,
+    onTopScroll,
+    onTableScroll,
+  } = useSynchronizedHorizontalScroll();
+
+  return (
+    <section className="mt-5 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <div
+        ref={topScrollRef}
+        onScroll={onTopScroll}
+        aria-label="相性表の上部横スクロール"
+        className="overflow-x-auto overflow-y-hidden border-b border-slate-200 bg-slate-50"
+      >
+        <div ref={topSpacerRef} className="h-3" />
+      </div>
+      <div
+        ref={tableScrollRef}
+        onScroll={onTableScroll}
+        className="max-h-[70vh] overflow-auto"
+      >
+        <table
+          className="w-full table-fixed border-collapse text-sm"
+          style={{
+            minWidth:
+              candidates.length > 6
+                ? `calc(13rem + ${candidates.length} * 10rem)`
+                : "100%",
+          }}
+        >
+          <colgroup>
+            <col className="w-52" />
+            {candidates.map((candidate) => (
+              <col key={candidate.id} />
+            ))}
+          </colgroup>
+          <thead>
+            <tr className="border-b border-slate-200 bg-slate-50">
+              <th className="sticky left-0 top-0 z-40 min-w-52 bg-slate-50 px-4 py-3 text-left shadow-[1px_1px_0_0_rgb(226_232_240)]">
+                順位・仮想敵
+              </th>
+              {candidates.map((candidate) => (
+                <CandidateHeader
+                  key={candidate.id}
+                  candidate={candidate}
+                  summary={summaryMap.get(candidate.id)}
+                />
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {entries.map((entry) => (
+              <tr key={entry.id} className="border-b border-slate-100">
+                <RankingHeader entry={entry} />
+                {candidates.map((candidate) => (
+                  <MatchupCell
+                    key={candidate.id}
+                    matchup={matchupMap.get(matchupKey(candidate.id, entry.id))}
+                    onChangeRating={() =>
+                      onCycleRating(candidate.id, entry.id)
+                    }
+                    onEditMemo={() => onEditMemo(candidate, entry)}
+                  />
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
+
+function CandidateHeader({
+  candidate,
+  summary,
+}: {
+  candidate: CandidatePokemon;
+  summary?: CandidateMatchupSummary;
+}) {
+  return (
+    <th className="sticky top-0 z-30 bg-slate-50 px-2 py-3 text-center shadow-[0_1px_0_0_rgb(226_232_240)]">
+      <PokemonIcon
+        pokemonId={candidate.pokemonId}
+        pokemonName={getCandidateName(candidate)}
+        size={40}
+      />
+      <span className="mt-1 block font-bold text-slate-800">
+        {getCandidateName(candidate)}
+      </span>
+      <span className="block truncate text-xs text-blue-600">
+        {candidate.label || candidate.pokemonId}
+      </span>
+      <span className="mt-1 block text-[11px] font-normal text-slate-400">
+        評価済 {summary?.ratedCount ?? 0} / 未評価 {summary?.unratedCount ?? 0}
+      </span>
+    </th>
+  );
+}
+
+function RankingHeader({ entry }: { entry: RankingEntry }) {
+  const pokemon = pokemonMasterMap[entry.pokemonId];
+  return (
+    <th className="sticky left-0 z-10 bg-white px-4 py-3 text-left">
+      <div className="flex items-center gap-3">
+        <span className="w-7 text-slate-400">{entry.rank}</span>
+        <PokemonIcon
+          pokemonId={entry.pokemonId}
+          pokemonName={pokemon?.name}
+          size={36}
+        />
+        <span className="font-semibold text-slate-800">
+          {pokemon?.name ?? entry.pokemonId}
+        </span>
+      </div>
+    </th>
+  );
+}
+
+function MatchupCell({
+  matchup,
+  onChangeRating,
+  onEditMemo,
+}: {
+  matchup?: Matchup;
+  onChangeRating: () => void;
+  onEditMemo: () => void;
+}) {
+  const rating = matchup?.rating ?? "unrated";
+  const config = ratingConfig[rating];
+  return (
+    <td className="px-2 py-3 text-center">
+      <button
+        type="button"
+        onClick={onChangeRating}
+        title={`${config.name}（クリックで変更）`}
+        aria-label={`相性評価: ${config.name}`}
+        className={`inline-flex h-10 min-w-12 items-center justify-center rounded-lg border px-3 font-bold ${config.className}`}
+      >
+        {config.label}
+      </button>
+      <button
+        type="button"
+        onClick={onEditMemo}
+        className={[
+          "mt-1 flex w-full items-center justify-center gap-1 text-[11px]",
+          matchup?.memo ? "font-semibold text-blue-700" : "text-slate-400",
+        ].join(" ")}
+      >
+        {matchup?.memo ? <MessageSquare size={12} /> : <Edit3 size={11} />}
+        {matchup?.memo ? "メモあり" : "メモ"}
+      </button>
+    </td>
+  );
+}
+
+function MatchupSummary({
+  candidates,
+  summaries,
+}: {
+  candidates: CandidatePokemon[];
+  summaries: Map<string, CandidateMatchupSummary>;
+}) {
+  return (
+    <section className="mt-5">
+      <h2 className="text-sm font-bold text-slate-700">
+        {matchupUiText.candidateSummary}
+      </h2>
+      <div className="mt-2 flex gap-3 overflow-x-auto pb-2">
+        {candidates.map((candidate) => {
+          const summary = summaries.get(candidate.id);
+          return (
+            <article
+              key={candidate.id}
+              className="min-w-64 rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+            >
+              <p className="truncate font-bold text-slate-900">
+                {getCandidateName(candidate)}
+              </p>
+              <p className="truncate text-xs text-blue-600">
+                {candidate.label || candidate.pokemonId}
+              </p>
+              <div className="mt-3 flex gap-3 text-xs">
+                <span className="font-semibold text-slate-700">
+                  評価済 {summary?.ratedCount ?? 0}
+                </span>
+                <span className="text-slate-400">
+                  未評価 {summary?.unratedCount ?? 0}
+                </span>
+              </div>
+              <div className="mt-2 flex flex-wrap gap-1">
+                {matchupRatings
+                  .filter((rating) => rating !== "unrated")
+                  .map((rating) => (
+                    <span
+                      key={rating}
+                      title={ratingConfig[rating].name}
+                      className={`rounded border px-1.5 py-0.5 text-[11px] ${ratingConfig[rating].className}`}
+                    >
+                      {ratingConfig[rating].label} {summary?.counts[rating] ?? 0}
+                    </span>
+                  ))}
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+function MatchupEditor({
+  candidate,
+  entry,
   memo,
   onSave,
   onClose,
 }: {
+  candidate: CandidatePokemon;
+  entry: RankingEntry;
   memo: string;
   onSave: (memo: string) => void;
   onClose: () => void;
 }) {
-  const [draft, setDraft] = useState(memo);
-
+  const [value, setValue] = useState(memo);
+  const enemyName = getPokemonName(entry.pokemonId) ?? entry.pokemonId;
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 p-4">
       <div className="w-full max-w-lg rounded-2xl bg-white shadow-xl">
-        <div className="border-b border-slate-200 px-6 py-5">
-          <h2 className="text-lg font-bold text-slate-900">対面メモ</h2>
-          <p className="mt-1 text-sm text-slate-500">
-            勝ち筋、注意する技、立ち回りなどを記録できます。
-          </p>
+        <div className="flex items-start justify-between border-b border-slate-200 px-5 py-4">
+          <div>
+            <h2 className="font-bold text-slate-900">相性メモ</h2>
+            <p className="mt-1 text-xs text-slate-500">
+              {getCandidateName(candidate)} / {candidate.label} → {enemyName}
+            </p>
+          </div>
+          <button type="button" onClick={onClose} aria-label="閉じる">
+            <X size={20} />
+          </button>
         </div>
-        <div className="p-6">
+        <div className="p-5">
           <textarea
-            autoFocus
-            value={draft}
-            onChange={(event) => setDraft(event.target.value)}
+            value={value}
+            onChange={(event) => setValue(event.target.value)}
             rows={6}
-            placeholder="例：冷凍パンチ圏内まで削って処理。地震持ちに注意。"
-            className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+            autoFocus
+            className="w-full rounded-xl border border-slate-300 p-3 text-sm"
           />
         </div>
-        <div className="flex justify-end gap-3 border-t border-slate-200 px-6 py-4">
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50"
-          >
+        <div className="flex justify-end gap-3 border-t border-slate-200 px-5 py-4">
+          <button type="button" onClick={onClose}>
             キャンセル
           </button>
           <button
             type="button"
-            onClick={() => onSave(draft.trim())}
-            className="rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-700"
+            onClick={() => onSave(value.trim())}
+            className="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white"
           >
             保存
           </button>
@@ -509,9 +559,8 @@ function MemoDialog({
 
 function EmptyState({ message }: { message: string }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white px-6 py-14 text-center shadow-sm">
-      <Table2 size={40} className="mx-auto text-slate-300" />
-      <p className="mt-4 font-semibold text-slate-800">{message}</p>
+    <div className="mt-5 rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center text-slate-500">
+      {message}
     </div>
   );
 }

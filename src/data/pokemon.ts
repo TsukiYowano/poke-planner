@@ -226,7 +226,7 @@ export const pokemonMasterMap: Record<
  * "mega-metagross" 形式を
  * "metagross-mega" に変換する。
  */
-function convertLegacyPokemonId(
+function convertV1PokemonId(
   pokemonId: string,
 ): string {
   if (pokemonId.startsWith("mega-")) {
@@ -247,7 +247,7 @@ export function getPokemonById(
   }
 
   return pokemonMasterMap[
-    convertLegacyPokemonId(pokemonId)
+    convertV1PokemonId(pokemonId)
   ];
 }
 

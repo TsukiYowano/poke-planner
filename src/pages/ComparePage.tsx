@@ -15,23 +15,23 @@ import { getPokemonTypeName } from "../data/types";
 import { usePlanner } from "../context/PlannerContext";
 import type {
   CandidatePokemon,
-  MatchupRating,
-  Team,
-  TeamPokemon,
+  RankingSet,
   TeamRoleId,
 } from "../types/pokemon";
-import { recommendCandidates } from "../utils/recommendation";
-import { analyzeTeam } from "../utils/teamAnalysis";
+import CandidateSelector from "../components/common/CandidateSelector";
+import { getTeamPokemonIds } from "../utils/plannerSelectors";
 import {
-  analyzeTeamTypeCoverage,
-  type TeamTypeCoverage,
-} from "../utils/teamTypeCoverage";
-
-const positiveRatings: MatchupRating[] = ["very-good", "good"];
-const negativeRatings: MatchupRating[] = ["bad", "very-bad"];
+  compareTeamCandidateSwap,
+  type CompareAnalysis,
+  type CoverageChange,
+} from "../utils/compareAnalysis";
 
 function ComparePage() {
-  const { currentTeam, candidates, rankingSet, matchups } = usePlanner();
+  const { plannerData } = usePlanner();
+  const { candidates, rankingSet, matchups } = plannerData;
+  const currentTeam = plannerData.teams.find(
+    (team) => team.id === plannerData.currentTeamId,
+  );
   const [outgoingId, setOutgoingId] = useState("");
   const [incomingId, setIncomingId] = useState("");
 
@@ -43,73 +43,33 @@ function ComparePage() {
       return candidates;
     }
 
+    const teamPokemonIds = getTeamPokemonIds(currentTeam, candidates);
+    const outgoingCandidateId = currentTeam.pokemon.find(
+      (pokemon) => pokemon.id === outgoingId,
+    )?.candidatePokemonId;
+    const outgoingPokemonId = candidates.find(
+      (candidate) => candidate.id === outgoingCandidateId,
+    )?.pokemonId;
     return candidates.filter(
       (candidate) =>
-        !currentTeam.pokemon.some(
-          (teamPokemon) => teamPokemon.pokemonId === candidate.pokemonId,
-        ),
+        !teamPokemonIds.has(candidate.pokemonId) ||
+        candidate.pokemonId === outgoingPokemonId,
     );
-  }, [candidates, currentTeam]);
+  }, [candidates, currentTeam, outgoingId]);
 
   const comparison = useMemo(() => {
     if (!currentTeam || !outgoing || !incoming) {
       return null;
     }
 
-    const incomingTeamPokemon = candidateToTeamPokemon(incoming);
-    const beforeTeam = currentTeam;
-    const teamWithoutOutgoing: Team = {
-      ...currentTeam,
-      pokemon: currentTeam.pokemon.filter((item) => item.id !== outgoing.id),
-    };
-    const afterTeam: Team = {
-      ...currentTeam,
-      pokemon: [...teamWithoutOutgoing.pokemon, incomingTeamPokemon],
-    };
-
-    const beforeAnalysis = analyzeTeam(beforeTeam);
-    const afterAnalysis = analyzeTeam(afterTeam);
-    const beforeCoverage = analyzeTeamTypeCoverage(beforeTeam);
-    const afterCoverage = analyzeTeamTypeCoverage(afterTeam);
-    const recommendation = recommendCandidates(teamWithoutOutgoing, [incoming])[0];
-
-    const roleChanges = buildRoleChanges(beforeAnalysis.roleCounts, afterAnalysis.roleCounts);
-    const coverageChanges = buildCoverageChanges(beforeCoverage, afterCoverage);
-
-    const outgoingMatchups = matchups.filter(
-      (matchup) => matchup.teamPokemonId === outgoing.id,
+    return compareTeamCandidateSwap(
+      currentTeam,
+      candidates,
+      matchups,
+      outgoing.id,
+      incoming.id,
     );
-    const goodMatchups = outgoingMatchups.filter((matchup) =>
-      positiveRatings.includes(matchup.rating),
-    );
-    const badMatchups = outgoingMatchups.filter((matchup) =>
-      negativeRatings.includes(matchup.rating),
-    );
-
-    const uniqueResponsibilities = goodMatchups.filter((matchup) => {
-      const otherGoodAnswerExists = matchups.some(
-        (other) =>
-          other.rankingEntryId === matchup.rankingEntryId &&
-          other.teamPokemonId !== outgoing.id &&
-          positiveRatings.includes(other.rating),
-      );
-
-      return !otherGoodAnswerExists;
-    });
-
-    return {
-      beforeTeam,
-      afterTeam,
-      beforeAnalysis,
-      afterAnalysis,
-      roleChanges,
-      coverageChanges,
-      recommendation,
-      goodMatchups,
-      badMatchups,
-      uniqueResponsibilities,
-    };
-  }, [currentTeam, incoming, matchups, outgoing]);
+  }, [candidates, currentTeam, incoming, matchups, outgoing]);
 
   if (!currentTeam) {
     return <EmptyState message="比較する構築が登録されていません。" />;
@@ -137,7 +97,14 @@ function ComparePage() {
             onChange={setOutgoingId}
             options={currentTeam.pokemon.map((teamPokemon) => ({
               id: teamPokemon.id,
-              label: getPokemonById(teamPokemon.pokemonId)?.name ?? teamPokemon.pokemonId,
+              label: (() => {
+                const candidate = candidates.find(
+                  (item) => item.id === teamPokemon.candidatePokemonId,
+                );
+                return candidate
+                  ? getPokemonById(candidate.pokemonId)?.name ?? candidate.label
+                  : teamPokemon.candidatePokemonId;
+              })(),
             }))}
             placeholder="外すポケモンを選択"
           />
@@ -146,16 +113,17 @@ function ComparePage() {
             <ArrowRight size={20} />
           </div>
 
-          <SelectCard
-            label="候補から入れる"
-            value={incomingId}
-            onChange={setIncomingId}
-            options={availableCandidates.map((candidate) => ({
-              id: candidate.id,
-              label: getPokemonById(candidate.pokemonId)?.name ?? candidate.pokemonId,
-            }))}
-            placeholder="入れる候補を選択"
-          />
+          <div>
+            <p className="text-sm font-bold text-slate-800">候補から入れる</p>
+            <div className="mt-2">
+              <CandidateSelector
+                candidates={availableCandidates}
+                value={incomingId}
+                onChange={setIncomingId}
+                placeholder="入れる候補を選択"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -163,7 +131,6 @@ function ComparePage() {
         <EmptyState message="入れ替える2匹を選ぶと比較結果が表示されます。" />
       ) : (
         <ComparisonResult
-          outgoing={outgoing}
           incoming={incoming}
           comparison={comparison}
           rankingSet={rankingSet}
@@ -174,17 +141,17 @@ function ComparePage() {
 }
 
 function ComparisonResult({
-  outgoing,
   incoming,
   comparison,
   rankingSet,
 }: {
-  outgoing: TeamPokemon;
   incoming: CandidatePokemon;
-  comparison: ComparisonData;
-  rankingSet: ReturnType<typeof usePlanner>["rankingSet"];
+  comparison: CompareAnalysis;
+  rankingSet: RankingSet;
 }) {
-  const outgoingPokemon = getPokemonById(outgoing.pokemonId);
+  const outgoingPokemon = getPokemonById(
+    comparison.outgoingCandidate.pokemonId,
+  );
   const incomingPokemon = getPokemonById(incoming.pokemonId);
   const positiveCoverage = comparison.coverageChanges.filter((item) => item.score > 0);
   const negativeCoverage = comparison.coverageChanges.filter((item) => item.score < 0);
@@ -201,7 +168,13 @@ function ComparisonResult({
   return (
     <div className="space-y-6">
       <section className="grid gap-4 md:grid-cols-[1fr_auto_1fr]">
-        <PokemonSummary title="変更前" pokemonName={outgoingPokemon?.name ?? outgoing.pokemonId} roleIds={outgoing.roleIds} />
+        <PokemonSummary
+          title="変更前"
+          pokemonName={
+            outgoingPokemon?.name ?? comparison.outgoingCandidate.label
+          }
+          roleIds={comparison.outgoingCandidate.roleIds}
+        />
         <div className="flex items-center justify-center text-slate-400">
           <ArrowRight size={24} />
         </div>
@@ -252,8 +225,8 @@ function ComparisonResult({
 
       <section className="grid gap-6 xl:grid-cols-2">
         <RoleComparison
-          beforeTeam={comparison.beforeTeam}
-          afterTeam={comparison.afterTeam}
+          before={comparison.beforeAnalysis}
+          after={comparison.afterAnalysis}
         />
         <CoverageComparison changes={comparison.coverageChanges} />
       </section>
@@ -264,8 +237,8 @@ function ComparisonResult({
           <div>
             <h2 className="font-bold text-amber-900">相性表について</h2>
             <p className="mt-1 text-sm leading-6 text-amber-800">
-              候補ポケモンはまだ相性表の評価を持っていないため、仮想敵への改善は自動判定していません。
-              入れ替え後は相性表で候補の対面評価を入力すると、担当状況を正確に確認できます。
+              相性評価は候補単位で比較しています。変更前の担当喪失に加えて、
+              変更後の候補に登録済みの評価も比較対象になります。
             </p>
           </div>
         </div>
@@ -273,19 +246,6 @@ function ComparisonResult({
     </div>
   );
 }
-
-type ComparisonData = {
-  beforeTeam: Team;
-  afterTeam: Team;
-  beforeAnalysis: ReturnType<typeof analyzeTeam>;
-  afterAnalysis: ReturnType<typeof analyzeTeam>;
-  roleChanges: RoleChange[];
-  coverageChanges: CoverageChange[];
-  recommendation: ReturnType<typeof recommendCandidates>[number] | undefined;
-  goodMatchups: ReturnType<typeof usePlanner>["matchups"];
-  badMatchups: ReturnType<typeof usePlanner>["matchups"];
-  uniqueResponsibilities: ReturnType<typeof usePlanner>["matchups"];
-};
 
 function SelectCard({
   label,
@@ -408,10 +368,13 @@ function ChangePanel({
   );
 }
 
-function RoleComparison({ beforeTeam, afterTeam }: { beforeTeam: Team; afterTeam: Team }) {
-  const before = analyzeTeam(beforeTeam);
-  const after = analyzeTeam(afterTeam);
-
+function RoleComparison({
+  before,
+  after,
+}: {
+  before: CompareAnalysis["beforeAnalysis"];
+  after: CompareAnalysis["afterAnalysis"];
+}) {
   return (
     <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
       <h2 className="flex items-center gap-2 font-bold text-slate-900"><Swords size={18} /> 役割の比較</h2>
@@ -464,70 +427,6 @@ function EmptyState({ message }: { message: string }) {
       <p className="mt-4 font-semibold text-slate-800">{message}</p>
     </div>
   );
-}
-
-type RoleChange = { roleId: TeamRoleId; delta: number };
-
-type CoverageChange = {
-  typeId: TeamTypeCoverage["attackingType"];
-  score: number;
-  message: string;
-};
-
-function candidateToTeamPokemon(candidate: CandidatePokemon): TeamPokemon {
-  return {
-    id: `compare-${candidate.id}`,
-    pokemonId: candidate.pokemonId,
-    abilityId: candidate.abilityId,
-    moves: [],
-    roleIds: [...candidate.roleIds],
-    tags: [...candidate.tags],
-    memo: candidate.memo,
-  };
-}
-
-function buildRoleChanges(
-  before: ReturnType<typeof analyzeTeam>["roleCounts"],
-  after: ReturnType<typeof analyzeTeam>["roleCounts"],
-): RoleChange[] {
-  return teamRoles
-    .map((role) => ({
-      roleId: role.id,
-      delta:
-        (after.find((item) => item.roleId === role.id)?.count ?? 0) -
-        (before.find((item) => item.roleId === role.id)?.count ?? 0),
-    }))
-    .filter((item) => item.delta !== 0);
-}
-
-function defensiveAnswerCount(item: TeamTypeCoverage): number {
-  return item.immune + item.quarter + item.half;
-}
-
-function weaknessCount(item: TeamTypeCoverage): number {
-  return item.double + item.quadruple;
-}
-
-function buildCoverageChanges(
-  before: TeamTypeCoverage[],
-  after: TeamTypeCoverage[],
-): CoverageChange[] {
-  return before.map((beforeItem) => {
-    const afterItem = after.find((item) => item.attackingType === beforeItem.attackingType) ?? beforeItem;
-    const answerDelta = defensiveAnswerCount(afterItem) - defensiveAnswerCount(beforeItem);
-    const weaknessDelta = weaknessCount(afterItem) - weaknessCount(beforeItem);
-    const score = answerDelta - weaknessDelta;
-
-    let message = "変化なし";
-    if (answerDelta > 0 && weaknessDelta <= 0) message = `受け先が${answerDelta}匹増える`;
-    else if (answerDelta < 0 && weaknessDelta >= 0) message = `受け先が${Math.abs(answerDelta)}匹減る`;
-    else if (weaknessDelta > 0 && answerDelta <= 0) message = `弱点が${weaknessDelta}匹増える`;
-    else if (weaknessDelta < 0 && answerDelta >= 0) message = `弱点が${Math.abs(weaknessDelta)}匹減る`;
-    else if (score > 0) message = "耐性バランスが改善";
-    else if (score < 0) message = "耐性バランスが悪化";
-
-    return { typeId: beforeItem.attackingType, score, message };
-  });
 }
 
 export default ComparePage;

@@ -32,7 +32,7 @@ export function analyzePokemonCoverage(
   matchups: Matchup[],
 ): PokemonCoverageResult[] {
   const teamPokemonIds = new Set(
-    teamPokemon.map((pokemon) => pokemon.id),
+    teamPokemon.map((pokemon) => pokemon.candidatePokemonId),
   );
 
   const sortedEntries = [...rankingEntries].sort(
@@ -43,7 +43,7 @@ export function analyzePokemonCoverage(
     const relevantMatchups = matchups.filter(
       (matchup) =>
         matchup.rankingEntryId === rankingEntry.id &&
-        teamPokemonIds.has(matchup.teamPokemonId),
+        teamPokemonIds.has(matchup.candidatePokemonId),
     );
 
     const ratedMatchups = relevantMatchups.filter(

@@ -124,7 +124,7 @@ export type EffortValues = {
 
 export type TeamPokemon = {
   id: string;
-  pokemonId: string;
+  candidatePokemonId: string;
 
   abilityId?: string;
   nickname?: string;
@@ -134,9 +134,6 @@ export type TeamPokemon = {
   moves: string[];
 
   effortValues?: EffortValues;
-
-  roleIds: TeamRoleId[];
-  tags: string[];
 
   memo?: string;
 };
@@ -167,14 +164,14 @@ export type CandidateStatus =
 export type CandidatePokemon = {
   id: string;
   pokemonId: string;
+  label: string;
 
   status: CandidateStatus;
-
-  abilityId?: string;
   roleIds: TeamRoleId[];
 
   tags: string[];
   memo?: string;
+  isVisibleInCandidateMatchups: boolean;
 
   createdAt: string;
   updatedAt: string;
@@ -215,7 +212,7 @@ export type MatchupRating =
 export type Matchup = {
   id: string;
 
-  teamPokemonId: string;
+  candidatePokemonId: string;
   rankingEntryId: string;
 
   rating: MatchupRating;

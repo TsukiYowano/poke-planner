@@ -21,10 +21,8 @@ import MoveAutocomplete, {
 import PokemonIcon from "../components/common/PokemonIcon";
 
 function RankingsPage() {
-  const {
-  rankingSet,
-  updateRankingEntry,
-} = usePlanner();
+  const { plannerData, updateRankingEntry } = usePlanner();
+  const { rankingSet } = plannerData;
 
   const [searchText, setSearchText] = useState("");
   const [editingEntry, setEditingEntry] = useState<RankingEntry | null>(null);

@@ -4,7 +4,10 @@ import { usePlanner } from "../../context/PlannerContext";
 
 function DashboardHero() {
   const navigate = useNavigate();
-  const { currentTeam } = usePlanner();
+  const { plannerData } = usePlanner();
+  const currentTeam = plannerData.teams.find(
+    (team) => team.id === plannerData.currentTeamId,
+  );
 
   return (
     <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">

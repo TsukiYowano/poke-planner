@@ -5,7 +5,6 @@ import DashboardHero from "../components/dashboard/DashboardHero";
 import QuickActions from "../components/dashboard/QuickActions";
 import RecentTeams from "../components/dashboard/RecentTeams";
 import SummaryCards from "../components/dashboard/SummaryCards";
-import { supabase } from "../lib/supabase";
 
 function HomePage() {
   return (
@@ -32,6 +31,4 @@ function HomePage() {
     </div>
   );
 }
-console.log(supabase);
-
 export default HomePage;

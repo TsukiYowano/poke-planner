@@ -12,7 +12,7 @@ export const teams: Team[] = [
     pokemon: [
       {
         id: "team-pokemon-metagross",
-        pokemonId: "mega-metagross",
+        candidatePokemonId: "candidate-metagross",
         abilityId: "tough-claws",
         nature: "ようき",
         item: "メガストーン",
@@ -27,23 +27,12 @@ export const teams: Team[] = [
           attack: 29,
           speed: 25,
         },
-        roleIds: [
-          "physical-attacker",
-          "fast-attacker",
-          "wallbreaker",
-          "priority-user",
-        ],
-        tags: [
-          "軸",
-          "対面性能",
-          "終盤",
-        ],
         memo:
           "広い攻撃範囲と先制技で対面性能を確保する。",
       },
       {
         id: "team-pokemon-aegislash",
-        pokemonId: "aegislash-shield",
+        candidatePokemonId: "candidate-aegislash",
         abilityId: "stance-change",
         nature: "れいせい",
         item: "たべのこし",
@@ -59,21 +48,12 @@ export const teams: Team[] = [
           specialAttack: 32,
           specialDefense: 1,
         },
-        roleIds: [
-          "special-attacker",
-          "physical-wall",
-          "priority-user",
-        ],
-        tags: [
-          "ブリジュラス対策",
-          "クッション",
-        ],
         memo:
           "耐性を活かして鋼やフェアリーへ後出しする。",
       },
       {
         id: "team-pokemon-primarina",
-        pokemonId: "primarina",
+        candidatePokemonId: "candidate-primarina",
         nature: "ひかえめ",
         item: "オボンのみ",
         moves: [
@@ -88,22 +68,12 @@ export const teams: Team[] = [
           specialAttack: 17,
           speed: 1,
         },
-        roleIds: [
-          "special-attacker",
-          "pivot",
-          "special-wall",
-        ],
-        tags: [
-          "雨対策",
-          "バシャーモ対策",
-          "引き先",
-        ],
         memo:
           "クイックターンで有利対面を作る。",
       },
       {
         id: "team-pokemon-hydreigon",
-        pokemonId: "hydreigon",
+        candidatePokemonId: "candidate-hydreigon",
         abilityId: "levitate",
         nature: "おくびょう",
         item: "こだわりスカーフ",
@@ -118,23 +88,12 @@ export const teams: Team[] = [
           specialAttack: 32,
           speed: 32,
         },
-        roleIds: [
-          "special-attacker",
-          "fast-attacker",
-          "revenge-killer",
-          "pivot",
-        ],
-        tags: [
-          "スカーフ",
-          "炎打点",
-          "地面無効",
-        ],
         memo:
           "スカーフで上から攻撃し、蜻蛉返りで対面操作する。",
       },
       {
         id: "team-pokemon-meowscarada",
-        pokemonId: "meowscarada",
+        candidatePokemonId: "candidate-meowscarada",
         nature: "ようき",
         item: "こだわりスカーフ",
         moves: [
@@ -148,34 +107,15 @@ export const teams: Team[] = [
           attack: 32,
           speed: 32,
         },
-        roleIds: [
-          "physical-attacker",
-          "fast-attacker",
-          "revenge-killer",
-          "pivot",
-        ],
-        tags: [
-          "高速枠",
-          "終盤処理",
-        ],
         memo:
           "高速と広い攻撃範囲を活かす。",
       },
       {
         id: "team-pokemon-tyranitar",
-        pokemonId: "mega-tyranitar",
+        candidatePokemonId: "candidate-tyranitar",
         nature: "いじっぱり",
         item: "メガストーン",
         moves: [],
-        roleIds: [
-          "physical-attacker",
-          "special-wall",
-          "wallbreaker",
-        ],
-        tags: [
-          "リザードンY対策",
-          "裏メガ",
-        ],
         memo:
           "天候変更と高い特殊耐久を活かす。",
       },

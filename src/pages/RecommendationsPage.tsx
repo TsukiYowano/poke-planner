@@ -16,7 +16,7 @@ import type {
 import { recommendCandidates } from "../utils/recommendation";
 import PokemonIcon from "../components/common/PokemonIcon";
 import TypeBadge from "../components/common/TypeBadge";
-import { getPokemonById } from "../data/pokemon";
+import { resolveTeamPokemon, getTeamPokemonIds } from "../utils/plannerSelectors";
 
 type MessageState = {
   type: "success" | "error";
@@ -290,11 +290,13 @@ function RecommendationCard({
 
 function RecommendationsPage() {
   const {
-    currentTeam,
-    candidates,
+    plannerData,
     addCandidateToTeam,
-    isPokemonInTeam,
   } = usePlanner();
+  const currentTeam = plannerData.teams.find(
+    (team) => team.id === plannerData.currentTeamId,
+  );
+  const { candidates } = plannerData;
 
   const [message, setMessage] =
     useState<MessageState | null>(null);
@@ -304,22 +306,19 @@ function RecommendationsPage() {
       return [];
     }
 
-    const availableCandidates =
-      candidates.filter(
-        (candidate) =>
-          !isPokemonInTeam(
-            candidate.pokemonId,
-          ),
-      );
+    const teamPokemonIds = getTeamPokemonIds(currentTeam, candidates);
+    const availableCandidates = candidates.filter(
+      (candidate) => !teamPokemonIds.has(candidate.pokemonId),
+    );
 
     return recommendCandidates(
       currentTeam,
       availableCandidates,
+      candidates,
     );
   }, [
     currentTeam,
     candidates,
-    isPokemonInTeam,
   ]);
 
   const teamIsFull =
@@ -453,9 +452,10 @@ function RecommendationsPage() {
           {currentTeam.pokemon.length > 0 ? (
             currentTeam.pokemon.map(
               (teamPokemon) => {
-                const pokemon = getPokemonById(
-  teamPokemon.pokemonId,
-);
+                const { candidate, pokemon } = resolveTeamPokemon(
+                  teamPokemon,
+                  candidates,
+                );
 
                 return (
                   <div
@@ -463,14 +463,14 @@ function RecommendationsPage() {
   className="flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2"
 >
   <PokemonIcon
-    pokemonId={teamPokemon.pokemonId}
+    pokemonId={candidate?.pokemonId ?? ""}
     pokemonName={pokemon?.name}
     size={36}
   />
 
   <div className="min-w-0">
     <span className="text-sm font-medium text-slate-700">
-      {pokemon?.name ?? teamPokemon.pokemonId}
+      {pokemon?.name ?? candidate?.label ?? teamPokemon.candidatePokemonId}
     </span>
 
     {pokemon && (

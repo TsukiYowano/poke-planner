@@ -4,6 +4,7 @@ import { pokemonTypes } from "../data/types";
 import type {
   CandidatePokemon,
   CandidateRecommendation,
+  RecommendationReason,
   Team,
 } from "../types/pokemon";
 import { analyzeTeam } from "./teamAnalysis";
@@ -20,9 +21,10 @@ const SCORE = {
 export function recommendCandidates(
   team: Team,
   candidates: CandidatePokemon[],
+  allCandidates: CandidatePokemon[] = candidates,
 ): CandidateRecommendation[] {
   const coverage =
-    analyzeTeamTypeCoverage(team);
+    analyzeTeamTypeCoverage(team, allCandidates);
 
   const coverageMap = new Map(
     coverage.map((item) => [
@@ -31,7 +33,7 @@ export function recommendCandidates(
     ]),
   );
 
-  const teamAnalysis = analyzeTeam(team);
+  const teamAnalysis = analyzeTeam(team, allCandidates);
 
   return candidates
     .map((candidate) => {
@@ -50,7 +52,7 @@ export function recommendCandidates(
 
       let score = 0;
 
-      const reasons: CandidateRecommendation["reasons"] =
+      const reasons: RecommendationReason[] =
         [];
 
       for (const type of pokemonTypes) {
@@ -58,7 +60,7 @@ export function recommendCandidates(
           calculateTypeEffectiveness(
             pokemon,
             type.id,
-            candidate.abilityId,
+            undefined,
           );
 
         const currentCoverage =

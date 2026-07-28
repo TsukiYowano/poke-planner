@@ -26,14 +26,12 @@ function SettingsPage() {
   useRef<HTMLInputElement | null>(null);
 
   const {
-    teams,
-    candidates,
-    rankingSet,
-    matchups,
+    plannerData,
     exportPlannerData,
     importPlannerData,
     resetPlannerData,
   } = usePlanner();
+  const { teams, candidates, rankingSet, matchups } = plannerData;
 
   const [message, setMessage] = useState<{
     type: "success" | "error";

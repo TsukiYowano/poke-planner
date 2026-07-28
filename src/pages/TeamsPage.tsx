@@ -20,8 +20,8 @@ import {
 import { useLocation } from "react-router-dom";
 import TypeBadge from "../components/common/TypeBadge";
 import TeamPokemonEditor from "../components/teams/TeamPokemonEditor";
+import CandidateSelector from "../components/common/CandidateSelector";
 import { getAbilityName } from "../data/abilities";
-import { getPokemonById, pokemonMaster } from "../data/pokemon";
 import {
   getTeamRole,
   getTeamRoleName,
@@ -38,7 +38,8 @@ import { analyzeTeam } from "../utils/teamAnalysis";
 import { analyzeTeamTypeCoverage } from "../utils/teamTypeCoverage";
 import { getMoveByName } from "../data/moves";
 import PokemonIcon from "../components/common/PokemonIcon";
-import PokemonAutocomplete from "../components/common/PokemonAutocomplete";
+import type { TeamPokemonChanges } from "../persistence/plannerOperations";
+import { getTeamPokemonIds, resolveTeamPokemon } from "../utils/plannerSelectors";
 
 type TeamModalMode = "create" | "edit";
 
@@ -137,18 +138,18 @@ function TeamsPage() {
   const location = useLocation();
 
   const {
-    teams,
-    currentTeam,
-    currentTeamId,
+    plannerData,
     setCurrentTeam,
     createTeam,
     updateTeam,
     deleteTeam,
     duplicateTeam,
     updateTeamPokemon,
-    addPokemonToTeam,
-    removePokemonFromTeam,
+    addCandidateToTeam,
+    removeTeamPokemon,
   } = usePlanner();
+  const { teams, candidates, currentTeamId } = plannerData;
+  const currentTeam = teams.find((team) => team.id === currentTeamId);
 
   const [
     editingTeamPokemon,
@@ -159,7 +160,7 @@ function TeamsPage() {
     useState<TeamModalState | null>(null);
 
   const [isAddPokemonOpen, setIsAddPokemonOpen] = useState(false);
-  const [selectedPokemonId, setSelectedPokemonId] = useState("");
+  const [selectedCandidateId, setSelectedCandidateId] = useState("");
   const [addPokemonMessage, setAddPokemonMessage] = useState<string | null>(null);
 
   const [teamForm, setTeamForm] =
@@ -299,31 +300,33 @@ function TeamsPage() {
   }
 
   function handleSaveTeamPokemon(
-    updatedTeamPokemon: TeamPokemon,
+    changes: TeamPokemonChanges,
   ) {
-    updateTeamPokemon(updatedTeamPokemon);
+    if (editingTeamPokemon) {
+      updateTeamPokemon(editingTeamPokemon.id, changes);
+    }
     setEditingTeamPokemon(null);
   }
 
   function openAddPokemonModal() {
-    setSelectedPokemonId("");
+    setSelectedCandidateId("");
     setAddPokemonMessage(null);
     setIsAddPokemonOpen(true);
   }
 
   function closeAddPokemonModal() {
     setIsAddPokemonOpen(false);
-    setSelectedPokemonId("");
+    setSelectedCandidateId("");
     setAddPokemonMessage(null);
   }
 
   function handleAddPokemon() {
-    if (!selectedPokemonId) {
-      setAddPokemonMessage("追加するポケモンを選択してください。");
+    if (!selectedCandidateId) {
+      setAddPokemonMessage("追加する候補を選択してください。");
       return;
     }
 
-    const result = addPokemonToTeam(selectedPokemonId);
+    const result = addCandidateToTeam(selectedCandidateId);
 
     if (!result.success) {
       setAddPokemonMessage(result.message);
@@ -334,16 +337,19 @@ function TeamsPage() {
   }
 
   function handleRemovePokemon(teamPokemon: TeamPokemon) {
-    const pokemon = getPokemonById(teamPokemon.pokemonId);
+    const { candidate, pokemon } = resolveTeamPokemon(
+      teamPokemon,
+      candidates,
+    );
     const confirmed = window.confirm(
-      `${pokemon?.name ?? teamPokemon.pokemonId}を構築から外しますか？`,
+      `${pokemon?.name ?? candidate?.label ?? "Candidate"}を構築から外しますか？`,
     );
 
     if (!confirmed) {
       return;
     }
 
-    removePokemonFromTeam(teamPokemon.pokemonId);
+    removeTeamPokemon(teamPokemon.id);
   }
 
   if (!currentTeam) {
@@ -382,10 +388,10 @@ function TeamsPage() {
     );
   }
 
-  const analysis = analyzeTeam(currentTeam);
+  const analysis = analyzeTeam(currentTeam, candidates);
 
   const typeCoverage =
-    analyzeTeamTypeCoverage(currentTeam);
+    analyzeTeamTypeCoverage(currentTeam, candidates);
 
   const visibleRoles = analysis.roleCounts.filter(
     (role) => role.count > 0,
@@ -507,13 +513,16 @@ function TeamsPage() {
           <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
               {currentTeam.pokemon.map(
                 (teamPokemon) => {
-                  const pokemon = getPokemonById(
-                    teamPokemon.pokemonId,
+                  const { candidate, pokemon } = resolveTeamPokemon(
+                    teamPokemon,
+                    candidates,
                   );
 
-                  if (!pokemon) {
+                  if (!candidate) {
                     return null;
                   }
+                  const pokemonName =
+                    pokemon?.name ?? candidate.label ?? candidate.pokemonId;
 
                   return (
                     <article
@@ -533,7 +542,7 @@ function TeamsPage() {
                           type="button"
                           onClick={() => handleRemovePokemon(teamPokemon)}
                           className="rounded-lg bg-white p-1.5 text-slate-400 shadow-sm transition hover:bg-red-50 hover:text-red-600"
-                          aria-label={`${pokemon.name}を構築から外す`}
+                           aria-label={`${pokemonName}を構築から外す`}
                           title="構築から外す"
                         >
                           <Trash2 size={15} />
@@ -542,18 +551,18 @@ function TeamsPage() {
 
                       <div className="flex items-start gap-3 pr-16">
   <PokemonIcon
-    pokemonId={pokemon.id}
-    pokemonName={pokemon.name}
+    pokemonId={candidate.pokemonId}
+    pokemonName={pokemonName}
     size={56}
   />
 
   <div className="min-w-0">
     <h3 className="font-bold text-slate-900">
-      {pokemon.name}
+       {pokemonName}
     </h3>
 
     <div className="mt-2 flex flex-wrap gap-1.5">
-      {pokemon.types
+      {pokemon?.types
         .filter(
           (
             typeId,
@@ -651,9 +660,9 @@ function TeamsPage() {
                         </p>
 
                         <div className="mt-2 flex flex-wrap gap-1.5">
-                          {teamPokemon.roleIds.length >
+                          {candidate.roleIds.length >
                           0 ? (
-                            teamPokemon.roleIds.map(
+                            candidate.roleIds.map(
                               (roleId) => {
                                 const role =
                                   getTeamRole(roleId);
@@ -683,9 +692,9 @@ function TeamsPage() {
                         </p>
 
                         <div className="mt-2 flex flex-wrap gap-1.5">
-                          {teamPokemon.tags.length >
+                          {candidate.tags.length >
                           0 ? (
-                            teamPokemon.tags.map(
+                            candidate.tags.map(
                               (tag) => (
                                 <span
                                   key={tag}
@@ -913,6 +922,12 @@ function TeamsPage() {
         {editingTeamPokemon && (
           <TeamPokemonEditor
             teamPokemon={editingTeamPokemon}
+            candidate={
+              candidates.find(
+                (candidate) =>
+                  candidate.id === editingTeamPokemon.candidatePokemonId,
+              )!
+            }
             onSave={handleSaveTeamPokemon}
             onClose={() =>
               setEditingTeamPokemon(null)
@@ -922,15 +937,11 @@ function TeamsPage() {
 
         {isAddPokemonOpen && (
           <AddPokemonModal
-            selectedPokemonId={selectedPokemonId}
-            options={pokemonMaster.filter(
-              (pokemon) =>
-                !currentTeam.pokemon.some(
-                  (teamPokemon) => teamPokemon.pokemonId === pokemon.id,
-                ),
-            )}
+            selectedCandidateId={selectedCandidateId}
+            candidates={candidates}
+            excludedPokemonIds={getTeamPokemonIds(currentTeam, candidates)}
             message={addPokemonMessage}
-            onPokemonChange={setSelectedPokemonId}
+            onCandidateChange={setSelectedCandidateId}
             onAdd={handleAddPokemon}
             onClose={closeAddPokemonModal}
           />
@@ -951,19 +962,21 @@ function TeamsPage() {
 }
 
 type AddPokemonModalProps = {
-  selectedPokemonId: string;
-  options: typeof pokemonMaster;
+  selectedCandidateId: string;
+  candidates: ReturnType<typeof usePlanner>["plannerData"]["candidates"];
+  excludedPokemonIds: ReadonlySet<string>;
   message: string | null;
-  onPokemonChange: (pokemonId: string) => void;
+  onCandidateChange: (candidateId: string) => void;
   onAdd: () => void;
   onClose: () => void;
 };
 
 function AddPokemonModal({
-  selectedPokemonId,
-  options,
+  selectedCandidateId,
+  candidates,
+  excludedPokemonIds,
   message,
-  onPokemonChange,
+  onCandidateChange,
   onAdd,
   onClose,
 }: AddPokemonModalProps) {
@@ -972,9 +985,9 @@ function AddPokemonModal({
       <div className="w-full max-w-lg rounded-2xl bg-white shadow-xl">
         <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
           <div>
-            <h2 className="text-lg font-bold text-slate-900">ポケモンを追加</h2>
+            <h2 className="text-lg font-bold text-slate-900">候補を追加</h2>
             <p className="mt-1 text-sm text-slate-500">
-              構築へ直接追加するポケモンを選択します。
+              候補ライブラリから育成案を選択します。
             </p>
           </div>
           <button
@@ -988,11 +1001,12 @@ function AddPokemonModal({
         </div>
 
         <div className="p-6">
-          <PokemonAutocomplete
-            value={selectedPokemonId}
-            onChange={onPokemonChange}
-            options={options}
-            placeholder="ポケモンを検索"
+          <CandidateSelector
+            value={selectedCandidateId}
+            onChange={onCandidateChange}
+            candidates={candidates}
+            excludedPokemonIds={excludedPokemonIds}
+            placeholder="追加するCandidate"
           />
           {message && <p className="mt-3 text-sm text-red-600">{message}</p>}
         </div>
@@ -1008,7 +1022,7 @@ function AddPokemonModal({
           <button
             type="button"
             onClick={onAdd}
-            disabled={!selectedPokemonId}
+             disabled={!selectedCandidateId}
             className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
           >
             追加する

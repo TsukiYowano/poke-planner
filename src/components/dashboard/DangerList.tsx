@@ -5,11 +5,11 @@ import { getPokemonById } from "../../data/pokemon";
 import { getDangerousPokemon } from "../../utils/matchupAnalysis";
 
 function DangerList() {
-  const {
-    currentTeam,
-    rankingSet,
-    matchups,
-  } = usePlanner();
+  const { plannerData } = usePlanner();
+  const currentTeam = plannerData.teams.find(
+    (team) => team.id === plannerData.currentTeamId,
+  );
+  const { rankingSet, matchups } = plannerData;
 
   const dangerousPokemon = useMemo(() => {
     if (!currentTeam) {
