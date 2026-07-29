@@ -13,6 +13,7 @@ import RankingsPage from "./pages/RankingsPage";
 import RecommendationsPage from "./pages/RecommendationsPage";
 import SettingsPage from "./pages/SettingsPage";
 import TeamsPage from "./pages/TeamsPage";
+import TypeWeaknessAnalysisPage from "./pages/TypeWeaknessAnalysisPage";
 
 function App() {
   return (
@@ -59,6 +60,11 @@ function App() {
           <Route
             path="/coverage"
             element={<CoveragePage />}
+          />
+
+          <Route
+            path="/type-analysis"
+            element={<TypeWeaknessAnalysisPage />}
           />
 
           <Route

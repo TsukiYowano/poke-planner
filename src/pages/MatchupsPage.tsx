@@ -3,11 +3,11 @@ import { Edit3, MessageSquare, Search, X } from "lucide-react";
 import { usePlanner } from "../context/PlannerContext";
 import { pokemonMasterMap } from "../data/pokemon";
 import PokemonIcon from "../components/common/PokemonIcon";
+import ResponsibilityAnalysisPanel from "../components/matchups/ResponsibilityAnalysisPanel";
 import { useSynchronizedHorizontalScroll } from "../hooks/useSynchronizedHorizontalScroll";
 import type {
   CandidatePokemon,
   Matchup,
-  MatchupRating,
   RankingEntry,
 } from "../types/pokemon";
 import {
@@ -30,42 +30,7 @@ import {
   type CandidateMatchupSummary,
   type MatchupMode,
 } from "../utils/matchupTable";
-
-const ratingConfig: Record<
-  MatchupRating,
-  { label: string; name: string; className: string }
-> = {
-  unrated: {
-    label: "－",
-    name: "未評価",
-    className: "border-slate-200 bg-white text-slate-400",
-  },
-  "very-good": {
-    label: "◎",
-    name: "とても有利",
-    className: "border-emerald-300 bg-emerald-100 text-emerald-800",
-  },
-  good: {
-    label: "○",
-    name: "有利",
-    className: "border-green-300 bg-green-50 text-green-700",
-  },
-  even: {
-    label: "△",
-    name: "互角",
-    className: "border-amber-300 bg-amber-50 text-amber-700",
-  },
-  bad: {
-    label: "×",
-    name: "不利",
-    className: "border-red-300 bg-red-50 text-red-700",
-  },
-  "very-bad": {
-    label: "××",
-    name: "とても不利",
-    className: "border-rose-400 bg-rose-100 text-rose-800",
-  },
-};
+import { matchupRatingConfig } from "../utils/matchupRatingDisplay";
 
 function getPokemonName(pokemonId: string): string | undefined {
   return pokemonMasterMap[pokemonId]?.name;
@@ -75,6 +40,8 @@ function getCandidateName(candidate: CandidatePokemon): string {
   return getCandidateDisplayName(candidate, getPokemonName);
 }
 
+type TeamMatchupView = "table" | "responsibility";
+
 function MatchupsPage() {
   const { plannerData, setMatchupRating, updateMatchupMemo } = usePlanner();
   const { candidates, rankingSet, matchups } = plannerData;
@@ -82,6 +49,7 @@ function MatchupsPage() {
     (team) => team.id === plannerData.currentTeamId,
   );
   const [mode, setMode] = useState<MatchupMode>("team");
+  const [teamView, setTeamView] = useState<TeamMatchupView>("table");
   const [candidateQuery, setCandidateQuery] = useState("");
   const [rankingQuery, setRankingQuery] = useState("");
   const [selectedCandidateIds, setSelectedCandidateIds] = useState<string[]>(
@@ -230,52 +198,72 @@ function MatchupsPage() {
         onRankingQueryChange={setRankingQuery}
       />
 
-      {mode === "candidate" && allVisibleCandidates.length > 0 && (
-        <CandidateComparisonSelector
-          candidates={candidateOptions}
-          selectedIds={normalizedSelectedCandidateIds}
-          onToggle={(candidateId) =>
-            setSelectedCandidateIds((current) =>
-              toggleSelectedCandidateId(
-                normalizeSelectedCandidateIds(current, allVisibleCandidates),
-                candidateId,
-              ),
-            )
-          }
-        />
+      {mode === "team" && (
+        <TeamViewTabs value={teamView} onChange={setTeamView} />
       )}
 
-      {mode === "team" && visibleCandidates.length > 0 && (
-        <MatchupSummary
-          candidates={visibleCandidates}
-          summaries={summaryMap}
+      {mode === "team" && teamView === "responsibility" ? (
+        <ResponsibilityAnalysisPanel
+          team={currentTeam}
+          candidates={candidates}
+          rankingEntries={rankingSet.entries}
+          matchups={matchups}
         />
-      )}
-
-      {visibleCandidates.length === 0 ? (
-        <EmptyState
-          message={
-            candidateQuery
-              ? matchupUiText.noCandidateSearchResults
-              : mode === "team"
-                ? matchupUiText.noTeamCandidates
-                : matchupUiText.noVisibleCandidates
-          }
-        />
-      ) : entries.length === 0 ? (
-        <EmptyState message="検索条件に一致する仮想敵がありません。" />
       ) : (
-        <CandidateMatchupTable
-          candidates={visibleCandidates}
-          entries={entries}
-          summaryMap={summaryMap}
-          matchupMap={matchupMap}
-          teamAggregateCandidates={
-            mode === "team" ? allTeamCandidates : undefined
-          }
-          onCycleRating={cycleRating}
-          onEditMemo={(candidate, entry) => setEditing({ candidate, entry })}
-        />
+        <>
+          {mode === "candidate" && allVisibleCandidates.length > 0 && (
+            <CandidateComparisonSelector
+              candidates={candidateOptions}
+              selectedIds={normalizedSelectedCandidateIds}
+              onToggle={(candidateId) =>
+                setSelectedCandidateIds((current) =>
+                  toggleSelectedCandidateId(
+                    normalizeSelectedCandidateIds(
+                      current,
+                      allVisibleCandidates,
+                    ),
+                    candidateId,
+                  ),
+                )
+              }
+            />
+          )}
+
+          {mode === "team" && visibleCandidates.length > 0 && (
+            <MatchupSummary
+              candidates={visibleCandidates}
+              summaries={summaryMap}
+            />
+          )}
+
+          {visibleCandidates.length === 0 ? (
+            <EmptyState
+              message={
+                candidateQuery
+                  ? matchupUiText.noCandidateSearchResults
+                  : mode === "team"
+                    ? matchupUiText.noTeamCandidates
+                    : matchupUiText.noVisibleCandidates
+              }
+            />
+          ) : entries.length === 0 ? (
+            <EmptyState message="検索条件に一致する仮想敵がありません。" />
+          ) : (
+            <CandidateMatchupTable
+              candidates={visibleCandidates}
+              entries={entries}
+              summaryMap={summaryMap}
+              matchupMap={matchupMap}
+              teamAggregateCandidates={
+                mode === "team" ? allTeamCandidates : undefined
+              }
+              onCycleRating={cycleRating}
+              onEditMemo={(candidate, entry) =>
+                setEditing({ candidate, entry })
+              }
+            />
+          )}
+        </>
       )}
 
       {editing && (
@@ -290,6 +278,41 @@ function MatchupsPage() {
           onClose={() => setEditing(null)}
         />
       )}
+    </div>
+  );
+}
+
+function TeamViewTabs({
+  value,
+  onChange,
+}: {
+  value: TeamMatchupView;
+  onChange: (value: TeamMatchupView) => void;
+}) {
+  return (
+    <div
+      className="mt-4 inline-flex rounded-xl border border-slate-200 bg-slate-100 p-1"
+      aria-label="構築モードの表示切り替え"
+    >
+      {([
+        ["table", "相性表"],
+        ["responsibility", "責任度分析"],
+      ] as const).map(([tabValue, label]) => (
+        <button
+          key={tabValue}
+          type="button"
+          onClick={() => onChange(tabValue)}
+          aria-pressed={value === tabValue}
+          className={[
+            "rounded-lg px-4 py-2 text-sm font-semibold transition",
+            value === tabValue
+              ? "bg-white text-blue-700 shadow-sm"
+              : "text-slate-500 hover:text-slate-700",
+          ].join(" ")}
+        >
+          {label}
+        </button>
+      ))}
     </div>
   );
 }
@@ -644,7 +667,7 @@ function RankingHeader({
             最良{" "}
             {teamSummary.bestRating === "unrated"
               ? "—"
-              : ratingConfig[teamSummary.bestRating].label}
+              : matchupRatingConfig[teamSummary.bestRating].label}
           </span>
         </div>
       )}
@@ -678,7 +701,7 @@ function TeamAggregateCell({
         最良{" "}
         {summary.bestRating === "unrated"
           ? "—"
-          : ratingConfig[summary.bestRating].label}
+          : matchupRatingConfig[summary.bestRating].label}
       </p>
     </td>
   );
@@ -694,7 +717,7 @@ function MatchupCell({
   onEditMemo: () => void;
 }) {
   const rating = matchup?.rating ?? "unrated";
-  const config = ratingConfig[rating];
+  const config = matchupRatingConfig[rating];
   return (
     <td className="px-2 py-3 text-center">
       <button
@@ -761,10 +784,11 @@ function MatchupSummary({
                   .map((rating) => (
                     <span
                       key={rating}
-                      title={ratingConfig[rating].name}
-                      className={`rounded border px-1.5 py-0.5 text-[11px] ${ratingConfig[rating].className}`}
+                      title={matchupRatingConfig[rating].name}
+                      className={`rounded border px-1.5 py-0.5 text-[11px] ${matchupRatingConfig[rating].className}`}
                     >
-                      {ratingConfig[rating].label} {summary?.counts[rating] ?? 0}
+                      {matchupRatingConfig[rating].label}{" "}
+                      {summary?.counts[rating] ?? 0}
                     </span>
                   ))}
               </div>

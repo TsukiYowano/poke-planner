@@ -66,6 +66,19 @@ const matchupRatingScores: Record<MatchupRating, number> = {
   unrated: -1,
 };
 
+export function isGoodOrBetterMatchupRating(
+  rating: MatchupRating,
+): boolean {
+  return matchupRatingScores[rating] >= matchupRatingScores.good;
+}
+
+export function compareMatchupRatings(
+  left: MatchupRating,
+  right: MatchupRating,
+): number {
+  return matchupRatingScores[left] - matchupRatingScores[right];
+}
+
 export function parseSelectedCandidateIds(raw: string | null): string[] {
   if (!raw) return [];
   try {
@@ -263,8 +276,7 @@ export function summarizeTeamRankingMatchup(
     )[0] ?? "unrated";
   return {
     goodOrBetterCount: ratings.filter(
-      (rating) =>
-        matchupRatingScores[rating] >= matchupRatingScores.good,
+      isGoodOrBetterMatchupRating,
     ).length,
     candidateCount: candidates.length,
     bestRating,

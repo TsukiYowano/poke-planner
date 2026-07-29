@@ -15,6 +15,7 @@ import { getPokemonTypeName } from "../data/types";
 import { usePlanner } from "../context/PlannerContext";
 import type {
   CandidatePokemon,
+  Matchup,
   RankingSet,
   TeamRoleId,
 } from "../types/pokemon";
@@ -25,6 +26,13 @@ import {
   type CompareAnalysis,
   type CoverageChange,
 } from "../utils/compareAnalysis";
+import {
+  analyzeCandidateReplacement,
+  type CandidateReplacementAnalysis,
+  type ReplacementMetric,
+  type ReplacementRatingChange,
+} from "../utils/candidateReplacementAnalysis";
+import { matchupRatingConfig } from "../utils/matchupRatingDisplay";
 
 function ComparePage() {
   const { plannerData } = usePlanner();
@@ -70,6 +78,24 @@ function ComparePage() {
       incoming.id,
     );
   }, [candidates, currentTeam, incoming, matchups, outgoing]);
+  const replacementImpact = useMemo(() => {
+    if (!currentTeam || !comparison || !incoming) return null;
+    return analyzeCandidateReplacement(
+      currentTeam,
+      candidates,
+      comparison.outgoingCandidate,
+      incoming,
+      rankingSet.entries,
+      matchups,
+    );
+  }, [
+    candidates,
+    comparison,
+    currentTeam,
+    incoming,
+    matchups,
+    rankingSet.entries,
+  ]);
 
   if (!currentTeam) {
     return <EmptyState message="比較する構築が登録されていません。" />;
@@ -134,6 +160,7 @@ function ComparePage() {
           incoming={incoming}
           comparison={comparison}
           rankingSet={rankingSet}
+          replacementImpact={replacementImpact}
         />
       )}
     </div>
@@ -144,10 +171,12 @@ function ComparisonResult({
   incoming,
   comparison,
   rankingSet,
+  replacementImpact,
 }: {
   incoming: CandidatePokemon;
   comparison: CompareAnalysis;
   rankingSet: RankingSet;
+  replacementImpact: CandidateReplacementAnalysis | null;
 }) {
   const outgoingPokemon = getPokemonById(
     comparison.outgoingCandidate.pokemonId,
@@ -180,6 +209,10 @@ function ComparisonResult({
         </div>
         <PokemonSummary title="変更後" pokemonName={incomingPokemon?.name ?? incoming.pokemonId} roleIds={incoming.roleIds} />
       </section>
+
+      {replacementImpact && (
+        <ReplacementImpactSection analysis={replacementImpact} />
+      )}
 
       <section className="grid gap-4 sm:grid-cols-3">
         <MetricCard label="改善候補" value={improvementCount} unit="件" icon={CheckCircle2} />
@@ -244,6 +277,256 @@ function ComparisonResult({
         </div>
       </section>
     </div>
+  );
+}
+
+function ReplacementImpactSection({
+  analysis,
+}: {
+  analysis: CandidateReplacementAnalysis;
+}) {
+  const summaryItems: {
+    label: string;
+    metric: ReplacementMetric;
+    lowerIsBetter?: boolean;
+    higherIsBetter?: boolean;
+  }[] = [
+    {
+      label: "要注意仮想敵",
+      metric: analysis.summary.warnings,
+      lowerIsBetter: true,
+    },
+    {
+      label: "対応なし",
+      metric: analysis.summary.uncovered,
+      lowerIsBetter: true,
+    },
+    {
+      label: "未評価",
+      metric: analysis.summary.unrated,
+      lowerIsBetter: true,
+    },
+    {
+      label: "単独対応数",
+      metric: analysis.summary.soleResponsibilities,
+    },
+    {
+      label: "共同対応数",
+      metric: analysis.summary.sharedResponsibilities,
+      higherIsBetter: true,
+    },
+  ];
+
+  return (
+    <section className="space-y-5" aria-labelledby="replacement-impact-heading">
+      <div>
+        <h2
+          id="replacement-impact-heading"
+          className="text-lg font-bold text-slate-900"
+        >
+          構築への影響
+        </h2>
+        <p className="mt-1 text-sm text-slate-500">
+          実際の構築を変更せず、候補を入れ替えた場合の相性評価を比較します。
+        </p>
+      </div>
+
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+        {summaryItems.map((item) => (
+          <ReplacementMetricCard key={item.label} {...item} />
+        ))}
+      </div>
+
+      <RatingChangePanel
+        title={`改善（${analysis.improvedEntries.length}）`}
+        tone="positive"
+        entries={analysis.improvedEntries}
+        emptyMessage="改善した仮想敵はありません。"
+      />
+      <RatingChangePanel
+        title={`悪化（${analysis.worsenedEntries.length}）`}
+        tone="negative"
+        entries={analysis.worsenedEntries}
+        emptyMessage="悪化した仮想敵はありません。"
+      />
+
+      <section className="rounded-2xl border border-amber-200 bg-amber-50/50 p-5">
+        <h3 className="font-bold text-amber-900">要注意仮想敵の変化</h3>
+        <div className="mt-4 grid gap-4 md:grid-cols-2">
+          <WarningChangeList
+            title={`要注意から外れた（${analysis.removedWarnings.length}）`}
+            entries={analysis.removedWarnings}
+            emptyMessage="要注意から外れた仮想敵はありません。"
+          />
+          <WarningChangeList
+            title={`新しく要注意になった（${analysis.addedWarnings.length}）`}
+            entries={analysis.addedWarnings}
+            emptyMessage="新しく要注意になった仮想敵はありません。"
+          />
+        </div>
+      </section>
+    </section>
+  );
+}
+
+function ReplacementMetricCard({
+  label,
+  metric,
+  lowerIsBetter = false,
+  higherIsBetter = false,
+}: {
+  label: string;
+  metric: ReplacementMetric;
+  lowerIsBetter?: boolean;
+  higherIsBetter?: boolean;
+}) {
+  const isImprovement =
+    (lowerIsBetter && metric.delta < 0) ||
+    (higherIsBetter && metric.delta > 0);
+  const isWorsening =
+    (lowerIsBetter && metric.delta > 0) ||
+    (higherIsBetter && metric.delta < 0);
+  const deltaClassName = isImprovement
+    ? "text-emerald-600"
+    : isWorsening
+      ? "text-rose-600"
+      : "text-blue-600";
+
+  return (
+    <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <p className="text-xs font-bold text-slate-500">{label}</p>
+      <p className="mt-2 flex items-center gap-2 text-xl font-bold text-slate-900">
+        <span>{metric.before}</span>
+        <ArrowRight size={16} className="text-slate-400" />
+        <span>{metric.after}</span>
+      </p>
+      <p className={`mt-1 text-sm font-bold ${deltaClassName}`}>
+        {metric.delta > 0 ? "+" : ""}
+        {metric.delta}
+      </p>
+    </article>
+  );
+}
+
+function RatingChangePanel({
+  title,
+  tone,
+  entries,
+  emptyMessage,
+}: {
+  title: string;
+  tone: "positive" | "negative";
+  entries: ReplacementRatingChange[];
+  emptyMessage: string;
+}) {
+  const positive = tone === "positive";
+  return (
+    <section
+      className={[
+        "rounded-2xl border p-5",
+        positive
+          ? "border-emerald-200 bg-emerald-50/60"
+          : "border-rose-200 bg-rose-50/60",
+      ].join(" ")}
+    >
+      <h3
+        className={`font-bold ${positive ? "text-emerald-900" : "text-rose-900"}`}
+      >
+        {title}
+      </h3>
+      {entries.length === 0 ? (
+        <p
+          className={`mt-3 text-sm ${positive ? "text-emerald-700" : "text-rose-700"}`}
+        >
+          {emptyMessage}
+        </p>
+      ) : (
+        <div className="mt-4 grid gap-2 md:grid-cols-2">
+          {entries.map((change) => (
+            <RatingChangeRow key={change.entry.id} change={change} />
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}
+
+function RatingChangeRow({
+  change,
+}: {
+  change: ReplacementRatingChange;
+}) {
+  const pokemonName =
+    getPokemonById(change.entry.pokemonId)?.name ?? change.entry.pokemonId;
+  return (
+    <div className="grid min-w-0 grid-cols-[2rem_minmax(0,1fr)_auto] items-center gap-3 rounded-xl border border-white/80 bg-white px-3 py-2.5 text-sm shadow-sm">
+      <span className="text-right text-xs font-semibold text-slate-400">
+        {change.entry.rank}
+      </span>
+      <span className="truncate font-semibold text-slate-800" title={pokemonName}>
+        {pokemonName}
+      </span>
+      <span className="flex items-center gap-1.5">
+        <RatingSymbol rating={change.beforeRating} />
+        <ArrowRight size={13} className="text-slate-400" />
+        <RatingSymbol rating={change.afterRating} />
+      </span>
+    </div>
+  );
+}
+
+function RatingSymbol({
+  rating,
+}: {
+  rating: Matchup["rating"];
+}) {
+  const config = matchupRatingConfig[rating];
+  return (
+    <span
+      title={config.name}
+      className={`inline-flex min-w-8 justify-center rounded-md border px-1.5 py-0.5 text-xs font-bold ${config.className}`}
+    >
+      {config.label}
+    </span>
+  );
+}
+
+function WarningChangeList({
+  title,
+  entries,
+  emptyMessage,
+}: {
+  title: string;
+  entries: RankingSet["entries"];
+  emptyMessage: string;
+}) {
+  return (
+    <section className="rounded-xl border border-amber-200 bg-white p-4">
+      <h4 className="text-sm font-bold text-slate-800">{title}</h4>
+      {entries.length === 0 ? (
+        <p className="mt-3 text-sm text-slate-400">{emptyMessage}</p>
+      ) : (
+        <ol className="mt-3 space-y-2">
+          {entries.map((entry) => {
+            const name =
+              getPokemonById(entry.pokemonId)?.name ?? entry.pokemonId;
+            return (
+              <li
+                key={entry.id}
+                className="grid grid-cols-[2rem_minmax(0,1fr)] items-center gap-3 text-sm"
+              >
+                <span className="text-right text-xs font-semibold text-slate-400">
+                  {entry.rank}
+                </span>
+                <span className="truncate font-semibold text-slate-700" title={name}>
+                  {name}
+                </span>
+              </li>
+            );
+          })}
+        </ol>
+      )}
+    </section>
   );
 }
 

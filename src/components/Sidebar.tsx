@@ -3,6 +3,7 @@ import {
   Home,
   LayoutDashboard,
   Settings,
+  ShieldAlert,
   Sparkles,
   Swords,
   Target,
@@ -56,6 +57,11 @@ const menuItems = [
     label: "タイプ・技範囲",
     path: "/coverage",
     icon: Zap,
+  },
+  {
+    label: "苦手タイプ分析",
+    path: "/type-analysis",
+    icon: ShieldAlert,
   },
 ];
 
