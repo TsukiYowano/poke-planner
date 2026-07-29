@@ -8,6 +8,10 @@ import type {
 
 export type MatchupMode = "team" | "candidate";
 
+export const MATCHUP_SELECTED_CANDIDATES_STORAGE_KEY =
+  "pokeplanner:matchups:selected-candidates";
+export const MAX_SELECTED_MATCHUP_CANDIDATES = 3;
+
 export const matchupUiText = {
   candidateList: "候補一覧",
   candidateSummary: "候補別集計",
@@ -33,6 +37,67 @@ export type CandidateMatchupSummary = {
   unratedCount: number;
   counts: Record<MatchupRating, number>;
 };
+
+export type TeamRankingMatchupSummary = {
+  goodOrBetterCount: number;
+  candidateCount: number;
+  bestRating: MatchupRating;
+};
+
+const matchupRatingScores: Record<MatchupRating, number> = {
+  "very-good": 4,
+  good: 3,
+  even: 2,
+  bad: 1,
+  "very-bad": 0,
+  unrated: -1,
+};
+
+export function parseSelectedCandidateIds(raw: string | null): string[] {
+  if (!raw) return [];
+  try {
+    const value: unknown = JSON.parse(raw);
+    if (!Array.isArray(value)) return [];
+    return [...new Set(value.filter((id): id is string => typeof id === "string"))]
+      .slice(0, MAX_SELECTED_MATCHUP_CANDIDATES);
+  } catch {
+    return [];
+  }
+}
+
+export function normalizeSelectedCandidateIds(
+  selectedIds: string[],
+  visibleCandidates: CandidatePokemon[],
+): string[] {
+  const visibleIds = new Set(
+    visibleCandidates
+      .filter((candidate) => candidate.isVisibleInCandidateMatchups)
+      .map((candidate) => candidate.id),
+  );
+  const normalized = [...new Set(selectedIds)]
+    .filter((id) => visibleIds.has(id))
+    .slice(0, MAX_SELECTED_MATCHUP_CANDIDATES);
+  return normalized.length > 0
+    ? normalized
+    : visibleCandidates
+        .filter((candidate) => candidate.isVisibleInCandidateMatchups)
+        .slice(0, MAX_SELECTED_MATCHUP_CANDIDATES)
+        .map((candidate) => candidate.id);
+}
+
+export function toggleSelectedCandidateId(
+  selectedIds: string[],
+  candidateId: string,
+): string[] {
+  if (selectedIds.includes(candidateId)) {
+    return selectedIds.length === 1
+      ? selectedIds
+      : selectedIds.filter((id) => id !== candidateId);
+  }
+  return selectedIds.length >= MAX_SELECTED_MATCHUP_CANDIDATES
+    ? selectedIds
+    : [...selectedIds, candidateId];
+}
 
 export function matchupKey(
   candidatePokemonId: string,
@@ -144,4 +209,27 @@ export function summarizeCandidateMatchups(
       counts,
     };
   });
+}
+
+export function summarizeTeamRankingMatchup(
+  candidates: CandidatePokemon[],
+  rankingEntryId: string,
+  matchupMap: Map<string, Matchup>,
+): TeamRankingMatchupSummary {
+  const ratings = candidates.map(
+    (candidate) =>
+      matchupMap.get(matchupKey(candidate.id, rankingEntryId))?.rating ??
+      "unrated",
+  );
+  const bestRating =
+    [...ratings].sort(
+      (a, b) => matchupRatingScores[b] - matchupRatingScores[a],
+    )[0] ?? "unrated";
+  return {
+    goodOrBetterCount: ratings.filter(
+      (rating) => rating === "very-good" || rating === "good",
+    ).length,
+    candidateCount: candidates.length,
+    bestRating,
+  };
 }

@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+.matchup-table {
+  width: var(--matchup-table-min-width);
+  min-width: var(--matchup-table-min-width);
+}
+
+@media (min-width: 768px) {
+  .matchup-table {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .matchup-table[data-desktop-overflow="true"] {
+    width: var(--matchup-table-min-width);
+    min-width: var(--matchup-table-min-width);
+  }
+
+  .matchup-table:not([data-desktop-overflow="true"])
+    .matchup-candidate-column {
+    width: auto;
+  }
+}

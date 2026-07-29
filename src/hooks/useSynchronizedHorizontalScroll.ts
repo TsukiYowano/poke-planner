@@ -2,6 +2,7 @@ import {
   useCallback,
   useLayoutEffect,
   useRef,
+  useState,
   type RefObject,
   type UIEvent,
 } from "react";
@@ -25,15 +26,30 @@ export function useSynchronizedHorizontalScroll(): {
   const topScrollRef = useRef<HTMLDivElement>(null);
   const tableScrollRef = useRef<HTMLDivElement>(null);
   const topSpacerRef = useRef<HTMLDivElement>(null);
+  const [isDesktop, setIsDesktop] = useState(() =>
+    typeof window === "undefined"
+      ? true
+      : window.matchMedia("(min-width: 768px)").matches,
+  );
 
   const onTopScroll = useCallback((event: UIEvent<HTMLDivElement>) => {
+    if (!isDesktop) return;
     const tableScroll = tableScrollRef.current;
     if (tableScroll) synchronizeScrollLeft(event.currentTarget, tableScroll);
-  }, []);
+  }, [isDesktop]);
 
   const onTableScroll = useCallback((event: UIEvent<HTMLDivElement>) => {
+    if (!isDesktop) return;
     const topScroll = topScrollRef.current;
     if (topScroll) synchronizeScrollLeft(event.currentTarget, topScroll);
+  }, [isDesktop]);
+
+  useLayoutEffect(() => {
+    const media = window.matchMedia("(min-width: 768px)");
+    const updateMode = () => setIsDesktop(media.matches);
+    updateMode();
+    media.addEventListener("change", updateMode);
+    return () => media.removeEventListener("change", updateMode);
   }, []);
 
   useLayoutEffect(() => {
@@ -41,6 +57,11 @@ export function useSynchronizedHorizontalScroll(): {
     const tableScroll = tableScrollRef.current;
     const spacer = topSpacerRef.current;
     if (!topScroll || !tableScroll || !spacer) return;
+    if (!isDesktop) {
+      topScroll.hidden = true;
+      spacer.style.width = "0px";
+      return;
+    }
 
     const updateRange = () => {
       spacer.style.width = `${tableScroll.scrollWidth}px`;
@@ -67,7 +88,7 @@ export function useSynchronizedHorizontalScroll(): {
       observer?.disconnect();
       window.removeEventListener("resize", updateRange);
     };
-  });
+  }, [isDesktop]);
 
   return {
     topScrollRef,

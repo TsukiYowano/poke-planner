@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import { Edit3, MessageSquare, Search, X } from "lucide-react";
 import { usePlanner } from "../context/PlannerContext";
 import { pokemonMasterMap } from "../data/pokemon";
@@ -16,10 +16,16 @@ import {
   filterRankingEntries,
   getNextMatchupRating,
   getCandidateDisplayName,
+  MATCHUP_SELECTED_CANDIDATES_STORAGE_KEY,
+  MAX_SELECTED_MATCHUP_CANDIDATES,
   matchupKey,
   matchupRatings,
   matchupUiText,
+  normalizeSelectedCandidateIds,
+  parseSelectedCandidateIds,
   summarizeCandidateMatchups,
+  summarizeTeamRankingMatchup,
+  toggleSelectedCandidateId,
   type CandidateMatchupSummary,
   type MatchupMode,
 } from "../utils/matchupTable";
@@ -77,22 +83,100 @@ function MatchupsPage() {
   const [mode, setMode] = useState<MatchupMode>("team");
   const [candidateQuery, setCandidateQuery] = useState("");
   const [rankingQuery, setRankingQuery] = useState("");
+  const [selectedCandidateIds, setSelectedCandidateIds] = useState<string[]>(
+    () =>
+      typeof window === "undefined"
+        ? []
+        : parseSelectedCandidateIds(
+            window.localStorage.getItem(
+              MATCHUP_SELECTED_CANDIDATES_STORAGE_KEY,
+            ),
+          ),
+  );
   const [editing, setEditing] = useState<{
     candidate: CandidatePokemon;
     entry: RankingEntry;
   } | null>(null);
 
-  const visibleCandidates = useMemo(
+  const teamCandidates = useMemo(
     () =>
       filterMatchupCandidates(
-        mode,
+        "team",
         candidates,
         currentTeam,
         candidateQuery,
         getPokemonName,
       ),
-    [candidateQuery, candidates, currentTeam, mode],
+    [candidateQuery, candidates, currentTeam],
   );
+  const allTeamCandidates = useMemo(
+    () =>
+      filterMatchupCandidates(
+        "team",
+        candidates,
+        currentTeam,
+        "",
+        getPokemonName,
+      ),
+    [candidates, currentTeam],
+  );
+  const candidateOptions = useMemo(
+    () =>
+      filterMatchupCandidates(
+        "candidate",
+        candidates,
+        currentTeam,
+        candidateQuery,
+        getPokemonName,
+      ),
+    [candidateQuery, candidates, currentTeam],
+  );
+  const allVisibleCandidates = useMemo(
+    () =>
+      filterMatchupCandidates(
+        "candidate",
+        candidates,
+        currentTeam,
+        "",
+        getPokemonName,
+      ),
+    [candidates, currentTeam],
+  );
+  const normalizedSelectedCandidateIds = useMemo(
+    () =>
+      normalizeSelectedCandidateIds(
+        selectedCandidateIds,
+        allVisibleCandidates,
+      ),
+    [allVisibleCandidates, selectedCandidateIds],
+  );
+  const visibleCandidates = useMemo(
+    () =>
+      mode === "team"
+        ? teamCandidates
+        : allVisibleCandidates.filter((candidate) =>
+            normalizedSelectedCandidateIds.includes(candidate.id),
+          ),
+    [
+      allVisibleCandidates,
+      mode,
+      normalizedSelectedCandidateIds,
+      teamCandidates,
+    ],
+  );
+
+  useEffect(() => {
+    const isSame =
+      normalizedSelectedCandidateIds.length === selectedCandidateIds.length &&
+      normalizedSelectedCandidateIds.every(
+        (id, index) => id === selectedCandidateIds[index],
+      );
+    if (!isSame) setSelectedCandidateIds(normalizedSelectedCandidateIds);
+    window.localStorage.setItem(
+      MATCHUP_SELECTED_CANDIDATES_STORAGE_KEY,
+      JSON.stringify(normalizedSelectedCandidateIds),
+    );
+  }, [normalizedSelectedCandidateIds, selectedCandidateIds]);
   const entries = useMemo(
     () =>
       filterRankingEntries(
@@ -149,7 +233,22 @@ function MatchupsPage() {
         onRankingQueryChange={setRankingQuery}
       />
 
-      {visibleCandidates.length > 0 && (
+      {mode === "candidate" && allVisibleCandidates.length > 0 && (
+        <CandidateComparisonSelector
+          candidates={candidateOptions}
+          selectedIds={normalizedSelectedCandidateIds}
+          onToggle={(candidateId) =>
+            setSelectedCandidateIds((current) =>
+              toggleSelectedCandidateId(
+                normalizeSelectedCandidateIds(current, allVisibleCandidates),
+                candidateId,
+              ),
+            )
+          }
+        />
+      )}
+
+      {mode === "team" && visibleCandidates.length > 0 && (
         <MatchupSummary
           candidates={visibleCandidates}
           summaries={summaryMap}
@@ -174,6 +273,9 @@ function MatchupsPage() {
           entries={entries}
           summaryMap={summaryMap}
           matchupMap={matchupMap}
+          teamAggregateCandidates={
+            mode === "team" ? allTeamCandidates : undefined
+          }
           onCycleRating={cycleRating}
           onEditMemo={(candidate, entry) => setEditing({ candidate, entry })}
         />
@@ -274,11 +376,93 @@ function SearchInput({
   );
 }
 
+function CandidateComparisonSelector({
+  candidates,
+  selectedIds,
+  onToggle,
+}: {
+  candidates: CandidatePokemon[];
+  selectedIds: string[];
+  onToggle: (candidateId: string) => void;
+}) {
+  return (
+    <section className="mt-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <h2 className="text-sm font-bold text-slate-800">比較する候補</h2>
+          <p className="mt-0.5 text-xs text-slate-500">
+            1〜{MAX_SELECTED_MATCHUP_CANDIDATES}件を選択できます
+          </p>
+        </div>
+        <span className="shrink-0 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700">
+          選択中 {selectedIds.length}/{MAX_SELECTED_MATCHUP_CANDIDATES}
+        </span>
+      </div>
+      {candidates.length === 0 ? (
+        <p className="mt-3 text-sm text-slate-500">
+          検索条件に一致する候補がありません。
+        </p>
+      ) : (
+        <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          {candidates.map((candidate) => {
+            const selected = selectedIds.includes(candidate.id);
+            const disabled =
+              !selected &&
+              selectedIds.length >= MAX_SELECTED_MATCHUP_CANDIDATES;
+            return (
+              <button
+                key={candidate.id}
+                type="button"
+                onClick={() => onToggle(candidate.id)}
+                disabled={disabled}
+                aria-pressed={selected}
+                className={[
+                  "flex min-w-0 items-center gap-3 rounded-xl border p-3 text-left transition",
+                  selected
+                    ? "border-blue-400 bg-blue-50 ring-1 ring-blue-200"
+                    : "border-slate-200 bg-white",
+                  disabled ? "cursor-not-allowed opacity-45" : "hover:border-blue-300",
+                ].join(" ")}
+              >
+                <PokemonIcon
+                  pokemonId={candidate.pokemonId}
+                  pokemonName={getCandidateName(candidate)}
+                  size={36}
+                />
+                <span className="min-w-0 flex-1">
+                  <span className="block truncate text-sm font-bold text-slate-800">
+                    {getCandidateName(candidate)}
+                  </span>
+                  <span className="block truncate text-xs text-blue-600">
+                    {candidate.label || candidate.pokemonId}
+                  </span>
+                </span>
+                <span
+                  aria-hidden="true"
+                  className={[
+                    "flex h-5 w-5 shrink-0 items-center justify-center rounded border text-xs font-bold",
+                    selected
+                      ? "border-blue-600 bg-blue-600 text-white"
+                      : "border-slate-300 text-transparent",
+                  ].join(" ")}
+                >
+                  ✓
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </section>
+  );
+}
+
 function CandidateMatchupTable({
   candidates,
   entries,
   summaryMap,
   matchupMap,
+  teamAggregateCandidates,
   onCycleRating,
   onEditMemo,
 }: {
@@ -286,6 +470,7 @@ function CandidateMatchupTable({
   entries: RankingEntry[];
   summaryMap: Map<string, CandidateMatchupSummary>;
   matchupMap: Map<string, Matchup>;
+  teamAggregateCandidates?: CandidatePokemon[];
   onCycleRating: (candidateId: string, entryId: string) => void;
   onEditMemo: (candidate: CandidatePokemon, entry: RankingEntry) => void;
 }) {
@@ -296,6 +481,12 @@ function CandidateMatchupTable({
     onTopScroll,
     onTableScroll,
   } = useSynchronizedHorizontalScroll();
+  const hasTeamAggregate = teamAggregateCandidates !== undefined;
+  const minimumTableWidth =
+    176 + candidates.length * 144 + (hasTeamAggregate ? 128 : 0);
+  const tableStyle = {
+    "--matchup-table-min-width": `${minimumTableWidth}px`,
+  } as CSSProperties;
 
   return (
     <section className="mt-5 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
@@ -303,33 +494,34 @@ function CandidateMatchupTable({
         ref={topScrollRef}
         onScroll={onTopScroll}
         aria-label="相性表の上部横スクロール"
-        className="overflow-x-auto overflow-y-hidden border-b border-slate-200 bg-slate-50"
+        className="hidden overflow-x-auto overflow-y-hidden border-b border-slate-200 bg-slate-50 md:block"
       >
         <div ref={topSpacerRef} className="h-3" />
       </div>
       <div
         ref={tableScrollRef}
         onScroll={onTableScroll}
-        className="max-h-[70vh] overflow-auto"
+        className="matchup-table-scroll overflow-x-auto overflow-y-visible md:max-h-[70vh] md:overflow-auto"
+        style={{ touchAction: "pan-x pan-y" }}
       >
         <table
-          className="w-full table-fixed border-collapse text-sm"
-          style={{
-            minWidth:
-              candidates.length > 6
-                ? `calc(13rem + ${candidates.length} * 10rem)`
-                : "100%",
-          }}
+          className="matchup-table table-fixed border-collapse text-sm"
+          data-desktop-overflow={candidates.length > 6 ? "true" : "false"}
+          style={tableStyle}
         >
           <colgroup>
-            <col className="w-52" />
+            <col className="w-44 md:w-52" />
             {candidates.map((candidate) => (
-              <col key={candidate.id} />
+              <col
+                key={candidate.id}
+                className="matchup-candidate-column w-36"
+              />
             ))}
+            {hasTeamAggregate && <col className="w-32" />}
           </colgroup>
           <thead>
             <tr className="border-b border-slate-200 bg-slate-50">
-              <th className="sticky left-0 top-0 z-40 min-w-52 bg-slate-50 px-4 py-3 text-left shadow-[1px_1px_0_0_rgb(226_232_240)]">
+              <th className="sticky top-16 z-40 min-w-44 bg-slate-50 px-3 py-3 text-left shadow-[1px_1px_0_0_rgb(226_232_240)] md:left-0 md:top-0 md:min-w-52 md:px-4">
                 順位・仮想敵
               </th>
               {candidates.map((candidate) => (
@@ -339,6 +531,11 @@ function CandidateMatchupTable({
                   summary={summaryMap.get(candidate.id)}
                 />
               ))}
+              {hasTeamAggregate && (
+                <th className="sticky top-16 z-30 bg-slate-50 px-2 py-3 text-center shadow-[0_1px_0_0_rgb(226_232_240)] md:top-0">
+                  構築集計
+                </th>
+              )}
             </tr>
           </thead>
           <tbody>
@@ -355,6 +552,15 @@ function CandidateMatchupTable({
                     onEditMemo={() => onEditMemo(candidate, entry)}
                   />
                 ))}
+                {teamAggregateCandidates && (
+                  <TeamAggregateCell
+                    summary={summarizeTeamRankingMatchup(
+                      teamAggregateCandidates,
+                      entry.id,
+                      matchupMap,
+                    )}
+                  />
+                )}
               </tr>
             ))}
           </tbody>
@@ -372,13 +578,13 @@ function CandidateHeader({
   summary?: CandidateMatchupSummary;
 }) {
   return (
-    <th className="sticky top-0 z-30 bg-slate-50 px-2 py-3 text-center shadow-[0_1px_0_0_rgb(226_232_240)]">
+    <th className="sticky top-16 z-30 bg-slate-50 px-2 py-3 text-center shadow-[0_1px_0_0_rgb(226_232_240)] md:top-0">
       <PokemonIcon
         pokemonId={candidate.pokemonId}
         pokemonName={getCandidateName(candidate)}
         size={40}
       />
-      <span className="mt-1 block font-bold text-slate-800">
+      <span className="mt-1 block truncate whitespace-nowrap font-bold text-slate-800">
         {getCandidateName(candidate)}
       </span>
       <span className="block truncate text-xs text-blue-600">
@@ -394,7 +600,7 @@ function CandidateHeader({
 function RankingHeader({ entry }: { entry: RankingEntry }) {
   const pokemon = pokemonMasterMap[entry.pokemonId];
   return (
-    <th className="sticky left-0 z-10 bg-white px-4 py-3 text-left">
+    <th className="bg-white px-3 py-3 text-left md:sticky md:left-0 md:z-10 md:px-4">
       <div className="flex items-center gap-3">
         <span className="w-7 text-slate-400">{entry.rank}</span>
         <PokemonIcon
@@ -402,11 +608,31 @@ function RankingHeader({ entry }: { entry: RankingEntry }) {
           pokemonName={pokemon?.name}
           size={36}
         />
-        <span className="font-semibold text-slate-800">
+        <span className="truncate whitespace-nowrap font-semibold text-slate-800">
           {pokemon?.name ?? entry.pokemonId}
         </span>
       </div>
     </th>
+  );
+}
+
+function TeamAggregateCell({
+  summary,
+}: {
+  summary: ReturnType<typeof summarizeTeamRankingMatchup>;
+}) {
+  return (
+    <td className="bg-slate-50/70 px-2 py-3 text-center">
+      <p className="text-lg font-bold text-slate-800">
+        {summary.goodOrBetterCount}
+      </p>
+      <p className="whitespace-nowrap text-[11px] text-slate-500">
+        ○以上 / {summary.candidateCount}匹
+      </p>
+      <p className="mt-1 whitespace-nowrap text-[11px] font-semibold text-blue-700">
+        最良 {ratingConfig[summary.bestRating].label}
+      </p>
+    </td>
   );
 }
 

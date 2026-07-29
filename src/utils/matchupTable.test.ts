@@ -10,9 +10,13 @@ import {
   filterMatchupCandidates,
   filterRankingEntries,
   getCandidateDisplayName,
+  normalizeSelectedCandidateIds,
+  parseSelectedCandidateIds,
   matchupKey,
   matchupUiText,
   summarizeCandidateMatchups,
+  summarizeTeamRankingMatchup,
+  toggleSelectedCandidateId,
 } from "./matchupTable";
 
 const timestamp = "2026-01-01T00:00:00.000Z";
@@ -171,6 +175,75 @@ describe("candidate matchup table selectors", () => {
     expect(map.get(matchupKey("garchomp-scarf", "enemy-a"))).toMatchObject({
       rating: "good",
       memo: "対面有利",
+    });
+  });
+
+  it("候補モードの初期選択は表示対象の先頭から最大3件にする", () => {
+    const extraVisible = {
+      ...candidates[0],
+      id: "fourth",
+      pokemonId: "metagross",
+    };
+    expect(
+      normalizeSelectedCandidateIds([], [
+        ...candidates.slice(0, 2),
+        extraVisible,
+        { ...extraVisible, id: "fifth" },
+      ]),
+    ).toEqual(["garchomp-scarf", "garchomp-rocks", "fourth"]);
+  });
+
+  it("同種候補をCandidate ID単位で別々に選択でき、最大3件に制限する", () => {
+    const selected = toggleSelectedCandidateId(
+      ["garchomp-scarf"],
+      "garchomp-rocks",
+    );
+    expect(selected).toEqual(["garchomp-scarf", "garchomp-rocks"]);
+    expect(toggleSelectedCandidateId([...selected, "third"], "fourth")).toEqual([
+      "garchomp-scarf",
+      "garchomp-rocks",
+      "third",
+    ]);
+    expect(toggleSelectedCandidateId(["garchomp-scarf"], "garchomp-scarf")).toEqual([
+      "garchomp-scarf",
+    ]);
+  });
+
+  it("保存済み選択から削除済み・非表示候補を除外する", () => {
+    expect(
+      normalizeSelectedCandidateIds(
+        ["garchomp-rocks", "deleted", "hidden"],
+        candidates,
+      ),
+    ).toEqual(["garchomp-rocks"]);
+  });
+
+  it("壊れたlocalStorage値は安全に初期状態へ戻す", () => {
+    expect(parseSelectedCandidateIds("{broken")).toEqual([]);
+    expect(parseSelectedCandidateIds(JSON.stringify({ id: "x" }))).toEqual([]);
+    expect(
+      parseSelectedCandidateIds(
+        JSON.stringify(["garchomp-scarf", "garchomp-scarf", 42]),
+      ),
+    ).toEqual(["garchomp-scarf"]);
+  });
+
+  it("構築モードの○以上件数と最良評価を既存評価段階で集計する", () => {
+    const map = createMatchupMap([
+      ...matchups,
+      {
+        id: "matchup-b",
+        candidatePokemonId: "garchomp-rocks",
+        rankingEntryId: "enemy-a",
+        rating: "very-good",
+      },
+    ]);
+    expect(
+      summarizeTeamRankingMatchup(candidates.slice(0, 2), "enemy-a", map),
+    ).toEqual({
+      goodOrBetterCount: 2,
+      candidateCount: 2,
+      bestRating: "very-good",
     });
   });
 });
