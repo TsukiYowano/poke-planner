@@ -16,7 +16,6 @@ import {
   filterRankingEntries,
   getNextMatchupRating,
   getCandidateDisplayName,
-  getGoodOrBetterCount,
   loadSelectedCandidateIds,
   MAX_SELECTED_MATCHUP_CANDIDATES,
   matchupKey,
@@ -478,10 +477,8 @@ function CandidateMatchupTable({
     onTopScroll,
     onTableScroll,
   } = useSynchronizedHorizontalScroll();
-  const hasTeamAggregate = teamAggregateCandidates !== undefined;
   const mobileMinimumTableWidth = 176 + candidates.length * 144;
-  const desktopMinimumTableWidth =
-    208 + candidates.length * 144 + (hasTeamAggregate ? 128 : 0);
+  const desktopMinimumTableWidth = 208 + candidates.length * 144;
   const tableStyle = {
     "--matchup-table-mobile-min-width": `${mobileMinimumTableWidth}px`,
     "--matchup-table-desktop-min-width": `${desktopMinimumTableWidth}px`,
@@ -516,7 +513,6 @@ function CandidateMatchupTable({
                 className="matchup-candidate-column w-36"
               />
             ))}
-            {hasTeamAggregate && <col className="hidden w-32 md:table-column" />}
           </colgroup>
           <thead>
             <tr className="border-b border-slate-200 bg-slate-50">
@@ -530,11 +526,6 @@ function CandidateMatchupTable({
                   summary={summaryMap.get(candidate.id)}
                 />
               ))}
-              {hasTeamAggregate && (
-                <th className="sticky top-0 z-30 hidden bg-slate-50 px-2 py-3 text-center shadow-[0_1px_0_0_rgb(226_232_240)] md:table-cell">
-                  構築集計
-                </th>
-              )}
             </tr>
           </thead>
           <tbody>
@@ -562,15 +553,6 @@ function CandidateMatchupTable({
                     onEditMemo={() => onEditMemo(candidate, entry)}
                   />
                 ))}
-                {teamAggregateCandidates && (
-                  <TeamAggregateCell
-                    summary={summarizeTeamRankingMatchup(
-                      teamAggregateCandidates,
-                      entry.id,
-                      matchupMap,
-                    )}
-                  />
-                )}
               </tr>
             ))}
           </tbody>
@@ -635,34 +617,19 @@ function RankingHeader({
         </span>
       </div>
       {teamSummary && (
-        <div className="mt-2 flex items-center gap-2 whitespace-nowrap pl-10 text-[10px] font-normal text-slate-500 md:hidden">
+        <div className="mt-2 flex items-center gap-2 whitespace-nowrap pl-10 text-[10px] font-normal text-slate-500">
           <span className="font-bold text-slate-700">
             ○以上 {teamSummary.goodOrBetterCount}匹
           </span>
-          <span>最良 {ratingConfig[teamSummary.bestRating].label}</span>
+          <span>
+            最良{" "}
+            {teamSummary.bestRating === "unrated"
+              ? "—"
+              : ratingConfig[teamSummary.bestRating].label}
+          </span>
         </div>
       )}
     </th>
-  );
-}
-
-function TeamAggregateCell({
-  summary,
-}: {
-  summary: ReturnType<typeof summarizeTeamRankingMatchup>;
-}) {
-  return (
-    <td className="hidden bg-slate-50/70 px-2 py-3 text-center md:table-cell">
-      <p className="text-lg font-bold text-slate-800">
-        {summary.goodOrBetterCount}
-      </p>
-      <p className="whitespace-nowrap text-[11px] text-slate-500">
-        ○以上 / {summary.candidateCount}匹
-      </p>
-      <p className="mt-1 whitespace-nowrap text-[11px] font-semibold text-blue-700">
-        最良 {ratingConfig[summary.bestRating].label}
-      </p>
-    </td>
   );
 }
 
@@ -735,9 +702,6 @@ function MatchupSummary({
                 </span>
                 <span className="text-slate-400">
                   未評価 {summary?.unratedCount ?? 0}
-                </span>
-                <span className="font-bold text-green-700">
-                  ○以上が {summary ? getGoodOrBetterCount(summary) : 0}匹
                 </span>
               </div>
               <div className="mt-2 flex flex-wrap gap-1">

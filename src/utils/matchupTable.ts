@@ -43,12 +43,6 @@ export type CandidateMatchupSummary = {
   counts: Record<MatchupRating, number>;
 };
 
-export function getGoodOrBetterCount(
-  summary: CandidateMatchupSummary,
-): number {
-  return summary.counts["very-good"] + summary.counts.good;
-}
-
 export type TeamRankingMatchupSummary = {
   goodOrBetterCount: number;
   candidateCount: number;
@@ -261,7 +255,8 @@ export function summarizeTeamRankingMatchup(
     )[0] ?? "unrated";
   return {
     goodOrBetterCount: ratings.filter(
-      (rating) => rating === "very-good" || rating === "good",
+      (rating) =>
+        matchupRatingScores[rating] >= matchupRatingScores.good,
     ).length,
     candidateCount: candidates.length,
     bestRating,

@@ -10,7 +10,6 @@ import {
   filterMatchupCandidates,
   filterRankingEntries,
   getCandidateDisplayName,
-  getGoodOrBetterCount,
   loadSelectedCandidateIds,
   MATCHUP_SELECTED_CANDIDATES_STORAGE_KEY,
   normalizeSelectedCandidateIds,
@@ -171,7 +170,6 @@ describe("candidate matchup table selectors", () => {
       unratedCount: 1,
     });
     expect(summary[0].counts.good).toBe(1);
-    expect(getGoodOrBetterCount(summary[0])).toBe(1);
     expect(summary[1].unratedCount).toBe(2);
   });
 
@@ -255,21 +253,60 @@ describe("candidate matchup table selectors", () => {
   });
 
   it("構築モードの○以上件数と最良評価を既存評価段階で集計する", () => {
+    const teamCandidates = [
+      candidates[0],
+      candidates[1],
+      ...(["even", "bad", "very-bad", "unrated"] as const).map(
+        (rating, index) => ({
+          ...candidates[0],
+          id: `candidate-${rating}`,
+          label: rating,
+          pokemonId: `pokemon-${index}`,
+        }),
+      ),
+    ];
     const map = createMatchupMap([
-      ...matchups,
       {
-        id: "matchup-b",
-        candidatePokemonId: "garchomp-rocks",
+        id: "matchup-very-good",
+        candidatePokemonId: "garchomp-scarf",
         rankingEntryId: "enemy-a",
         rating: "very-good",
       },
+      {
+        id: "matchup-good",
+        candidatePokemonId: "garchomp-rocks",
+        rankingEntryId: "enemy-a",
+        rating: "good",
+      },
+      ...(["even", "bad", "very-bad", "unrated"] as const).map(
+        (rating) => ({
+          id: `matchup-${rating}`,
+          candidatePokemonId: `candidate-${rating}`,
+          rankingEntryId: "enemy-a",
+          rating,
+        }),
+      ),
     ]);
     expect(
-      summarizeTeamRankingMatchup(candidates.slice(0, 2), "enemy-a", map),
+      summarizeTeamRankingMatchup(teamCandidates, "enemy-a", map),
     ).toEqual({
       goodOrBetterCount: 2,
-      candidateCount: 2,
+      candidateCount: 6,
       bestRating: "very-good",
+    });
+  });
+
+  it("構築内が全件未評価なら最良評価も未評価になる", () => {
+    expect(
+      summarizeTeamRankingMatchup(
+        candidates.slice(0, 2),
+        "enemy-without-ratings",
+        new Map(),
+      ),
+    ).toEqual({
+      goodOrBetterCount: 0,
+      candidateCount: 2,
+      bestRating: "unrated",
     });
   });
 });
