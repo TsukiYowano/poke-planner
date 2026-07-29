@@ -2,6 +2,7 @@ import {
   GitCompareArrows,
   Home,
   LayoutDashboard,
+  Search,
   Settings,
   ShieldAlert,
   Sparkles,
@@ -62,6 +63,11 @@ const menuItems = [
     label: "苦手タイプ分析",
     path: "/type-analysis",
     icon: ShieldAlert,
+  },
+  {
+    label: "苦手ポケモン分析",
+    path: "/pokemon-analysis",
+    icon: Search,
   },
 ];
 

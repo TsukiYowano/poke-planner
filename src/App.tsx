@@ -9,6 +9,7 @@ import ComparePage from "./pages/ComparePage";
 import CoveragePage from "./pages/CoveragePage";
 import HomePage from "./pages/HomePage";
 import MatchupsPage from "./pages/MatchupsPage";
+import PokemonWeaknessAnalysisPage from "./pages/PokemonWeaknessAnalysisPage";
 import RankingsPage from "./pages/RankingsPage";
 import RecommendationsPage from "./pages/RecommendationsPage";
 import SettingsPage from "./pages/SettingsPage";
@@ -65,6 +66,11 @@ function App() {
           <Route
             path="/type-analysis"
             element={<TypeWeaknessAnalysisPage />}
+          />
+
+          <Route
+            path="/pokemon-analysis"
+            element={<PokemonWeaknessAnalysisPage />}
           />
 
           <Route

@@ -511,7 +511,7 @@ function CandidateMatchupTable({
   } as CSSProperties;
 
   return (
-    <section className="mt-5 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+    <section className="mt-5 rounded-2xl border border-slate-200 bg-white shadow-sm">
       <div
         ref={topScrollRef}
         onScroll={onTopScroll}
@@ -523,8 +523,7 @@ function CandidateMatchupTable({
       <div
         ref={tableScrollRef}
         onScroll={onTableScroll}
-        className="matchup-table-scroll max-h-[70vh] overflow-auto overscroll-contain"
-        style={{ touchAction: "pan-x pan-y" }}
+        className="matchup-table-scroll max-h-[70vh] overflow-auto rounded-2xl md:rounded-t-none"
       >
         <table
           className="matchup-table table-fixed border-collapse text-sm"
@@ -543,7 +542,7 @@ function CandidateMatchupTable({
           </colgroup>
           <thead>
             <tr className="border-b border-slate-200 bg-slate-50">
-              <th className="sticky left-0 top-0 z-40 min-w-[200px] bg-slate-50 px-3 py-3 text-left shadow-[1px_1px_0_0_rgb(226_232_240)] md:min-w-60 md:px-4">
+              <th className="matchup-sticky-corner min-w-[200px] px-3 py-3 text-left shadow-[1px_1px_0_0_rgb(226_232_240)] md:min-w-60 md:px-4">
                 順位・仮想敵
               </th>
               {candidates.map((candidate) => (
@@ -554,7 +553,7 @@ function CandidateMatchupTable({
                 />
               ))}
               {hasTeamAggregate && (
-                <th className="sticky top-0 z-30 hidden bg-slate-50 px-3 py-3 text-center text-xs font-bold text-slate-700 shadow-[0_1px_0_0_rgb(226_232_240)] md:table-cell">
+                <th className="matchup-sticky-header hidden px-3 py-3 text-center text-xs font-bold text-slate-700 shadow-[0_1px_0_0_rgb(226_232_240)] md:table-cell">
                   構築集計
                 </th>
               )}
@@ -611,7 +610,7 @@ function CandidateHeader({
   summary?: CandidateMatchupSummary;
 }) {
   return (
-    <th className="sticky top-0 z-30 bg-slate-50 px-2 py-3 text-center shadow-[0_1px_0_0_rgb(226_232_240)]">
+    <th className="matchup-sticky-header px-2 py-3 text-center shadow-[0_1px_0_0_rgb(226_232_240)]">
       <PokemonIcon
         pokemonId={candidate.pokemonId}
         pokemonName={getCandidateName(candidate)}
@@ -642,7 +641,7 @@ function RankingHeader({
 }) {
   const pokemon = pokemonMasterMap[entry.pokemonId];
   return (
-    <th className="sticky left-0 z-20 bg-white px-3 py-3 text-left shadow-[1px_0_0_0_rgb(241_245_249)] md:px-4">
+    <th className="matchup-sticky-left px-3 py-3 text-left shadow-[1px_0_0_0_rgb(241_245_249)] md:px-4">
       <div className="flex items-center gap-3">
         <span className="w-7 text-slate-400">{entry.rank}</span>
         <PokemonIcon

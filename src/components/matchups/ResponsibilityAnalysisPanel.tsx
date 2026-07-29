@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import PokemonIcon from "../common/PokemonIcon";
+import MatchupRatingBadge from "./MatchupRatingBadge";
 import { pokemonMasterMap } from "../../data/pokemon";
 import type {
   CandidatePokemon,
@@ -9,7 +10,6 @@ import type {
   Team,
 } from "../../types/pokemon";
 import { getCandidateDisplayName } from "../../utils/matchupTable";
-import { matchupRatingConfig } from "../../utils/matchupRatingDisplay";
 import { formatCandidateDisplayName } from "../../utils/responsibilityDisplay";
 import {
   analyzeTeamResponsibilities,
@@ -261,7 +261,7 @@ function DangerPokemonItem({
                 <span className="truncate" title={assignedDisplayName}>
                   {assignedDisplayName}
                 </span>
-                <RatingBadge rating={assignment.rating} />
+                <MatchupRatingBadge rating={assignment.rating} />
               </p>
             )}
           </div>
@@ -296,29 +296,13 @@ function DangerPokemonItem({
                     </p>
                   )}
                 </div>
-                <RatingBadge rating={teamRating.rating} />
+                <MatchupRatingBadge rating={teamRating.rating} />
               </li>
             );
           })}
         </ul>
       </div>
     </details>
-  );
-}
-
-function RatingBadge({
-  rating,
-}: {
-  rating: Matchup["rating"];
-}) {
-  const config = matchupRatingConfig[rating];
-  return (
-    <span
-      title={config.name}
-      className={`inline-flex min-w-12 shrink-0 justify-center rounded-md border px-2 py-0.5 text-xs font-bold ${config.className}`}
-    >
-      {rating === "unrated" ? "未評価" : config.label}
-    </span>
   );
 }
 
@@ -411,7 +395,7 @@ function ResponsibilityEntryList({
                 {getPokemonName(entry.pokemonId) ?? entry.pokemonId}
               </span>
               <span className="justify-self-end">
-                <RatingBadge rating={rating} />
+                <MatchupRatingBadge rating={rating} />
               </span>
             </li>
           ))}

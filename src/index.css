@@ -1,7 +1,32 @@
 @import "tailwindcss";
 
 .matchup-table-scroll {
-  container-type: inline-size;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-x pan-y;
+  isolation: isolate;
+}
+
+.matchup-sticky-corner {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 40;
+  background-color: rgb(248 250 252);
+}
+
+.matchup-sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background-color: rgb(248 250 252);
+}
+
+.matchup-sticky-left {
+  position: sticky;
+  left: 0;
+  z-index: 20;
+  background-color: rgb(255 255 255);
 }
 
 .matchup-table {
@@ -25,7 +50,11 @@
     width: auto;
   }
 
-  @container (max-width: 999px) {
+  /*
+   * 旧container queryと同等の狭いメイン領域をviewportで判定する。
+   * Sticky祖先へのsize containmentを避け、iOS Safariでの固定を安定させる。
+   */
+  @media (max-width: 1319px) {
     .matchup-table {
       width: var(--matchup-table-desktop-min-width);
       min-width: var(--matchup-table-desktop-min-width);
