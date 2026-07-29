@@ -479,9 +479,9 @@ function CandidateMatchupTable({
     onTableScroll,
   } = useSynchronizedHorizontalScroll();
   const hasTeamAggregate = teamAggregateCandidates !== undefined;
-  const mobileMinimumTableWidth = 176 + candidates.length * 144;
+  const mobileMinimumTableWidth = 200 + candidates.length * 144;
   const desktopMinimumTableWidth =
-    208 + candidates.length * 144 + (hasTeamAggregate ? 128 : 0);
+    240 + candidates.length * 144 + (hasTeamAggregate ? 128 : 0);
   const tableStyle = {
     "--matchup-table-mobile-min-width": `${mobileMinimumTableWidth}px`,
     "--matchup-table-desktop-min-width": `${desktopMinimumTableWidth}px`,
@@ -509,7 +509,7 @@ function CandidateMatchupTable({
           style={tableStyle}
         >
           <colgroup>
-            <col className="w-44 md:w-52" />
+            <col className="w-[200px] md:w-60" />
             {candidates.map((candidate) => (
               <col
                 key={candidate.id}
@@ -520,7 +520,7 @@ function CandidateMatchupTable({
           </colgroup>
           <thead>
             <tr className="border-b border-slate-200 bg-slate-50">
-              <th className="sticky left-0 top-0 z-40 min-w-44 bg-slate-50 px-3 py-3 text-left shadow-[1px_1px_0_0_rgb(226_232_240)] md:min-w-52 md:px-4">
+              <th className="sticky left-0 top-0 z-40 min-w-[200px] bg-slate-50 px-3 py-3 text-left shadow-[1px_1px_0_0_rgb(226_232_240)] md:min-w-60 md:px-4">
                 順位・仮想敵
               </th>
               {candidates.map((candidate) => (
@@ -630,6 +630,7 @@ function RankingHeader({
         <span
           className="truncate whitespace-nowrap font-semibold text-slate-800"
           title={pokemon?.name ?? entry.pokemonId}
+          tabIndex={0}
         >
           {pokemon?.name ?? entry.pokemonId}
         </span>
