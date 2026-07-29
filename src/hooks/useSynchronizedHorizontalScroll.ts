@@ -65,6 +65,7 @@ export function useSynchronizedHorizontalScroll(): {
 
     const updateRange = () => {
       spacer.style.width = `${tableScroll.scrollWidth}px`;
+      topScroll.style.width = `${tableScroll.clientWidth}px`;
       const hasOverflow = tableScroll.scrollWidth > tableScroll.clientWidth + 1;
       topScroll.hidden = !hasOverflow;
       if (!hasOverflow) {

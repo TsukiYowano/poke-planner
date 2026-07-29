@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
+.matchup-table-scroll {
+  container-type: inline-size;
+}
+
 .matchup-table {
-  width: var(--matchup-table-min-width);
-  min-width: var(--matchup-table-min-width);
+  width: var(--matchup-table-mobile-min-width);
+  min-width: var(--matchup-table-mobile-min-width);
 }
 
 @media (min-width: 768px) {
@@ -12,12 +16,24 @@
   }
 
   .matchup-table[data-desktop-overflow="true"] {
-    width: var(--matchup-table-min-width);
-    min-width: var(--matchup-table-min-width);
+    width: var(--matchup-table-desktop-min-width);
+    min-width: var(--matchup-table-desktop-min-width);
   }
 
   .matchup-table:not([data-desktop-overflow="true"])
     .matchup-candidate-column {
     width: auto;
+  }
+
+  @container (max-width: 999px) {
+    .matchup-table {
+      width: var(--matchup-table-desktop-min-width);
+      min-width: var(--matchup-table-desktop-min-width);
+    }
+
+    .matchup-table:not([data-desktop-overflow="true"])
+      .matchup-candidate-column {
+      width: 9rem;
+    }
   }
 }

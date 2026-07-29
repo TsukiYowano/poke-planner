@@ -12,6 +12,11 @@ export const MATCHUP_SELECTED_CANDIDATES_STORAGE_KEY =
   "pokeplanner:matchups:selected-candidates";
 export const MAX_SELECTED_MATCHUP_CANDIDATES = 3;
 
+export type CandidateSelectionStorage = Pick<
+  Storage,
+  "getItem" | "setItem"
+>;
+
 export const matchupUiText = {
   candidateList: "候補一覧",
   candidateSummary: "候補別集計",
@@ -63,6 +68,29 @@ export function parseSelectedCandidateIds(raw: string | null): string[] {
   } catch {
     return [];
   }
+}
+
+export function loadSelectedCandidateIds(
+  storage: CandidateSelectionStorage,
+): string[] {
+  return parseSelectedCandidateIds(
+    storage.getItem(MATCHUP_SELECTED_CANDIDATES_STORAGE_KEY),
+  );
+}
+
+export function saveSelectedCandidateIds(
+  storage: CandidateSelectionStorage,
+  selectedIds: string[],
+): void {
+  storage.setItem(
+    MATCHUP_SELECTED_CANDIDATES_STORAGE_KEY,
+    JSON.stringify(
+      [...new Set(selectedIds)].slice(
+        0,
+        MAX_SELECTED_MATCHUP_CANDIDATES,
+      ),
+    ),
+  );
 }
 
 export function normalizeSelectedCandidateIds(

@@ -16,13 +16,13 @@ import {
   filterRankingEntries,
   getNextMatchupRating,
   getCandidateDisplayName,
-  MATCHUP_SELECTED_CANDIDATES_STORAGE_KEY,
+  loadSelectedCandidateIds,
   MAX_SELECTED_MATCHUP_CANDIDATES,
   matchupKey,
   matchupRatings,
   matchupUiText,
   normalizeSelectedCandidateIds,
-  parseSelectedCandidateIds,
+  saveSelectedCandidateIds,
   summarizeCandidateMatchups,
   summarizeTeamRankingMatchup,
   toggleSelectedCandidateId,
@@ -87,11 +87,7 @@ function MatchupsPage() {
     () =>
       typeof window === "undefined"
         ? []
-        : parseSelectedCandidateIds(
-            window.localStorage.getItem(
-              MATCHUP_SELECTED_CANDIDATES_STORAGE_KEY,
-            ),
-          ),
+        : loadSelectedCandidateIds(window.localStorage),
   );
   const [editing, setEditing] = useState<{
     candidate: CandidatePokemon;
@@ -172,9 +168,9 @@ function MatchupsPage() {
         (id, index) => id === selectedCandidateIds[index],
       );
     if (!isSame) setSelectedCandidateIds(normalizedSelectedCandidateIds);
-    window.localStorage.setItem(
-      MATCHUP_SELECTED_CANDIDATES_STORAGE_KEY,
-      JSON.stringify(normalizedSelectedCandidateIds),
+    saveSelectedCandidateIds(
+      window.localStorage,
+      normalizedSelectedCandidateIds,
     );
   }, [normalizedSelectedCandidateIds, selectedCandidateIds]);
   const entries = useMemo(
@@ -482,10 +478,12 @@ function CandidateMatchupTable({
     onTableScroll,
   } = useSynchronizedHorizontalScroll();
   const hasTeamAggregate = teamAggregateCandidates !== undefined;
-  const minimumTableWidth =
-    176 + candidates.length * 144 + (hasTeamAggregate ? 128 : 0);
+  const mobileMinimumTableWidth = 176 + candidates.length * 144;
+  const desktopMinimumTableWidth =
+    208 + candidates.length * 144 + (hasTeamAggregate ? 128 : 0);
   const tableStyle = {
-    "--matchup-table-min-width": `${minimumTableWidth}px`,
+    "--matchup-table-mobile-min-width": `${mobileMinimumTableWidth}px`,
+    "--matchup-table-desktop-min-width": `${desktopMinimumTableWidth}px`,
   } as CSSProperties;
 
   return (
@@ -501,7 +499,7 @@ function CandidateMatchupTable({
       <div
         ref={tableScrollRef}
         onScroll={onTableScroll}
-        className="matchup-table-scroll overflow-x-auto overflow-y-visible md:max-h-[70vh] md:overflow-auto"
+        className="matchup-table-scroll max-h-[70vh] overflow-auto overscroll-contain"
         style={{ touchAction: "pan-x pan-y" }}
       >
         <table
@@ -517,11 +515,11 @@ function CandidateMatchupTable({
                 className="matchup-candidate-column w-36"
               />
             ))}
-            {hasTeamAggregate && <col className="w-32" />}
+            {hasTeamAggregate && <col className="hidden w-32 md:table-column" />}
           </colgroup>
           <thead>
             <tr className="border-b border-slate-200 bg-slate-50">
-              <th className="sticky top-16 z-40 min-w-44 bg-slate-50 px-3 py-3 text-left shadow-[1px_1px_0_0_rgb(226_232_240)] md:left-0 md:top-0 md:min-w-52 md:px-4">
+              <th className="sticky left-0 top-0 z-40 min-w-44 bg-slate-50 px-3 py-3 text-left shadow-[1px_1px_0_0_rgb(226_232_240)] md:min-w-52 md:px-4">
                 順位・仮想敵
               </th>
               {candidates.map((candidate) => (
@@ -532,7 +530,7 @@ function CandidateMatchupTable({
                 />
               ))}
               {hasTeamAggregate && (
-                <th className="sticky top-16 z-30 bg-slate-50 px-2 py-3 text-center shadow-[0_1px_0_0_rgb(226_232_240)] md:top-0">
+                <th className="sticky top-0 z-30 hidden bg-slate-50 px-2 py-3 text-center shadow-[0_1px_0_0_rgb(226_232_240)] md:table-cell">
                   構築集計
                 </th>
               )}
@@ -541,7 +539,18 @@ function CandidateMatchupTable({
           <tbody>
             {entries.map((entry) => (
               <tr key={entry.id} className="border-b border-slate-100">
-                <RankingHeader entry={entry} />
+                <RankingHeader
+                  entry={entry}
+                  teamSummary={
+                    teamAggregateCandidates
+                      ? summarizeTeamRankingMatchup(
+                          teamAggregateCandidates,
+                          entry.id,
+                          matchupMap,
+                        )
+                      : undefined
+                  }
+                />
                 {candidates.map((candidate) => (
                   <MatchupCell
                     key={candidate.id}
@@ -578,7 +587,7 @@ function CandidateHeader({
   summary?: CandidateMatchupSummary;
 }) {
   return (
-    <th className="sticky top-16 z-30 bg-slate-50 px-2 py-3 text-center shadow-[0_1px_0_0_rgb(226_232_240)] md:top-0">
+    <th className="sticky top-0 z-30 bg-slate-50 px-2 py-3 text-center shadow-[0_1px_0_0_rgb(226_232_240)]">
       <PokemonIcon
         pokemonId={candidate.pokemonId}
         pokemonName={getCandidateName(candidate)}
@@ -587,7 +596,10 @@ function CandidateHeader({
       <span className="mt-1 block truncate whitespace-nowrap font-bold text-slate-800">
         {getCandidateName(candidate)}
       </span>
-      <span className="block truncate text-xs text-blue-600">
+      <span
+        className="block truncate text-xs text-blue-600"
+        title={candidate.label || candidate.pokemonId}
+      >
         {candidate.label || candidate.pokemonId}
       </span>
       <span className="mt-1 block text-[11px] font-normal text-slate-400">
@@ -597,10 +609,16 @@ function CandidateHeader({
   );
 }
 
-function RankingHeader({ entry }: { entry: RankingEntry }) {
+function RankingHeader({
+  entry,
+  teamSummary,
+}: {
+  entry: RankingEntry;
+  teamSummary?: ReturnType<typeof summarizeTeamRankingMatchup>;
+}) {
   const pokemon = pokemonMasterMap[entry.pokemonId];
   return (
-    <th className="bg-white px-3 py-3 text-left md:sticky md:left-0 md:z-10 md:px-4">
+    <th className="sticky left-0 z-20 bg-white px-3 py-3 text-left shadow-[1px_0_0_0_rgb(241_245_249)] md:px-4">
       <div className="flex items-center gap-3">
         <span className="w-7 text-slate-400">{entry.rank}</span>
         <PokemonIcon
@@ -608,10 +626,21 @@ function RankingHeader({ entry }: { entry: RankingEntry }) {
           pokemonName={pokemon?.name}
           size={36}
         />
-        <span className="truncate whitespace-nowrap font-semibold text-slate-800">
+        <span
+          className="truncate whitespace-nowrap font-semibold text-slate-800"
+          title={pokemon?.name ?? entry.pokemonId}
+        >
           {pokemon?.name ?? entry.pokemonId}
         </span>
       </div>
+      {teamSummary && (
+        <div className="mt-2 flex items-center gap-2 whitespace-nowrap pl-10 text-[10px] font-normal text-slate-500 md:hidden">
+          <span className="font-bold text-slate-700">
+            ○以上 {teamSummary.goodOrBetterCount}匹
+          </span>
+          <span>最良 {ratingConfig[teamSummary.bestRating].label}</span>
+        </div>
+      )}
     </th>
   );
 }
@@ -622,7 +651,7 @@ function TeamAggregateCell({
   summary: ReturnType<typeof summarizeTeamRankingMatchup>;
 }) {
   return (
-    <td className="bg-slate-50/70 px-2 py-3 text-center">
+    <td className="hidden bg-slate-50/70 px-2 py-3 text-center md:table-cell">
       <p className="text-lg font-bold text-slate-800">
         {summary.goodOrBetterCount}
       </p>

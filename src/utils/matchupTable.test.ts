@@ -10,8 +10,11 @@ import {
   filterMatchupCandidates,
   filterRankingEntries,
   getCandidateDisplayName,
+  loadSelectedCandidateIds,
+  MATCHUP_SELECTED_CANDIDATES_STORAGE_KEY,
   normalizeSelectedCandidateIds,
   parseSelectedCandidateIds,
+  saveSelectedCandidateIds,
   matchupKey,
   matchupUiText,
   summarizeCandidateMatchups,
@@ -226,6 +229,27 @@ describe("candidate matchup table selectors", () => {
         JSON.stringify(["garchomp-scarf", "garchomp-scarf", 42]),
       ),
     ).toEqual(["garchomp-scarf"]);
+  });
+
+  it("選択中のCandidate IDをUI専用キーへ保存し復元する", () => {
+    const values = new Map<string, string>();
+    const storage = {
+      getItem: (key: string) => values.get(key) ?? null,
+      setItem: (key: string, value: string) => values.set(key, value),
+    };
+    saveSelectedCandidateIds(storage, [
+      "garchomp-scarf",
+      "garchomp-rocks",
+    ]);
+    expect(
+      JSON.parse(
+        values.get(MATCHUP_SELECTED_CANDIDATES_STORAGE_KEY) ?? "[]",
+      ),
+    ).toEqual(["garchomp-scarf", "garchomp-rocks"]);
+    expect(loadSelectedCandidateIds(storage)).toEqual([
+      "garchomp-scarf",
+      "garchomp-rocks",
+    ]);
   });
 
   it("構築モードの○以上件数と最良評価を既存評価段階で集計する", () => {
