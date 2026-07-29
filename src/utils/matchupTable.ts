@@ -43,6 +43,12 @@ export type CandidateMatchupSummary = {
   counts: Record<MatchupRating, number>;
 };
 
+export function getGoodOrBetterCount(
+  summary: CandidateMatchupSummary,
+): number {
+  return summary.counts["very-good"] + summary.counts.good;
+}
+
 export type TeamRankingMatchupSummary = {
   goodOrBetterCount: number;
   candidateCount: number;

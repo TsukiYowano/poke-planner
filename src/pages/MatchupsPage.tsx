@@ -16,6 +16,7 @@ import {
   filterRankingEntries,
   getNextMatchupRating,
   getCandidateDisplayName,
+  getGoodOrBetterCount,
   loadSelectedCandidateIds,
   MAX_SELECTED_MATCHUP_CANDIDATES,
   matchupKey,
@@ -728,12 +729,15 @@ function MatchupSummary({
               <p className="truncate text-xs text-blue-600">
                 {candidate.label || candidate.pokemonId}
               </p>
-              <div className="mt-3 flex gap-3 text-xs">
+              <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-xs">
                 <span className="font-semibold text-slate-700">
                   評価済 {summary?.ratedCount ?? 0}
                 </span>
                 <span className="text-slate-400">
                   未評価 {summary?.unratedCount ?? 0}
+                </span>
+                <span className="font-bold text-green-700">
+                  ○以上が {summary ? getGoodOrBetterCount(summary) : 0}匹
                 </span>
               </div>
               <div className="mt-2 flex flex-wrap gap-1">

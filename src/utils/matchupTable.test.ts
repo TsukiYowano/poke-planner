@@ -10,6 +10,7 @@ import {
   filterMatchupCandidates,
   filterRankingEntries,
   getCandidateDisplayName,
+  getGoodOrBetterCount,
   loadSelectedCandidateIds,
   MATCHUP_SELECTED_CANDIDATES_STORAGE_KEY,
   normalizeSelectedCandidateIds,
@@ -170,6 +171,7 @@ describe("candidate matchup table selectors", () => {
       unratedCount: 1,
     });
     expect(summary[0].counts.good).toBe(1);
+    expect(getGoodOrBetterCount(summary[0])).toBe(1);
     expect(summary[1].unratedCount).toBe(2);
   });
 
