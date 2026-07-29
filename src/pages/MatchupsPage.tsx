@@ -14,6 +14,7 @@ import {
   createMatchupMap,
   filterMatchupCandidates,
   filterRankingEntries,
+  getCoverageCountTone,
   getNextMatchupRating,
   getCandidateDisplayName,
   loadSelectedCandidateIds,
@@ -477,8 +478,10 @@ function CandidateMatchupTable({
     onTopScroll,
     onTableScroll,
   } = useSynchronizedHorizontalScroll();
+  const hasTeamAggregate = teamAggregateCandidates !== undefined;
   const mobileMinimumTableWidth = 176 + candidates.length * 144;
-  const desktopMinimumTableWidth = 208 + candidates.length * 144;
+  const desktopMinimumTableWidth =
+    208 + candidates.length * 144 + (hasTeamAggregate ? 128 : 0);
   const tableStyle = {
     "--matchup-table-mobile-min-width": `${mobileMinimumTableWidth}px`,
     "--matchup-table-desktop-min-width": `${desktopMinimumTableWidth}px`,
@@ -513,6 +516,7 @@ function CandidateMatchupTable({
                 className="matchup-candidate-column w-36"
               />
             ))}
+            {hasTeamAggregate && <col className="hidden w-32 md:table-column" />}
           </colgroup>
           <thead>
             <tr className="border-b border-slate-200 bg-slate-50">
@@ -526,6 +530,11 @@ function CandidateMatchupTable({
                   summary={summaryMap.get(candidate.id)}
                 />
               ))}
+              {hasTeamAggregate && (
+                <th className="sticky top-0 z-30 hidden bg-slate-50 px-3 py-3 text-center text-xs font-bold text-slate-700 shadow-[0_1px_0_0_rgb(226_232_240)] md:table-cell">
+                  構築集計
+                </th>
+              )}
             </tr>
           </thead>
           <tbody>
@@ -553,6 +562,15 @@ function CandidateMatchupTable({
                     onEditMemo={() => onEditMemo(candidate, entry)}
                   />
                 ))}
+                {teamAggregateCandidates && (
+                  <TeamAggregateCell
+                    summary={summarizeTeamRankingMatchup(
+                      teamAggregateCandidates,
+                      entry.id,
+                      matchupMap,
+                    )}
+                  />
+                )}
               </tr>
             ))}
           </tbody>
@@ -617,11 +635,11 @@ function RankingHeader({
         </span>
       </div>
       {teamSummary && (
-        <div className="mt-2 flex items-center gap-2 whitespace-nowrap pl-10 text-[10px] font-normal text-slate-500">
-          <span className="font-bold text-slate-700">
+        <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-0.5 whitespace-nowrap pl-10 text-sm font-semibold md:hidden">
+          <span className={coverageCountClassName(teamSummary.goodOrBetterCount)}>
             ○以上 {teamSummary.goodOrBetterCount}匹
           </span>
-          <span>
+          <span className="text-slate-600">
             最良{" "}
             {teamSummary.bestRating === "unrated"
               ? "—"
@@ -630,6 +648,38 @@ function RankingHeader({
         </div>
       )}
     </th>
+  );
+}
+
+const coverageCountClasses = {
+  good: "text-green-700",
+  warning: "text-orange-600",
+  danger: "text-red-600",
+} as const;
+
+function coverageCountClassName(count: number): string {
+  return coverageCountClasses[getCoverageCountTone(count)];
+}
+
+function TeamAggregateCell({
+  summary,
+}: {
+  summary: ReturnType<typeof summarizeTeamRankingMatchup>;
+}) {
+  return (
+    <td className="hidden bg-slate-50/70 px-3 py-3 text-center md:table-cell">
+      <p
+        className={`whitespace-nowrap text-sm font-bold ${coverageCountClassName(summary.goodOrBetterCount)}`}
+      >
+        ○以上 {summary.goodOrBetterCount}匹
+      </p>
+      <p className="mt-1 whitespace-nowrap text-sm font-semibold text-slate-700">
+        最良{" "}
+        {summary.bestRating === "unrated"
+          ? "—"
+          : ratingConfig[summary.bestRating].label}
+      </p>
+    </td>
   );
 }
 

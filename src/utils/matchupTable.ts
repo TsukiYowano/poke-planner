@@ -49,6 +49,14 @@ export type TeamRankingMatchupSummary = {
   bestRating: MatchupRating;
 };
 
+export type CoverageCountTone = "good" | "warning" | "danger";
+
+export function getCoverageCountTone(count: number): CoverageCountTone {
+  if (count >= 2) return "good";
+  if (count === 1) return "warning";
+  return "danger";
+}
+
 const matchupRatingScores: Record<MatchupRating, number> = {
   "very-good": 4,
   good: 3,

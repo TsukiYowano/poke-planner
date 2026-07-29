@@ -9,6 +9,7 @@ import {
   createMatchupMap,
   filterMatchupCandidates,
   filterRankingEntries,
+  getCoverageCountTone,
   getCandidateDisplayName,
   loadSelectedCandidateIds,
   MATCHUP_SELECTED_CANDIDATES_STORAGE_KEY,
@@ -103,6 +104,13 @@ const names: Record<string, string> = {
 const getName = (id: string) => names[id];
 
 describe("candidate matchup table selectors", () => {
+  it("○以上件数から表示トーンを決定する", () => {
+    expect(getCoverageCountTone(2)).toBe("good");
+    expect(getCoverageCountTone(6)).toBe("good");
+    expect(getCoverageCountTone(1)).toBe("warning");
+    expect(getCoverageCountTone(0)).toBe("danger");
+  });
+
   it("利用者向け文言は候補表記を使用する", () => {
     expect(matchupUiText.candidateList).toBe("候補一覧");
     expect(matchupUiText.candidateSummary).toBe("候補別集計");
